@@ -11,14 +11,14 @@ public extension CollectionViewSection {
 	/// Error, which could occure, when items is setting.
 	enum SetItemsError {
 		/// Passed items are empty.
-		case areEmpty
+		case itemsAreEmpty
 	}
 }
 
 extension CollectionViewSection.SetItemsError: LocalizedError {
 	public var errorDescription: String? {
 		switch self {
-		case .areEmpty:
+		case .itemsAreEmpty:
 			return "Passed items are empty"
 		}
 	}

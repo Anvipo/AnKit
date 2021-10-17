@@ -40,6 +40,13 @@ private extension MainVC {
 		)
 	}
 
+	func didTapScaleCarouselButtonItem() {
+		navigationController?.pushViewController(
+			ScaleCarouselVC(),
+			animated: shouldAnimateDifferences
+		)
+	}
+
 	func setupUI() {
 		navigationItem.title = "Examples"
 
@@ -58,14 +65,20 @@ private extension MainVC {
 			let sectionBackgroundButtonItem = ButtonItem(text: "Section background example") { [weak self] in
 				self?.didTapSectionBackgroundButtonItem()
 			}
+			let scaleCarouselButtonItem = ButtonItem(text: "Scale carousel example") { [weak self] in
+				self?.didTapScaleCarouselButtonItem()
+			}
 
 			let section = try PlainListSection(
 				items: [
+					PlainSpacerItem(height: 16),
 					simpleScreenButtonItem,
 					PlainSpacerItem(height: 32),
 					shuffleItemsButtonItem,
 					PlainSpacerItem(height: 32),
-					sectionBackgroundButtonItem
+					sectionBackgroundButtonItem,
+					PlainSpacerItem(height: 32),
+					scaleCarouselButtonItem
 				],
 				contentInsets: .default()
 			)

@@ -11,7 +11,6 @@ import UIKit
 /// Provider for images.
 public final class ImageProvider {
 	private let imageContent: ImageContent
-	private let imageDownloader: ImageDownloader
 	private let imageProcessingQueue: DispatchQueue
 	private let mainQueue: DispatchQueue
 
@@ -22,17 +21,14 @@ public final class ImageProvider {
 	/// Initializes provider with specified parameters.
 	/// - Parameters:
 	///   - imageContent: Image content.
-	///   - imageDownloader: Image downloader.
 	///   - imageProcessingQueue: Image processing queue.
 	///   - mainQueue: Main queue.
 	public init(
 		imageContent: ImageContent,
-		imageDownloader: ImageDownloader,
-		imageProcessingQueue: DispatchQueue,
+		imageProcessingQueue: DispatchQueue = .global(qos: .userInitiated),
 		mainQueue: DispatchQueue = .main
 	) {
 		self.imageContent = imageContent
-		self.imageDownloader = imageDownloader
 		self.imageProcessingQueue = imageProcessingQueue
 		self.mainQueue = mainQueue
 
@@ -46,68 +42,35 @@ public extension ImageProvider {
 	/// Setups image in specified `imageView`.
 	/// - Parameters:
 	///   - imageView: Image view, which will contain image.
-	///   - transformationsBeforeSet: Action, which should be done before image set.
-	///   - getCustomImageViewSize: Custom image view size, if needed.
 	///   - shouldSetImageToImageView: Should set image to image view or not.
 	func setupImage(
 		in imageView: UIImageView,
-		transformationsBeforeSet: ((UIImage) -> Void)? = nil,
-		getCustomImageViewSize: (() -> CGSize)? = nil,
 		shouldSetImageToImageView: @escaping () -> Bool = { true }
 	) throws {
-		if let uiImage = imageContent.uiImage {
-			let redrawnImage: UIImage
-			if let customImageViewSize = getCustomImageViewSize?() {
-				redrawnImage = try uiImage.proportionallyRedraw(to: customImageViewSize)
-			} else {
-				redrawnImage = uiImage
+		switch imageContent {
+		case let .localImage(uiImageProvider):
+			imageView.image = uiImageProvider.uiImage
+
+		case .remoteURL:
+			let shouldShimmer = state != .downloaded
+
+			if shouldShimmer {
+				imageView.showShimmer()
 			}
 
-			transformationsBeforeSet?(redrawnImage)
-
-			imageView.image = redrawnImage
-			return
-		}
-
-		let shouldShimmer = state != .downloaded
-
-		if shouldShimmer {
-			imageView.showShimmer()
-		}
-
-		// swiftlint:disable:next closure_body_length
-		try requestImage { [weak imageView, weak self] result in
-			guard let self = self,
-				  let imageView = imageView,
-				  shouldSetImageToImageView()
-			else {
-				return
-			}
-
-			guard let newImage = result.success?.uiImage else {
-				self.set(newImage: nil, to: imageView, shouldHideShimmer: shouldShimmer)
-				return
-			}
-
-			if let customImageViewSize = getCustomImageViewSize?() {
-				self.imageProcessingQueue.async { [weak self] in
-					guard let self = self else {
-						return
-					}
-
-					do {
-						let redrawnImage = try newImage.proportionallyRedraw(to: customImageViewSize)
-
-						self.set(
-							newImage: redrawnImage,
-							to: imageView,
-							shouldHideShimmer: shouldShimmer
-						)
-					} catch {
-						assertionFailure(error.localizedDescription)
-					}
+			requestImage { [weak imageView, weak self] result in
+				guard let self = self,
+					  let imageView = imageView,
+					  shouldSetImageToImageView()
+				else {
+					return
 				}
-			} else {
+
+				guard let newImage = result.success else {
+					self.set(newImage: nil, to: imageView, shouldHideShimmer: shouldShimmer)
+					return
+				}
+
 				self.set(newImage: newImage, to: imageView, shouldHideShimmer: shouldShimmer)
 			}
 		}
@@ -119,17 +82,19 @@ extension ImageProvider {
 	typealias OnComplete = (Result) -> Void
 
 	func prefetch() {
-		guard let imageRemoteURL = imageContent.remoteURL else {
-			return
+		switch imageContent {
+		case let .remoteURL(imageRemoteURLProvider, imageDownloader, _):
+			if state == .downloading || state == .downloaded {
+				return
+			}
+
+			state = .downloading
+
+			process(request: imageDownloader.downloadImage(imageRemoteURL: imageRemoteURLProvider.url))
+
+		case .localImage:
+			break
 		}
-
-		if state == .downloading || state == .downloaded {
-			return
-		}
-
-		state = .downloading
-
-		process(request: imageDownloader.downloadImage(imageRemoteURL: imageRemoteURL))
 	}
 
 	func cancelPrefetching() {
@@ -174,27 +139,24 @@ extension ImageProvider: Hashable {
 }
 
 private extension ImageProvider {
-	func requestImage(onComplete: @escaping OnComplete) throws {
-		if let uiImage = imageContent.uiImage {
-			mainQueue.async { [weak self] in
-				self?.send(result: .success(uiImage))
+	func requestImage(onComplete: @escaping OnComplete) {
+		switch imageContent {
+		case let .localImage(uiImageProvider):
+			imageProcessingQueue.async { [weak self] in
+				self?.send(result: .success(uiImageProvider.uiImage))
 			}
-			return
+
+		case let .remoteURL(imageRemoteURLProvider, imageDownloader, _):
+			onCompletes.append(onComplete)
+
+			if state == .downloading {
+				return
+			}
+
+			state = .downloading
+
+			process(request: imageDownloader.downloadImage(imageRemoteURL: imageRemoteURLProvider.url))
 		}
-
-		guard let imageRemoteURL = imageContent.remoteURL else {
-			throw RequestImageError.unknownContentType(imageContent)
-		}
-
-		onCompletes.append(onComplete)
-
-		if state == .downloading {
-			return
-		}
-
-		state = .downloading
-
-		process(request: imageDownloader.downloadImage(imageRemoteURL: imageRemoteURL))
 	}
 
 	func process(request: AnyPublisher<Data, Error>) {
@@ -211,20 +173,42 @@ private extension ImageProvider {
 				self.state = .failed
 				self.send(result: .failure(.networkError(failure)))
 			} receiveValue: { [weak self] receivedImageData in
-				guard let self = self else {
-					return
+				self?.imageProcessingQueue.async { [weak self] in
+					self?.didReceive(imageData: receivedImageData)
 				}
-
-				guard let uiImage = UIImage(data: receivedImageData) else {
-					self.state = .failed
-					self.send(result: .failure(.notImageData(receivedImageData)))
-					return
-				}
-
-				self.state = .downloaded
-				self.send(result: .success(uiImage))
 			}
 			.store(in: &cancellables)
+	}
+
+	func didReceive(imageData: Data) {
+		guard var uiImage = UIImage(data: imageData) else {
+			state = .failed
+			send(result: .failure(.notImageData(imageData)))
+			return
+		}
+
+		state = .downloaded
+
+		switch imageContent {
+		case let .remoteURL(_, _, imageModifiers):
+			let result: Result
+			do {
+				uiImage = try ComplexUIImageProvider(
+					originalUIImageProvider: uiImage,
+					modifiers: imageModifiers
+				).uiImage
+				result = .success(uiImage)
+			} catch {
+				result = .failure(.imageProcessingError(error))
+			}
+
+			mainQueue.async { [weak self] in
+				self?.send(result: result)
+			}
+
+		case .localImage:
+			assertionFailure("?")
+		}
 	}
 
 	func send(result: Result) {

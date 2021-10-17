@@ -13,6 +13,9 @@ open class CollectionViewSection {
 	/// The amount of space between the content of the section and its boundaries.
 	public final var contentInsets: NSDirectionalEdgeInsets
 
+	/// A closure called before each layout cycle to allow modification of the items in the section immediately before they are displayed.
+	public final var visibleItemsInvalidationHandler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler?
+
 	/// Items in section
 	///
 	/// This property always is not empty.
@@ -41,15 +44,18 @@ open class CollectionViewSection {
 	/// - Parameters:
 	///   - items: Items in section. Must not be empty.
 	///   - supplementaryItems: Supplementary items in section. Could be empty.
+	///   - decorationItems: Decoration items in section.
 	///   - contentInsets: The amount of space between the content of the section and its boundaries.
-	///   - headerItem: Item for header in section.
+	///   - visibleItemsInvalidationHandler: A closure called before each layout cycle to allow modification of the items
+	///   in the section immediately before they are displayed.
 	///   - id: The stable identity of the entity associated with this instance.
-	/// - Throws: `CollectionViewSection.SetItemsError`.
+	/// - Throws: `CollectionViewSection.InitError`.
 	public init(
 		items: [CollectionViewItem],
 		supplementaryItems: [String: CollectionViewSupplementaryItem] = [:],
 		decorationItems: [String: CollectionViewDecorationItem] = [:],
 		contentInsets: NSDirectionalEdgeInsets = .zero,
+		visibleItemsInvalidationHandler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler? = nil,
 		id: ID = ID()
 	) throws {
 		if items.isEmpty {
@@ -60,6 +66,7 @@ open class CollectionViewSection {
 		self.supplementaryItems = supplementaryItems
 		self.decorationItems = decorationItems
 		self.contentInsets = contentInsets
+		self.visibleItemsInvalidationHandler = visibleItemsInvalidationHandler
 		self.id = id
 	}
 
@@ -78,7 +85,7 @@ public extension CollectionViewSection {
 	/// - Throws: `CollectionViewSection.SetItemsError`.
 	func set(items: [CollectionViewItem]) throws {
 		if items.isEmpty {
-			throw SetItemsError.areEmpty
+			throw SetItemsError.itemsAreEmpty
 		}
 
 		self.items = items

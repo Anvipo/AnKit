@@ -162,7 +162,7 @@ extension Array where Element == ShimmerableViewProtocol {
 extension UIView {
 	/// Returns existing shimmer layer in view.
 	var shimmerLayers: [CALayer] {
-		layer.sublayers?.filter { $0.name == CAGradientLayer.shimmerLayerName } ?? []
+		layer.sublayers?.filter(\.isDefaultShimmerLayer) ?? []
 	}
 
 	func actualContentHeight(width: CGFloat) -> CGFloat {

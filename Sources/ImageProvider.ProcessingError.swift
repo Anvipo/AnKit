@@ -15,6 +15,9 @@ public extension ImageProvider {
 
 		/// Did download data, which could not be presented as image.
 		case notImageData(Data)
+
+		/// There was image processing error.
+		case imageProcessingError(Error)
 	}
 }
 

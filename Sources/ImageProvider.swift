@@ -66,12 +66,7 @@ public extension ImageProvider {
 					return
 				}
 
-				guard let newImage = result.success else {
-					self.set(newImage: nil, to: imageView, shouldHideShimmer: shouldShimmer)
-					return
-				}
-
-				self.set(newImage: newImage, to: imageView, shouldHideShimmer: shouldShimmer)
+				self.set(newImage: result.success, to: imageView, shouldHideShimmer: shouldShimmer)
 			}
 		}
 	}
@@ -103,10 +98,9 @@ extension ImageProvider {
 
 	func cancelRequest() {
 		if state != .downloaded {
-			// раз не загрузили, то, чтобы всё-таки скачать картинку
-			// устанавливаем нужное состояние
-			// (иначе состояние будет, скорее всего, равно .downloading
-			// и тогда в requestImage произойдёт уход в return и картинка не будет загружена)
+			// if image is not downloaded then sets initial state
+			// else if state is downloading then in `requestImage` method `process(request:)` method will not be called
+
 			state = .initial
 		}
 

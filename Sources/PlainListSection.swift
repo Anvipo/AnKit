@@ -153,7 +153,6 @@ private extension PlainListSection {
 		return supplementaryLayout
 	}
 
-	// swiftlint:disable:next function_body_length
 	func sectionLayout(
 		layoutEnvironment: NSCollectionLayoutEnvironment,
 		widthLayoutDimension: NSCollectionLayoutDimension
@@ -169,56 +168,58 @@ private extension PlainListSection {
 				using: sectionConfiguration,
 				layoutEnvironment: layoutEnvironment
 			)
-		} else {
-			let layoutItems: [NSCollectionLayoutItem] = items.map { item in
-				let cellHeight = try! item.cellHeight(
-					availableWidth: widthLayoutDimension.dimension
-				)
+		}
 
-				return NSCollectionLayoutItem(
-					layoutSize: NSCollectionLayoutSize(
-						widthDimension: widthLayoutDimension,
-						heightDimension: .absolute(cellHeight)
-					)
-				)
-			}
+		// iOS < 14
 
-			let contentHeight = layoutItems
-				.map { $0.layoutSize.heightDimension.dimension }
-				.sum
-
-			if !contentHeight.isNormal {
-				let error = ContentHeightCalculateError.isNotNormal(
-					section: self,
-					calculatedHeight: contentHeight,
-					availableWidth: widthLayoutDimension.dimension,
-					layoutEnvironment: layoutEnvironment,
-					layoutItems: layoutItems
-				)
-				assertionFailure(error.localizedDescription)
-			}
-
-			if contentHeight < .zero {
-				let error = ContentHeightCalculateError.isLessThanZero(
-					section: self,
-					calculatedHeight: contentHeight,
-					availableWidth: widthLayoutDimension.dimension,
-					layoutEnvironment: layoutEnvironment,
-					layoutItems: layoutItems
-				)
-				assertionFailure(error.localizedDescription)
-			}
-
-			let verticalGroupLayout = NSCollectionLayoutGroup.vertical(
-				layoutSize: NSCollectionLayoutSize(
-					widthDimension: widthLayoutDimension,
-					heightDimension: .absolute(contentHeight)
-				),
-				subitems: layoutItems
+		let layoutItems: [NSCollectionLayoutItem] = items.map { item in
+			let cellHeight = try! item.cellHeight(
+				availableWidth: widthLayoutDimension.dimension
 			)
 
-			return NSCollectionLayoutSection(group: verticalGroupLayout)
+			return NSCollectionLayoutItem(
+				layoutSize: NSCollectionLayoutSize(
+					widthDimension: widthLayoutDimension,
+					heightDimension: .absolute(cellHeight)
+				)
+			)
 		}
+
+		let contentHeight = layoutItems
+			.map { $0.layoutSize.heightDimension.dimension }
+			.sum
+
+		if !contentHeight.isNormal {
+			let error = ContentHeightCalculateError.isNotNormal(
+				section: self,
+				calculatedHeight: contentHeight,
+				availableWidth: widthLayoutDimension.dimension,
+				layoutEnvironment: layoutEnvironment,
+				layoutItems: layoutItems
+			)
+			assertionFailure(error.localizedDescription)
+		}
+
+		if contentHeight < .zero {
+			let error = ContentHeightCalculateError.isLessThanZero(
+				section: self,
+				calculatedHeight: contentHeight,
+				availableWidth: widthLayoutDimension.dimension,
+				layoutEnvironment: layoutEnvironment,
+				layoutItems: layoutItems
+			)
+			assertionFailure(error.localizedDescription)
+		}
+
+		let verticalGroupLayout = NSCollectionLayoutGroup.vertical(
+			layoutSize: NSCollectionLayoutSize(
+				widthDimension: widthLayoutDimension,
+				heightDimension: .absolute(contentHeight)
+			),
+			subitems: layoutItems
+		)
+
+		return NSCollectionLayoutSection(group: verticalGroupLayout)
 	}
 
 	func backgroundItemLayout(

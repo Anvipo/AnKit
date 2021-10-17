@@ -23,6 +23,8 @@ public final class PlainListSection: CollectionViewSection {
 	///   - footerItem: Item for footer in section.
 	///   - backgroundDecorationItem: Background decoration item which is anchored to the section.
 	///   - contentInsets: The amount of space between the content of the section and its boundaries.
+	///   - visibleItemsInvalidationHandler: A closure called before each layout cycle to allow modification of the items
+	///   in the section immediately before they are displayed.
 	///   - id: The stable identity of the entity associated with this instance.
 	public init(
 		items: [CollectionViewItem],
@@ -30,6 +32,7 @@ public final class PlainListSection: CollectionViewSection {
 		footerItem: CollectionViewSupplementaryItem? = nil,
 		backgroundDecorationItem: PlainListBackgroundDecorationItem? = nil,
 		contentInsets: NSDirectionalEdgeInsets = .zero,
+		visibleItemsInvalidationHandler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler? = nil,
 		id: ID = ID()
 	) throws {
 		self.headerItem = headerItem
@@ -61,6 +64,7 @@ public final class PlainListSection: CollectionViewSection {
 			supplementaryItems: supplementaryItems,
 			decorationItems: decorationItems,
 			contentInsets: contentInsets,
+			visibleItemsInvalidationHandler: visibleItemsInvalidationHandler,
 			id: id
 		)
 	}
@@ -79,6 +83,7 @@ public final class PlainListSection: CollectionViewSection {
 			widthLayoutDimension: widthLayoutDimension
 		)
 		sectionLayout.contentInsets = contentInsets
+		sectionLayout.visibleItemsInvalidationHandler = visibleItemsInvalidationHandler
 
 		let headerViewHeight: CGFloat?
 		if let headerItem = headerItem {

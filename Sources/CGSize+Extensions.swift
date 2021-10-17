@@ -22,7 +22,7 @@ public extension CGSize {
 	/// Calculates proportionally size based on specified `targetSize`.
 	/// - Parameter targetSize: Target size, which will be used in calculations.
 	func proportionallySize(basedOn targetSize: CGSize) throws -> CGSize {
-		guard !hasAtLeastOneZeroSide else {
+		if hasAtLeastOneZeroSide {
 			throw ProportionallySizingError.hasAtLeastOneZeroSide
 		}
 
@@ -32,5 +32,12 @@ public extension CGSize {
 		let neededRatio = min(widthRatio, heightRatio)
 
 		return CGSize(width: width * neededRatio, height: height * neededRatio)
+	}
+}
+
+extension CGSize: Hashable {
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(width)
+		hasher.combine(height)
 	}
 }

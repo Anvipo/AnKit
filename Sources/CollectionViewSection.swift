@@ -118,6 +118,21 @@ public extension CollectionViewSection {
 		return cellHeights / CGFloat(items.count)
 	}
 
+	/// Clears all cached heights.
+	func clearCachedHeights() {
+		for item in items {
+			item.clearCachedCellHeights()
+		}
+
+		for supplementaryItem in supplementaryItems.values {
+			supplementaryItem.clearCachedSupplementaryViewHeights()
+		}
+
+		for decorationItem in decorationItems.values {
+			decorationItem.clearCachedSupplementaryViewHeights()
+		}
+	}
+
 	/// Calculates width, which section will fill.
 	/// - Parameter availableHeight: Available height for section.
 	func contentWidth(availableHeight: CGFloat) throws -> CGFloat {
@@ -150,6 +165,21 @@ public extension CollectionViewSection {
 		let cellWidths = try contentWidth(availableHeight: availableHeight)
 
 		return cellWidths / CGFloat(items.count)
+	}
+
+	/// Clears all cached heights.
+	func clearCachedWidths() {
+		for item in items {
+			item.clearCachedCellWidths()
+		}
+
+		for supplementaryItem in supplementaryItems.values {
+			supplementaryItem.clearCachedSupplementaryViewWidths()
+		}
+
+		for decorationItem in decorationItems.values {
+			decorationItem.clearCachedSupplementaryViewWidths()
+		}
 	}
 }
 

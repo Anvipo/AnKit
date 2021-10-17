@@ -44,6 +44,11 @@ open class CollectionViewItem: Item {
 		cachedCellWidths[availableHeight] = cellWidth
 	}
 
+	/// Clears all cached cell widths.
+	open func clearCachedCellWidths() {
+		cachedCellWidths.removeAll()
+	}
+
 	/// Returns cached cell height.
 	/// - Parameter availableWidth: Available width for cell.
 	open func cachedCellHeight(for availableWidth: CGFloat) -> CGFloat? {
@@ -56,6 +61,11 @@ open class CollectionViewItem: Item {
 	///   - availableWidth: Available width for cell.
 	open func cache(cellHeight: CGFloat, for availableWidth: CGFloat) {
 		cachedCellHeights[availableWidth] = cellHeight
+	}
+
+	/// Clears all cached cell heights.
+	open func clearCachedCellHeights() {
+		cachedCellHeights.removeAll()
 	}
 }
 

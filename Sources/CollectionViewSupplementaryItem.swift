@@ -71,6 +71,11 @@ open class CollectionViewSupplementaryItem: Item {
 		cachedSupplementaryViewWidths[availableHeight] = supplementaryViewWidth
 	}
 
+	/// Clears all cached supplementary view widths.
+	open func clearCachedSupplementaryViewWidths() {
+		cachedSupplementaryViewWidths.removeAll()
+	}
+
 	/// Returns cached supplementary view height.
 	/// - Parameter availableWidth: Available width for supplementary view.
 	open func cachedSupplementaryViewHeight(for availableWidth: CGFloat) -> CGFloat? {
@@ -83,6 +88,11 @@ open class CollectionViewSupplementaryItem: Item {
 	///   - availableWidth: Available width for supplementary view.
 	open func cache(supplementaryViewHeight: CGFloat, for availableWidth: CGFloat) {
 		cachedSupplementaryViewHeights[availableWidth] = supplementaryViewHeight
+	}
+
+	/// Clears all cached supplementary view heights.
+	open func clearCachedSupplementaryViewHeights() {
+		cachedSupplementaryViewHeights.removeAll()
 	}
 }
 

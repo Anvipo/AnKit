@@ -11,7 +11,7 @@ import UIKit
 @MainActor
 public final class CollectionView: UICollectionView {
 	private lazy var diffableDataSource = DiffableDataSource(collectionView: self)
-	private lazy var compositionalLayout = CompositionalLayout(collectionView: self)
+	private lazy var layout = CompositionalLayout(collectionView: self)
 
 	@available(*, unavailable)
 	override public var collectionViewLayout: UICollectionViewLayout {
@@ -168,6 +168,11 @@ public extension CollectionView {
 		set {
 			diffableDataSource.prefetchingDelegate = newValue
 		}
+	}
+
+	/// The layout used to organize the collected view’s items.
+	var compositionalLayout: UICollectionViewCompositionalLayout {
+		layout
 	}
 
 	/// Returns an index path for the `item` in the collection view.

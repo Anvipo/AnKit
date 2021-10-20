@@ -14,12 +14,12 @@ open class CollectionViewSection {
 	public final var contentInsets: NSDirectionalEdgeInsets
 
 	/// A closure called before each layout cycle to allow modification of the items in the section immediately before they are displayed.
-	public final var visibleItemsInvalidationHandler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler?
+	open var visibleItemsInvalidationHandler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler?
 
 	/// Items in section
 	///
 	/// This property always is not empty.
-	public private(set) final var items: [CollectionViewItem]
+	open private(set) var items: [CollectionViewItem]
 
 	/// Supplementary items in section.
 	///
@@ -86,6 +86,41 @@ open class CollectionViewSection {
 		layoutEnvironment: NSCollectionLayoutEnvironment
 	) -> NSCollectionLayoutSection {
 		fatalError("Implement this method in your class")
+	}
+
+	// MARK: items methods
+
+	/// Sets specified items.
+	/// - Parameter items: Items, which will be set.
+	/// - Throws: `CollectionViewSection.SetItemsError`.
+	open func set(items: [CollectionViewItem]) throws {
+		if items.isEmpty {
+			throw SetItemsError.itemsAreEmpty
+		}
+
+		self.items = items
+	}
+
+	/// Removes specified item.
+	/// - Parameter item: Item, which will be removed.
+	/// - Throws: `CollectionViewSection.RemoveItemError`.
+	open func remove(item: CollectionViewItem) throws {
+		guard let index = items.firstIndex(of: item) else {
+			throw RemoveItemError.noItem
+		}
+
+		items.remove(at: index)
+	}
+
+	/// Appends specified item.
+	/// - Parameter item: Item, which will be removed.
+	/// - Throws: `CollectionViewSection.AppendItemError`.
+	open func append(item: CollectionViewItem) throws {
+		if let existingItem = items.first(where: { $0 == item }) {
+			throw AppendItemError.duplicateItem(existingSameItem: existingItem)
+		}
+
+		items.append(item)
 	}
 
 	// MARK: supplementary items methods
@@ -170,17 +205,6 @@ open class CollectionViewSection {
 }
 
 public extension CollectionViewSection {
-	/// Sets specified items.
-	/// - Parameter items: Items, which will be set.
-	/// - Throws: `CollectionViewSection.SetItemsError`.
-	func set(items: [CollectionViewItem]) throws {
-		if items.isEmpty {
-			throw SetItemsError.itemsAreEmpty
-		}
-
-		self.items = items
-	}
-
 	/// Calculates height, which section will fill.
 	/// - Parameter availableWidth: Available width for section.
 	func contentHeight(availableWidth: CGFloat) throws -> CGFloat {
@@ -311,9 +335,11 @@ public extension CollectionViewSection {
 	/// Set `isShimmering` property to true in items.
 	func shimmerItems() {
 		for supplementaryItem in supplementaryItems {
-			if var shimmerableSupplementaryItem = supplementaryItem as? Shimmerable {
-				shimmerableSupplementaryItem.isShimmering = true
+			guard var shimmerableSupplementaryItem = supplementaryItem as? Shimmerable else {
+				continue
 			}
+
+			shimmerableSupplementaryItem.isShimmering = true
 		}
 
 		for item in items {
@@ -325,9 +351,11 @@ public extension CollectionViewSection {
 		}
 
 		for decorationItem in decorationItems {
-			if var shimmerableDecorationItem = decorationItem as? Shimmerable {
-				shimmerableDecorationItem.isShimmering = true
+			guard var shimmerableDecorationItem = decorationItem as? Shimmerable else {
+				continue
 			}
+
+			shimmerableDecorationItem.isShimmering = true
 		}
 	}
 

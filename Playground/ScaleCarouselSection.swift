@@ -13,6 +13,17 @@ final class ScaleCarouselSection: CollectionViewSection {
 	private let itemHeightDimension: NSCollectionLayoutDimension
 	private let interItemSpacing: CGFloat
 
+	@available(*, unavailable)
+	override var visibleItemsInvalidationHandler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler? {
+		get {
+			super.visibleItemsInvalidationHandler
+		}
+		set {
+			// swiftlint:disable:previous unused_setter_value
+			fatalError("Do not use this method")
+		}
+	}
+
 	init(
 		items: [CollectionViewItem],
 		itemWidthDimension: NSCollectionLayoutDimension,
@@ -29,7 +40,7 @@ final class ScaleCarouselSection: CollectionViewSection {
 			contentInsets: contentInsets
 		)
 
-		visibleItemsInvalidationHandler = { [weak self] visibleItems, scrollOffset, layoutEnvironment in
+		super.visibleItemsInvalidationHandler = { [weak self] visibleItems, scrollOffset, layoutEnvironment in
 			self?.visibleItemsInvalidationHandler(
 				visibleItems: visibleItems,
 				scrollOffset: scrollOffset,

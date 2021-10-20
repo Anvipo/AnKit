@@ -433,12 +433,12 @@ private extension CollectionView {
 		}
 
 		for section in sections {
-			for (supplementaryKind, supplementaryItem) in section.supplementaryItems {
+			for supplementaryItem in section.supplementaryItems {
 				let supplementaryViewType = supplementaryItem.supplementaryViewType
 
 				register(
 					supplementaryViewType,
-					forSupplementaryViewOfKind: supplementaryKind,
+					forSupplementaryViewOfKind: supplementaryItem.elementKind,
 					withReuseIdentifier: supplementaryViewType.reuseIdentifier
 				)
 			}

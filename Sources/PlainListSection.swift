@@ -12,9 +12,18 @@ import UIKit
 ///
 /// Behaves like in table view (full width section).
 public final class PlainListSection: CollectionViewSection {
-	private let headerItem: CollectionViewSupplementaryItem?
-	private let footerItem: CollectionViewSupplementaryItem?
+	/// Item for header in section.
+	public private(set) var headerItem: CollectionViewSupplementaryItem?
+
+	/// Item for footer in section.
+	public private(set) var footerItem: CollectionViewSupplementaryItem?
+
 	private let backgroundDecorationItem: PlainListBackgroundDecorationItem?
+
+	@available(*, unavailable)
+	override public var supplementaryItems: [CollectionViewSupplementaryItem] {
+		super.supplementaryItems
+	}
 
 	/// Initializes section with specified parameters.
 	/// - Parameters:
@@ -39,21 +48,6 @@ public final class PlainListSection: CollectionViewSection {
 		self.footerItem = footerItem
 		self.backgroundDecorationItem = backgroundDecorationItem
 
-		var supplementaryItems = [String: CollectionViewSupplementaryItem]()
-		if let headerItem = headerItem {
-			supplementaryItems[headerItem.elementKind] = headerItem
-		}
-		if let footerItem = footerItem {
-			if let existingItem = supplementaryItems[footerItem.elementKind] {
-				throw InitError.duplicateSupplementaryElementKind(
-					elementKind: footerItem.elementKind,
-					existingItem: existingItem,
-					duplicateItem: footerItem
-				)
-			}
-			supplementaryItems[footerItem.elementKind] = footerItem
-		}
-
 		var decorationItems = [String: CollectionViewDecorationItem]()
 		if let backgroundDecorationItem = backgroundDecorationItem {
 			decorationItems[backgroundDecorationItem.elementKind] = backgroundDecorationItem
@@ -61,7 +55,7 @@ public final class PlainListSection: CollectionViewSection {
 
 		try super.init(
 			items: items,
-			supplementaryItems: supplementaryItems,
+			supplementaryItems: [headerItem, footerItem].compactMap { $0 },
 			decorationItems: decorationItems,
 			contentInsets: contentInsets,
 			visibleItemsInvalidationHandler: visibleItemsInvalidationHandler,
@@ -125,6 +119,51 @@ public final class PlainListSection: CollectionViewSection {
 		}
 
 		return sectionLayout
+	}
+
+	@available(*, unavailable)
+	override public func set(supplementaryItems: [CollectionViewSupplementaryItem]) throws {
+		fatalError("Do not use this method. Use set(headerItem:) or set(footerItem:) methods instead.")
+	}
+
+	@available(*, unavailable)
+	override public func remove(supplementaryItem: CollectionViewSupplementaryItem) throws {
+		fatalError("Do not use this method. Use set(headerItem:) or set(footerItem:) methods instead.")
+	}
+
+	@available(*, unavailable)
+	override public func append(supplementaryItem: CollectionViewSupplementaryItem) throws {
+		fatalError("Do not use this method. Use set(headerItem:) or set(footerItem:) methods instead.")
+	}
+}
+
+public extension PlainListSection {
+	/// Sets specified header item.
+	/// - Parameter headerItem: Header item, which will be set.
+	func set(headerItem: CollectionViewSupplementaryItem?) throws {
+		if let oldHeaderItem = self.headerItem {
+			try super.remove(supplementaryItem: oldHeaderItem)
+		}
+
+		if let newHeaderItem = headerItem {
+			try super.append(supplementaryItem: newHeaderItem)
+		}
+
+		self.headerItem = headerItem
+	}
+
+	/// Sets specified footer item.
+	/// - Parameter footerItem: Footer item, which will be set.
+	func set(footerItem: CollectionViewSupplementaryItem?) throws {
+		if let oldFooterItem = self.footerItem {
+			try super.remove(supplementaryItem: oldFooterItem)
+		}
+
+		if let newFooterItem = footerItem {
+			try super.append(supplementaryItem: newFooterItem)
+		}
+
+		self.footerItem = footerItem
 	}
 }
 

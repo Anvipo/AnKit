@@ -10,15 +10,13 @@ import Foundation
 public extension CollectionViewSection {
 	/// Error, which could occure in `CollectionViewSection` init.
 	enum InitError {
-		/// Passed supplementary items are not unique by element kind.
-		case duplicateSupplementaryElementKind(
-			elementKind: String,
-			existingItem: CollectionViewSupplementaryItem,
-			duplicateItem: CollectionViewSupplementaryItem
-		)
-
 		/// Passed items are empty.
 		case itemsAreEmpty
+
+		/// Passed supplementary items are not unique by element kind.
+		case notUniqueSupplementaryItemsByElementKind(
+			supplementaryItemsWithSameElementKind: [CollectionViewSupplementaryItem]
+		)
 	}
 }
 
@@ -30,16 +28,10 @@ extension CollectionViewSection.InitError: LocalizedError {
 			Passed items are empty
 			"""
 
-		case let .duplicateSupplementaryElementKind(
-			elementKind,
-			existingItem,
-			duplicateItem
-		):
+		case let .notUniqueSupplementaryItemsByElementKind(items):
 			return """
 			Passed supplementary items are not unique by element kind.
-			Element kind: \(elementKind).
-			Existing item: \(existingItem).
-			Duplicate item: \(duplicateItem).
+			Supplementary items with same element kind: \(items).
 			"""
 		}
 	}

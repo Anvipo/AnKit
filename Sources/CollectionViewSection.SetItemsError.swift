@@ -8,7 +8,7 @@
 import Foundation
 
 public extension CollectionViewSection {
-	/// Error, which could occure, when items is setting.
+	/// Error, which could occure, when items are setting.
 	enum SetItemsError {
 		/// Passed items are empty.
 		case itemsAreEmpty

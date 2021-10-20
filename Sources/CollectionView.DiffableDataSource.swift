@@ -809,7 +809,7 @@ private extension CollectionView.DiffableDataSource {
 			.map { $0.section }
 			.unique { $0 }
 			.sorted()
-			.compactMap { currentSnapshot.sectionIdentifiers[safe: $0]?.supplementaryItemsArray }
+			.compactMap { currentSnapshot.sectionIdentifiers[safe: $0]?.supplementaryItems }
 			.flatMap { $0 }
 			.compactMap { $0 as? HasImageProviders }
 			.flatMap { $0.imageProviders }

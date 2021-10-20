@@ -19,18 +19,12 @@ open class CollectionViewSection {
 	/// Items in section
 	///
 	/// This property always is not empty.
-	public private(set) final var items: [CollectionViewItem] {
-		willSet {
-			if newValue.isEmpty {
-				fatalError("Items must not be empty")
-			}
-		}
-	}
+	public private(set) final var items: [CollectionViewItem]
 
 	/// Supplementary items in section.
 	///
 	/// Could be empty.
-	public final var supplementaryItems: [String: CollectionViewSupplementaryItem]
+	open private(set) var supplementaryItems: [CollectionViewSupplementaryItem]
 
 	/// Decoration items in section.
 	///
@@ -52,7 +46,7 @@ open class CollectionViewSection {
 	/// - Throws: `CollectionViewSection.InitError`.
 	public init(
 		items: [CollectionViewItem],
-		supplementaryItems: [String: CollectionViewSupplementaryItem] = [:],
+		supplementaryItems: [CollectionViewSupplementaryItem] = [],
 		decorationItems: [String: CollectionViewDecorationItem] = [:],
 		contentInsets: NSDirectionalEdgeInsets = .zero,
 		visibleItemsInvalidationHandler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler? = nil,
@@ -60,6 +54,14 @@ open class CollectionViewSection {
 	) throws {
 		if items.isEmpty {
 			throw InitError.itemsAreEmpty
+		}
+
+		for (_, groupedSupplementaryItems) in Dictionary(grouping: supplementaryItems, by: { $0.elementKind }) {
+			if groupedSupplementaryItems.count > 1 {
+				throw InitError.notUniqueSupplementaryItemsByElementKind(
+					supplementaryItemsWithSameElementKind: groupedSupplementaryItems
+				)
+			}
 		}
 
 		self.items = items
@@ -76,6 +78,47 @@ open class CollectionViewSection {
 		layoutEnvironment: NSCollectionLayoutEnvironment
 	) -> NSCollectionLayoutSection {
 		fatalError("Implement this method in your class")
+	}
+
+	// MARK: supplementary items methods
+
+	/// Sets specified supplementary items.
+	/// - Parameter supplementaryItems: Supplementary items, which will be set.
+	/// - Throws: `CollectionViewSection.SetSupplementaryItemsError`.
+	open func set(supplementaryItems: [CollectionViewSupplementaryItem]) throws {
+		for (_, groupedSupplementaryItems) in Dictionary(grouping: supplementaryItems, by: { $0.elementKind }) {
+			if groupedSupplementaryItems.count > 1 {
+				throw SetSupplementaryItemsError.notUniqueSupplementaryItemsByElementKind(
+					supplementaryItemsWithSameElementKind: groupedSupplementaryItems
+				)
+			}
+		}
+
+		self.supplementaryItems = supplementaryItems
+	}
+
+	/// Removes specified supplementary item.
+	/// - Parameter supplementaryItem: Supplementary item, which will be removed.
+	/// - Throws: `CollectionViewSection.RemoveSupplementaryItemError`.
+	open func remove(supplementaryItem: CollectionViewSupplementaryItem) throws {
+		guard let index = supplementaryItems.firstIndex(of: supplementaryItem) else {
+			throw RemoveSupplementaryItemError.noSupplementaryItem
+		}
+
+		supplementaryItems.remove(at: index)
+	}
+
+	/// Appends specified supplementary item.
+	/// - Parameter supplementaryItem: Supplementary item, which will be removed.
+	/// - Throws: `CollectionViewSection.AppendSupplementaryItemError`.
+	open func append(supplementaryItem: CollectionViewSupplementaryItem) throws {
+		if let existingItem = supplementaryItems.first(where: { $0.elementKind == supplementaryItem.elementKind }) {
+			throw AppendSupplementaryItemError.notUniqueElementKind(
+				existingSupplementaryItemWithSameElementKind: existingItem
+			)
+		}
+
+		supplementaryItems.append(supplementaryItem)
 	}
 }
 
@@ -131,7 +174,7 @@ public extension CollectionViewSection {
 			item.clearCachedCellHeights()
 		}
 
-		for supplementaryItem in supplementaryItems.values {
+		for supplementaryItem in supplementaryItems {
 			supplementaryItem.clearCachedSupplementaryViewHeights()
 		}
 
@@ -180,7 +223,7 @@ public extension CollectionViewSection {
 			item.clearCachedCellWidths()
 		}
 
-		for supplementaryItem in supplementaryItems.values {
+		for supplementaryItem in supplementaryItems {
 			supplementaryItem.clearCachedSupplementaryViewWidths()
 		}
 
@@ -218,7 +261,7 @@ extension CollectionViewSection: Identifiable {
 public extension CollectionViewSection {
 	/// Set `isShimmering` property to true in items.
 	func shimmerItems() {
-		for supplementaryItem in supplementaryItemsArray {
+		for supplementaryItem in supplementaryItems {
 			if var shimmerableSupplementaryItem = supplementaryItem as? Shimmerable {
 				shimmerableSupplementaryItem.isShimmering = true
 			}
@@ -236,7 +279,7 @@ public extension CollectionViewSection {
 	/// Has section same content as passed `other`.
 	/// - Parameter other: Other section, which will be used in compare.
 	func hasSameContent(as other: CollectionViewSection) -> Bool {
-		supplementaryItemsArray.map { $0.typeErasedContent } == other.supplementaryItemsArray.map { $0.typeErasedContent } &&
+		supplementaryItems.map { $0.typeErasedContent } == other.supplementaryItems.map { $0.typeErasedContent } &&
 		items.hasSameContent(as: other.items)
 	}
 }
@@ -267,11 +310,7 @@ public extension Array where Element: CollectionViewSection {
 }
 
 extension CollectionViewSection {
-	var supplementaryItemsArray: [CollectionViewSupplementaryItem] {
-		Array(supplementaryItems.values)
-	}
-
 	func supplementaryItem(for kind: String) -> CollectionViewSupplementaryItem? {
-		supplementaryItems[kind]
+		supplementaryItems.first { $0.elementKind == kind }
 	}
 }

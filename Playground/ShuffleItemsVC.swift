@@ -48,7 +48,7 @@ private extension ShuffleItemsVC {
 	}
 
 	func didTapButton() {
-		guard let section = collectionView.sections.last else {
+		guard let section = collectionView.sections.last as? PlainListSection else {
 			assertionFailure("?")
 			return
 		}

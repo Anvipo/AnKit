@@ -35,6 +35,9 @@
 		1D6565FC2720A05500C75D34 /* CollectionViewSection.SetSupplementaryItemsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6565FB2720A05500C75D34 /* CollectionViewSection.SetSupplementaryItemsError.swift */; };
 		1D6565FE2720A9AC00C75D34 /* CollectionViewSection.RemoveSupplementaryItemError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6565FD2720A9AC00C75D34 /* CollectionViewSection.RemoveSupplementaryItemError.swift */; };
 		1D6566002720AB2600C75D34 /* CollectionViewSection.AppendSupplementaryItemError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6565FF2720AB2600C75D34 /* CollectionViewSection.AppendSupplementaryItemError.swift */; };
+		1D6566042720C15200C75D34 /* CollectionViewSection.SetDecorationItemsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6566032720C15200C75D34 /* CollectionViewSection.SetDecorationItemsError.swift */; };
+		1D6566062720C23C00C75D34 /* CollectionViewSection.RemoveDecorationItemError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6566052720C23C00C75D34 /* CollectionViewSection.RemoveDecorationItemError.swift */; };
+		1D6566082720C2B000C75D34 /* CollectionViewSection.AppendDecorationItemError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6566072720C2B000C75D34 /* CollectionViewSection.AppendDecorationItemError.swift */; };
 		1DDF00E72709D19B00D88994 /* CollectionViewSection.ContentWidthCalculateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00852709D19900D88994 /* CollectionViewSection.ContentWidthCalculateError.swift */; };
 		1DDF00E82709D19B00D88994 /* UIView.ConstraintsMakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00862709D19900D88994 /* UIView.ConstraintsMakeData.swift */; };
 		1DDF00E92709D19B00D88994 /* CollectionViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00872709D19900D88994 /* CollectionViewSection.swift */; };
@@ -185,6 +188,9 @@
 		1D6565FB2720A05500C75D34 /* CollectionViewSection.SetSupplementaryItemsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSection.SetSupplementaryItemsError.swift; sourceTree = "<group>"; };
 		1D6565FD2720A9AC00C75D34 /* CollectionViewSection.RemoveSupplementaryItemError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSection.RemoveSupplementaryItemError.swift; sourceTree = "<group>"; };
 		1D6565FF2720AB2600C75D34 /* CollectionViewSection.AppendSupplementaryItemError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSection.AppendSupplementaryItemError.swift; sourceTree = "<group>"; };
+		1D6566032720C15200C75D34 /* CollectionViewSection.SetDecorationItemsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSection.SetDecorationItemsError.swift; sourceTree = "<group>"; };
+		1D6566052720C23C00C75D34 /* CollectionViewSection.RemoveDecorationItemError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSection.RemoveDecorationItemError.swift; sourceTree = "<group>"; };
+		1D6566072720C2B000C75D34 /* CollectionViewSection.AppendDecorationItemError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSection.AppendDecorationItemError.swift; sourceTree = "<group>"; };
 		1DDF00772709CEF300D88994 /* AnKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AnKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DDF00812709D15E00D88994 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1DDF00822709D15E00D88994 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -348,6 +354,16 @@
 			name = "Supplementary item errors";
 			sourceTree = "<group>";
 		};
+		1D6566022720C13A00C75D34 /* Decoration item errors */ = {
+			isa = PBXGroup;
+			children = (
+				1D6566032720C15200C75D34 /* CollectionViewSection.SetDecorationItemsError.swift */,
+				1D6566052720C23C00C75D34 /* CollectionViewSection.RemoveDecorationItemError.swift */,
+				1D6566072720C2B000C75D34 /* CollectionViewSection.AppendDecorationItemError.swift */,
+			);
+			name = "Decoration item errors";
+			sourceTree = "<group>";
+		};
 		1D7643B8270A54C800B840D2 /* Section */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +371,7 @@
 				1DDF00852709D19900D88994 /* CollectionViewSection.ContentWidthCalculateError.swift */,
 				1DDF00CF2709D19B00D88994 /* CollectionViewSection.InitError.swift */,
 				1DDF00912709D19900D88994 /* CollectionViewSection.SetItemsError.swift */,
+				1D6566022720C13A00C75D34 /* Decoration item errors */,
 				1D6566012720BB6F00C75D34 /* Supplementary item errors */,
 				1DDF00872709D19900D88994 /* CollectionViewSection.swift */,
 			);
@@ -911,6 +928,7 @@
 				1DDF01112709D19B00D88994 /* BlurredView.swift in Sources */,
 				1DDF012C2709D19B00D88994 /* Tappable.swift in Sources */,
 				1DDF010C2709D19B00D88994 /* Subscribers.Completion+Extensions.swift in Sources */,
+				1D6566042720C15200C75D34 /* CollectionViewSection.SetDecorationItemsError.swift in Sources */,
 				1DDF010F2709D19B00D88994 /* Item.swift in Sources */,
 				1DDF011D2709D19B00D88994 /* ImageDownloader.swift in Sources */,
 				1DDF012F2709D19B00D88994 /* CollectionViewItem.swift in Sources */,
@@ -924,6 +942,7 @@
 				1DDF01322709D19B00D88994 /* PlainShimmerItem.swift in Sources */,
 				1DDF00E92709D19B00D88994 /* CollectionViewSection.swift in Sources */,
 				1DDF00E82709D19B00D88994 /* UIView.ConstraintsMakeData.swift in Sources */,
+				1D6566062720C23C00C75D34 /* CollectionViewSection.RemoveDecorationItemError.swift in Sources */,
 				1DDF012E2709D19B00D88994 /* BaseViewOutput.swift in Sources */,
 				1DDF00FB2709D19B00D88994 /* UIImpactFeedbackGenerator.FeedbackStyle+Extensions.swift in Sources */,
 				1DDF01422709D19B00D88994 /* CollectionViewItem.HeightCalculateError.swift in Sources */,
@@ -938,6 +957,7 @@
 				1DDF011E2709D19B00D88994 /* Double+Extensions.swift in Sources */,
 				1DDF00FE2709D19B00D88994 /* UILabel+Shimmerable.swift in Sources */,
 				1DDF00EA2709D19B00D88994 /* DividerDefaultStrategy.swift in Sources */,
+				1D6566082720C2B000C75D34 /* CollectionViewSection.AppendDecorationItemError.swift in Sources */,
 				1DDF01272709D19B00D88994 /* TimeInterval+Extensions.swift in Sources */,
 				1DDF01462709D19B00D88994 /* CGSize.ProportionallySizingError.swift in Sources */,
 				1DDF01212709D19B00D88994 /* CurrentResponderProviderProtocol.swift in Sources */,

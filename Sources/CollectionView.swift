@@ -443,12 +443,12 @@ private extension CollectionView {
 				)
 			}
 
-			for (decorationItemElementKind, decorationItem) in section.decorationItems {
+			for decorationItem in section.decorationItems {
 				let supplementaryViewType = decorationItem.supplementaryViewType
 
 				compositionalLayout.register(
 					supplementaryViewType,
-					forDecorationViewOfKind: decorationItemElementKind
+					forDecorationViewOfKind: decorationItem.elementKind
 				)
 			}
 

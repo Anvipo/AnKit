@@ -17,6 +17,11 @@ public extension CollectionViewSection {
 		case notUniqueSupplementaryItemsByElementKind(
 			supplementaryItemsWithSameElementKind: [CollectionViewSupplementaryItem]
 		)
+
+		/// Passed decoration items are not unique by element kind.
+		case notUniqueDecorationItemsByElementKind(
+			decorationItemsWithSameElementKind: [CollectionViewSupplementaryItem]
+		)
 	}
 }
 
@@ -32,6 +37,12 @@ extension CollectionViewSection.InitError: LocalizedError {
 			return """
 			Passed supplementary items are not unique by element kind.
 			Supplementary items with same element kind: \(items).
+			"""
+
+		case let .notUniqueDecorationItemsByElementKind(items):
+			return """
+			Passed decoration items are not unique by element kind.
+			Decoration items with same element kind: \(items).
 			"""
 		}
 	}

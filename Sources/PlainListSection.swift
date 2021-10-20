@@ -18,11 +18,17 @@ public final class PlainListSection: CollectionViewSection {
 	/// Item for footer in section.
 	public private(set) var footerItem: CollectionViewSupplementaryItem?
 
-	private let backgroundDecorationItem: PlainListBackgroundDecorationItem?
+	/// Background decoration item which is anchored to the section.
+	public private(set) var backgroundDecorationItem: PlainListBackgroundDecorationItem?
 
 	@available(*, unavailable)
 	override public var supplementaryItems: [CollectionViewSupplementaryItem] {
 		super.supplementaryItems
+	}
+
+	@available(*, unavailable)
+	override public var decorationItems: [CollectionViewDecorationItem] {
+		super.decorationItems
 	}
 
 	/// Initializes section with specified parameters.
@@ -48,15 +54,10 @@ public final class PlainListSection: CollectionViewSection {
 		self.footerItem = footerItem
 		self.backgroundDecorationItem = backgroundDecorationItem
 
-		var decorationItems = [String: CollectionViewDecorationItem]()
-		if let backgroundDecorationItem = backgroundDecorationItem {
-			decorationItems[backgroundDecorationItem.elementKind] = backgroundDecorationItem
-		}
-
 		try super.init(
 			items: items,
 			supplementaryItems: [headerItem, footerItem].compactMap { $0 },
-			decorationItems: decorationItems,
+			decorationItems: [backgroundDecorationItem].compactMap { $0 },
 			contentInsets: contentInsets,
 			visibleItemsInvalidationHandler: visibleItemsInvalidationHandler,
 			id: id
@@ -135,6 +136,21 @@ public final class PlainListSection: CollectionViewSection {
 	override public func append(supplementaryItem: CollectionViewSupplementaryItem) throws {
 		fatalError("Do not use this method. Use set(headerItem:) or set(footerItem:) methods instead.")
 	}
+
+	@available(*, unavailable)
+	override public func set(decorationItems: [CollectionViewDecorationItem]) throws {
+		fatalError("Do not use this method. Use set(backgroundDecorationItem:) methods instead.")
+	}
+
+	@available(*, unavailable)
+	override public func remove(decorationItem: CollectionViewDecorationItem) throws {
+		fatalError("Do not use this method. Use set(backgroundDecorationItem:) methods instead.")
+	}
+
+	@available(*, unavailable)
+	override public func append(decorationItem: CollectionViewDecorationItem) throws {
+		fatalError("Do not use this method. Use set(backgroundDecorationItem:) methods instead.")
+	}
 }
 
 public extension PlainListSection {
@@ -164,6 +180,20 @@ public extension PlainListSection {
 		}
 
 		self.footerItem = footerItem
+	}
+
+	/// Sets specified background decoration item.
+	/// - Parameter backgroundDecorationItem: Background decoration item, which will be set.
+	func set(backgroundDecorationItem: PlainListBackgroundDecorationItem?) throws {
+		if let oldBackgroundDecorationItem = self.backgroundDecorationItem {
+			try super.remove(decorationItem: oldBackgroundDecorationItem)
+		}
+
+		if let newBackgroundDecorationItem = backgroundDecorationItem {
+			try super.append(decorationItem: newBackgroundDecorationItem)
+		}
+
+		self.backgroundDecorationItem = backgroundDecorationItem
 	}
 }
 

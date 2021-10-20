@@ -29,7 +29,7 @@ open class CollectionViewSection {
 	/// Decoration items in section.
 	///
 	/// Could be empty.
-	public final let decorationItems: [String: CollectionViewDecorationItem]
+	open private(set) var decorationItems: [CollectionViewDecorationItem]
 
 	// swiftlint:disable:next missing_docs
 	public final let id: ID
@@ -47,7 +47,7 @@ open class CollectionViewSection {
 	public init(
 		items: [CollectionViewItem],
 		supplementaryItems: [CollectionViewSupplementaryItem] = [],
-		decorationItems: [String: CollectionViewDecorationItem] = [:],
+		decorationItems: [CollectionViewDecorationItem] = [],
 		contentInsets: NSDirectionalEdgeInsets = .zero,
 		visibleItemsInvalidationHandler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler? = nil,
 		id: ID = ID()
@@ -60,6 +60,14 @@ open class CollectionViewSection {
 			if groupedSupplementaryItems.count > 1 {
 				throw InitError.notUniqueSupplementaryItemsByElementKind(
 					supplementaryItemsWithSameElementKind: groupedSupplementaryItems
+				)
+			}
+		}
+
+		for (_, groupedDecorationItems) in Dictionary(grouping: decorationItems, by: { $0.elementKind }) {
+			if groupedDecorationItems.count > 1 {
+				throw InitError.notUniqueDecorationItemsByElementKind(
+					decorationItemsWithSameElementKind: groupedDecorationItems
 				)
 			}
 		}
@@ -120,6 +128,45 @@ open class CollectionViewSection {
 
 		supplementaryItems.append(supplementaryItem)
 	}
+
+	/// Sets specified decoration items.
+	/// - Parameter decorationItems: Decoration items, which will be set.
+	/// - Throws: `CollectionViewSection.SetDecorationItemsError`.
+	open func set(decorationItems: [CollectionViewDecorationItem]) throws {
+		for (_, groupedDecorationItems) in Dictionary(grouping: decorationItems, by: { $0.elementKind }) {
+			if groupedDecorationItems.count > 1 {
+				throw SetDecorationItemsError.notUniqueDecorationItemsByElementKind(
+					decorationItemsWithSameElementKind: groupedDecorationItems
+				)
+			}
+		}
+
+		self.decorationItems = decorationItems
+	}
+
+	/// Removes specified decoration item.
+	/// - Parameter decorationItem: Decoration item, which will be removed.
+	/// - Throws: `CollectionViewSection.RemoveDecorationItemError`.
+	open func remove(decorationItem: CollectionViewDecorationItem) throws {
+		guard let index = decorationItems.firstIndex(of: decorationItem) else {
+			throw RemoveDecorationItemError.noDecorationItem
+		}
+
+		decorationItems.remove(at: index)
+	}
+
+	/// Appends specified decoration item.
+	/// - Parameter decorationItem: Decoration item, which will be removed.
+	/// - Throws: `CollectionViewSection.AppendDecorationItemError`.
+	open func append(decorationItem: CollectionViewDecorationItem) throws {
+		if let existingItem = decorationItems.first(where: { $0.elementKind == decorationItem.elementKind }) {
+			throw AppendDecorationItemError.notUniqueElementKind(
+				existingDecorationItemWithSameElementKind: existingItem
+			)
+		}
+
+		decorationItems.append(decorationItem)
+	}
 }
 
 public extension CollectionViewSection {
@@ -178,7 +225,7 @@ public extension CollectionViewSection {
 			supplementaryItem.clearCachedSupplementaryViewHeights()
 		}
 
-		for decorationItem in decorationItems.values {
+		for decorationItem in decorationItems {
 			decorationItem.clearCachedSupplementaryViewHeights()
 		}
 	}
@@ -227,7 +274,7 @@ public extension CollectionViewSection {
 			supplementaryItem.clearCachedSupplementaryViewWidths()
 		}
 
-		for decorationItem in decorationItems.values {
+		for decorationItem in decorationItems {
 			decorationItem.clearCachedSupplementaryViewWidths()
 		}
 	}
@@ -240,6 +287,7 @@ extension CollectionViewSection: Equatable {
 	) -> Bool {
 		lhs.items == rhs.items &&
 		lhs.supplementaryItems == rhs.supplementaryItems &&
+		lhs.decorationItems == rhs.decorationItems &&
 		lhs.contentInsets == rhs.contentInsets &&
 		lhs.id == rhs.id
 	}
@@ -249,6 +297,7 @@ extension CollectionViewSection: Hashable {
 	public func hash(into hasher: inout Hasher) {
 		hasher.combine(items)
 		hasher.combine(supplementaryItems)
+		hasher.combine(decorationItems)
 		hasher.combine(contentInsets)
 		hasher.combine(id)
 	}
@@ -274,12 +323,19 @@ public extension CollectionViewSection {
 
 			shimmerableItem.isShimmering = true
 		}
+
+		for decorationItem in decorationItems {
+			if var shimmerableDecorationItem = decorationItem as? Shimmerable {
+				shimmerableDecorationItem.isShimmering = true
+			}
+		}
 	}
 
 	/// Has section same content as passed `other`.
 	/// - Parameter other: Other section, which will be used in compare.
 	func hasSameContent(as other: CollectionViewSection) -> Bool {
 		supplementaryItems.map { $0.typeErasedContent } == other.supplementaryItems.map { $0.typeErasedContent } &&
+		decorationItems.map { $0.typeErasedContent } == other.decorationItems.map { $0.typeErasedContent } &&
 		items.hasSameContent(as: other.items)
 	}
 }
@@ -305,6 +361,20 @@ public extension Array where Element: CollectionViewSection {
 	func shimmerItems() {
 		for section in self {
 			section.shimmerItems()
+		}
+	}
+
+	/// Clears all cached heights.
+	func clearCachedHeights() {
+		for section in self {
+			section.clearCachedHeights()
+		}
+	}
+
+	/// Clears all cached widths.
+	func clearCachedWidths() {
+		for section in self {
+			section.clearCachedWidths()
 		}
 	}
 }

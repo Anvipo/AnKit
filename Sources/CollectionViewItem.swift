@@ -44,8 +44,8 @@ open class CollectionViewItem: Item {
 		cachedCellWidths[availableHeight] = cellWidth
 	}
 
-	/// Clears all cached cell widths.
-	open func clearCachedCellWidths() {
+	/// Invalidates all cached cell widths.
+	open func invalidateCachedCellWidths() {
 		cachedCellWidths.removeAll()
 	}
 
@@ -63,8 +63,8 @@ open class CollectionViewItem: Item {
 		cachedCellHeights[availableWidth] = cellHeight
 	}
 
-	/// Clears all cached cell heights.
-	open func clearCachedCellHeights() {
+	/// Invalidates all cached cell heights.
+	open func invalidateCachedCellHeights() {
 		cachedCellHeights.removeAll()
 	}
 }

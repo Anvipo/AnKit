@@ -71,8 +71,8 @@ open class CollectionViewSupplementaryItem: Item {
 		cachedSupplementaryViewWidths[availableHeight] = supplementaryViewWidth
 	}
 
-	/// Clears all cached supplementary view widths.
-	open func clearCachedSupplementaryViewWidths() {
+	/// Invalidates all cached supplementary view widths.
+	open func invalidateCachedSupplementaryViewWidths() {
 		cachedSupplementaryViewWidths.removeAll()
 	}
 
@@ -90,8 +90,8 @@ open class CollectionViewSupplementaryItem: Item {
 		cachedSupplementaryViewHeights[availableWidth] = supplementaryViewHeight
 	}
 
-	/// Clears all cached supplementary view heights.
-	open func clearCachedSupplementaryViewHeights() {
+	/// Invalidates all cached supplementary view heights.
+	open func invalidateCachedSupplementaryViewHeights() {
 		cachedSupplementaryViewHeights.removeAll()
 	}
 }

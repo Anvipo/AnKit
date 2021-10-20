@@ -239,18 +239,18 @@ public extension CollectionViewSection {
 		return cellHeights / CGFloat(items.count)
 	}
 
-	/// Clears all cached heights.
-	func clearCachedHeights() {
+	/// Invalidates all cached heights.
+	func invalidateCachedHeights() {
 		for item in items {
-			item.clearCachedCellHeights()
+			item.invalidateCachedCellHeights()
 		}
 
 		for supplementaryItem in supplementaryItems {
-			supplementaryItem.clearCachedSupplementaryViewHeights()
+			supplementaryItem.invalidateCachedSupplementaryViewHeights()
 		}
 
 		for decorationItem in decorationItems {
-			decorationItem.clearCachedSupplementaryViewHeights()
+			decorationItem.invalidateCachedSupplementaryViewHeights()
 		}
 	}
 
@@ -288,18 +288,18 @@ public extension CollectionViewSection {
 		return cellWidths / CGFloat(items.count)
 	}
 
-	/// Clears all cached heights.
-	func clearCachedWidths() {
+	/// Invalidates all cached heights.
+	func invalidateCachedWidths() {
 		for item in items {
-			item.clearCachedCellWidths()
+			item.invalidateCachedCellWidths()
 		}
 
 		for supplementaryItem in supplementaryItems {
-			supplementaryItem.clearCachedSupplementaryViewWidths()
+			supplementaryItem.invalidateCachedSupplementaryViewWidths()
 		}
 
 		for decorationItem in decorationItems {
-			decorationItem.clearCachedSupplementaryViewWidths()
+			decorationItem.invalidateCachedSupplementaryViewWidths()
 		}
 	}
 }
@@ -392,17 +392,17 @@ public extension Array where Element: CollectionViewSection {
 		}
 	}
 
-	/// Clears all cached heights.
-	func clearCachedHeights() {
+	/// Invalidates all cached heights.
+	func invalidateCachedHeights() {
 		for section in self {
-			section.clearCachedHeights()
+			section.invalidateCachedHeights()
 		}
 	}
 
-	/// Clears all cached widths.
-	func clearCachedWidths() {
+	/// Invalidates all cached widths.
+	func invalidateCachedWidths() {
 		for section in self {
-			section.clearCachedWidths()
+			section.invalidateCachedWidths()
 		}
 	}
 }

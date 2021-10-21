@@ -30,11 +30,8 @@ final class ButtonCell: CollectionViewCell {
 		}
 	}
 
-	override func fill(
-		from item: CollectionViewItem,
-		context: FillContext
-	) {
-		super.fill(from: item, context: context)
+	override func fill(from item: CollectionViewItem, mode: FillMode) {
+		super.fill(from: item, mode: mode)
 
 		guard let castedItem = item as? ButtonItem else {
 			assertionFailure("?")

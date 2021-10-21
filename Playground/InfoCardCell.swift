@@ -41,11 +41,8 @@ final class InfoCardCell: CollectionViewCell {
 		contentView.addDefaultShadow(shadowColor: Color.shadow.uiColor)
 	}
 
-	override func fill(
-		from item: CollectionViewItem,
-		context: FillContext
-	) {
-		super.fill(from: item, context: context)
+	override func fill(from item: CollectionViewItem, mode: FillMode) {
+		super.fill(from: item, mode: mode)
 		guard let castedItem = item as? InfoCardItem else {
 			assertionFailure("?")
 			return

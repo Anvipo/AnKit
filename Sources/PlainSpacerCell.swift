@@ -20,10 +20,7 @@ final class PlainSpacerCell: CollectionViewCell {
 		NSLayoutConstraint.activate([heightConstraint])
 	}
 
-	override func fill(
-		from item: CollectionViewItem,
-		context: FillContext
-	) {
+	override func fill(from item: CollectionViewItem, mode: FillMode) {
 		guard let castedItem = item as? PlainSpacerItem else {
 			fatalError("Item must be PlainSpacerItem")
 		}

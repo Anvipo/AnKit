@@ -33,11 +33,8 @@ open class CollectionViewCell: UICollectionViewCell {
 	/// Fills cell by data in item.
 	/// - Parameters:
 	///   - item: Item for cell.
-	///   - context: Context.
-	open func fill(
-		from item: CollectionViewItem,
-		context: FillContext
-	) {
+	///   - mode: Context for method calling.
+	open func fill(from item: CollectionViewItem, mode: FillMode) {
 		// no code
 	}
 }

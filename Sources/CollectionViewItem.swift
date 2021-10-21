@@ -80,10 +80,7 @@ public extension CollectionViewItem {
 		let cellForCalculations = cellType.init()
 		cellForCalculations.fill(
 			from: self,
-			context: CollectionViewCell.FillContext(
-				availableWidth: nil,
-				availableHeight: availableHeight
-			)
+			mode: .fromLayout(.widthCalculation(availableHeightForCell: availableHeight))
 		)
 		let result = cellForCalculations.contentView.actualContentWidth(availableHeight: availableHeight)
 
@@ -119,10 +116,7 @@ public extension CollectionViewItem {
 		let cellForCalculations = cellType.init()
 		cellForCalculations.fill(
 			from: self,
-			context: CollectionViewCell.FillContext(
-				availableWidth: availableWidth,
-				availableHeight: nil
-			)
+			mode: .fromLayout(.heightCalculation(availableWidthForCell: availableWidth))
 		)
 		let result = cellForCalculations.contentView.actualContentHeight(width: availableWidth)
 

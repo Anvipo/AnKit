@@ -27,11 +27,8 @@ final class PlainShimmerCell: CollectionViewCell {
 		contentView.layer.masksToBounds = true
 	}
 
-	override func fill(
-		from item: CollectionViewItem,
-		context: FillContext
-	) {
-		super.fill(from: item, context: context)
+	override func fill(from item: CollectionViewItem, mode: FillMode) {
+		super.fill(from: item, mode: mode)
 
 		guard let castedItem = item as? PlainShimmerItem else {
 			fatalError("Item must be PlainShimmerItem")

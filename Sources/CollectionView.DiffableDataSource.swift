@@ -697,13 +697,7 @@ private extension CollectionView.DiffableDataSource {
 			)
 		}
 
-		castedCell.fill(
-			from: item,
-			context: CollectionViewCell.FillContext(
-				availableWidth: collectionView.bounds.width,
-				availableHeight: collectionView.bounds.height
-			)
-		)
+		castedCell.fill(from: item, mode: .fromDataSource(collectionView))
 
 		return cell
 	}

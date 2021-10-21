@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1D3CD7AD272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CD7AC272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift */; };
 		1D6565DD271C435100C75D34 /* ScaleCarouselVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6565DC271C435100C75D34 /* ScaleCarouselVC.swift */; };
 		1D6565E1271C43F600C75D34 /* InfoCardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6565E0271C43F600C75D34 /* InfoCardItem.swift */; };
 		1D6565E3271C445A00C75D34 /* InfoCardItem.Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6565E2271C445A00C75D34 /* InfoCardItem.Content.swift */; };
@@ -134,7 +135,7 @@
 		1DDF01442709D19B00D88994 /* UIImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00E22709D19B00D88994 /* UIImageProvider.swift */; };
 		1DDF01452709D19B00D88994 /* CollectionView.SnapshotAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00E32709D19B00D88994 /* CollectionView.SnapshotAction.swift */; };
 		1DDF01462709D19B00D88994 /* CGSize.ProportionallySizingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00E42709D19B00D88994 /* CGSize.ProportionallySizingError.swift */; };
-		1DDF01472709D19B00D88994 /* CollectionViewCell.FillContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00E52709D19B00D88994 /* CollectionViewCell.FillContext.swift */; };
+		1DDF01472709D19B00D88994 /* CollectionViewCell.FillMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00E52709D19B00D88994 /* CollectionViewCell.FillMode.swift */; };
 		1DDF01482709D19B00D88994 /* ImageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00E62709D19B00D88994 /* ImageContent.swift */; };
 		1DDF01512709D28000D88994 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF01502709D28000D88994 /* AppDelegate.swift */; };
 		1DDF01532709D28000D88994 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF01522709D28000D88994 /* SceneDelegate.swift */; };
@@ -176,6 +177,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1D3CD7AC272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.FillMode.LayoutMode.swift; sourceTree = "<group>"; };
 		1D6565DC271C435100C75D34 /* ScaleCarouselVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleCarouselVC.swift; sourceTree = "<group>"; };
 		1D6565E0271C43F600C75D34 /* InfoCardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCardItem.swift; sourceTree = "<group>"; };
 		1D6565E2271C445A00C75D34 /* InfoCardItem.Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCardItem.Content.swift; sourceTree = "<group>"; };
@@ -292,7 +294,7 @@
 		1DDF00E22709D19B00D88994 /* UIImageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageProvider.swift; sourceTree = "<group>"; };
 		1DDF00E32709D19B00D88994 /* CollectionView.SnapshotAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.SnapshotAction.swift; sourceTree = "<group>"; };
 		1DDF00E42709D19B00D88994 /* CGSize.ProportionallySizingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGSize.ProportionallySizingError.swift; sourceTree = "<group>"; };
-		1DDF00E52709D19B00D88994 /* CollectionViewCell.FillContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.FillContext.swift; sourceTree = "<group>"; };
+		1DDF00E52709D19B00D88994 /* CollectionViewCell.FillMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.FillMode.swift; sourceTree = "<group>"; };
 		1DDF00E62709D19B00D88994 /* ImageContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageContent.swift; sourceTree = "<group>"; };
 		1DDF014E2709D28000D88994 /* AnKitPlayground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnKitPlayground.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DDF01502709D28000D88994 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -407,7 +409,8 @@
 		1D7643BA270A54F500B840D2 /* Item */ = {
 			isa = PBXGroup;
 			children = (
-				1DDF00E52709D19B00D88994 /* CollectionViewCell.FillContext.swift */,
+				1DDF00E52709D19B00D88994 /* CollectionViewCell.FillMode.swift */,
+				1D3CD7AC272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift */,
 				1DDF00C72709D19A00D88994 /* CollectionViewCell.swift */,
 				1DDF00E02709D19B00D88994 /* CollectionViewItem.HeightCalculateError.swift */,
 				1DDF00CD2709D19A00D88994 /* CollectionViewItem.swift */,
@@ -987,6 +990,7 @@
 				1DDF01222709D19B00D88994 /* DividerModel.swift in Sources */,
 				1DDF00EE2709D19B00D88994 /* Array+Extensions.swift in Sources */,
 				1DDF00FA2709D19B00D88994 /* PlainLabelSupplemetaryItem.swift in Sources */,
+				1D3CD7AD272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift in Sources */,
 				1DDF01452709D19B00D88994 /* CollectionView.SnapshotAction.swift in Sources */,
 				1D6565F6271CB6BF00C75D34 /* ComplexUIImageProvider.swift in Sources */,
 				1DDF01252709D19B00D88994 /* CollectionViewSupplementaryView.swift in Sources */,
@@ -1026,7 +1030,7 @@
 				1D6566002720AB2600C75D34 /* CollectionViewSection.AppendSupplementaryItemError.swift in Sources */,
 				1DDF013A2709D19B00D88994 /* ImageProvider.swift in Sources */,
 				1DDF01082709D19B00D88994 /* CornersStyle.swift in Sources */,
-				1DDF01472709D19B00D88994 /* CollectionViewCell.FillContext.swift in Sources */,
+				1DDF01472709D19B00D88994 /* CollectionViewCell.FillMode.swift in Sources */,
 				1DDF012B2709D19B00D88994 /* CABasicAnimation+Extensions.swift in Sources */,
 				1DDF00F42709D19B00D88994 /* PlainSpacerItem.swift in Sources */,
 				1DDF00ED2709D19B00D88994 /* CollectionViewDecorationItem.swift in Sources */,

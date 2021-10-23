@@ -7,7 +7,7 @@
 
 /// Item, which is backed to the section.
 public final class SecondarySystemGroupedBackgroundDecorationItem: PlainListBackgroundDecorationItem {
-	override public var supplementaryViewType: CollectionViewSupplementaryView.Type {
+	override public var decorationViewType: CollectionViewDecorationView.Type {
 		SecondarySystemGroupedBackgroundDecorationView.self
 	}
 }

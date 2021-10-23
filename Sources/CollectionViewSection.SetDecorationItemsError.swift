@@ -10,9 +10,9 @@ import Foundation
 public extension CollectionViewSection {
 	/// Error, which could occure in `CollectionViewSection` `set(decorationItems:)` method.
 	enum SetDecorationItemsError {
-		/// Passed decoration items are not unique by element kind.
-		case notUniqueDecorationItemsByElementKind(
-			decorationItemsWithSameElementKind: [CollectionViewSupplementaryItem]
+		/// Specified decoration items are not unique by element kind.
+		case duplicateDecorationItemsByElementKind(
+			decorationItemsWithSameElementKind: [CollectionViewDecorationItem]
 		)
 	}
 }
@@ -20,7 +20,7 @@ public extension CollectionViewSection {
 extension CollectionViewSection.SetDecorationItemsError: LocalizedError {
 	public var errorDescription: String? {
 		switch self {
-		case let .notUniqueDecorationItemsByElementKind(items):
+		case let .duplicateDecorationItemsByElementKind(items):
 			return """
 			Specified decoration items are not unique by element kind.
 			Items with same element kind: \(items).

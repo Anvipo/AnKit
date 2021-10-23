@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SecondarySystemGroupedBackgroundDecorationView: CollectionViewSupplementaryView {
+final class SecondarySystemGroupedBackgroundDecorationView: CollectionViewDecorationView {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 

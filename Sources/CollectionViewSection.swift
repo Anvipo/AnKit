@@ -205,40 +205,6 @@ open class CollectionViewSection {
 }
 
 public extension CollectionViewSection {
-	/// Calculates section height.
-	/// - Parameter context: Context for cell height calculation.
-	func contentHeight(context: CollectionViewItem.CellHeightCalculationContext) throws -> CGFloat {
-		let result = try items
-			.map { try $0.cellHeight(context: context) }
-			.sum
-
-		if !result.isNormal {
-			throw ContentHeightCalculationError.isNotNormal(
-				section: self,
-				calculatedHeight: result,
-				context: context
-			)
-		}
-
-		if result < .zero {
-			throw ContentHeightCalculationError.isLessThanZero(
-				section: self,
-				calculatedHeight: result,
-				context: context
-			)
-		}
-
-		return result
-	}
-
-	/// Calculates average cell height.
-	/// - Parameter context: Context for cell height calculation.
-	func contentAverageHeight(context: CollectionViewItem.CellHeightCalculationContext) throws -> CGFloat {
-		let cellHeights = try contentHeight(context: context)
-
-		return cellHeights / CGFloat(items.count)
-	}
-
 	/// Invalidates all cached heights.
 	func invalidateCachedHeights() {
 		for item in items {
@@ -252,40 +218,6 @@ public extension CollectionViewSection {
 		for decorationItem in decorationItems {
 			decorationItem.invalidateCachedSupplementaryViewHeights()
 		}
-	}
-
-	/// Calculates width, which section will fill.
-	/// - Parameter context: Context for cell width calculation.
-	func contentWidth(context: CollectionViewItem.CellWidthCalculationContext) throws -> CGFloat {
-		let result = try items
-			.map { try $0.cellWidth(context: context) }
-			.sum
-
-		if !result.isNormal {
-			throw ContentWidthCalculationError.isNotNormal(
-				section: self,
-				calculatedWidth: result,
-				context: context
-			)
-		}
-
-		if result < .zero {
-			throw ContentWidthCalculationError.isLessThanZero(
-				section: self,
-				calculatedWidth: result,
-				context: context
-			)
-		}
-
-		return result
-	}
-
-	/// Calculates average width, which items will fill.
-	/// - Parameter context: Context for cell width calculation.
-	func contentAverageWidth(context: CollectionViewItem.CellWidthCalculationContext) throws -> CGFloat {
-		let cellWidths = try contentWidth(context: context)
-
-		return cellWidths / CGFloat(items.count)
 	}
 
 	/// Invalidates all cached heights.

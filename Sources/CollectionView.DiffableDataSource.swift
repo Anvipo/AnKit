@@ -697,7 +697,21 @@ private extension CollectionView.DiffableDataSource {
 			)
 		}
 
-		castedCell.fill(from: item, mode: .fromDataSource(collectionView))
+		guard let section = collectionView.sections[safe: indexPath.section] else {
+			fatalError(
+				"""
+				Collection view must have specified section at index path \(indexPath)
+				Collection view: \(collectionView)
+				Index path: \(indexPath)
+				"""
+			)
+		}
+
+		let context = CollectionViewCell.FillMode.FromDataSourceContext(
+			collectionView: collectionView,
+			section: section
+		)
+		castedCell.fill(from: item, mode: .fromDataSource(context: context))
 
 		return cell
 	}

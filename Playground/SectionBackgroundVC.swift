@@ -19,21 +19,6 @@ final class SectionBackgroundVC: BaseVC {
 }
 
 private extension SectionBackgroundVC {
-	func makeItem(text: String) -> CollectionViewItem {
-		PlainLabelItem(
-			text: text,
-			textColor: .label,
-			textFont: .preferredFont(forTextStyle: .body),
-			tintColor: .systemIndigo,
-			textAlignment: .center,
-			textInsets: NSDirectionalEdgeInsets(
-				horizontalInset: .defaultHorizontalOffset,
-				verticalInset: 8
-			),
-			dividerModel: .lineDefaultOffsetFromStart()
-		)
-	}
-
 	func setupUI() {
 		navigationItem.title = "Section background example"
 
@@ -48,11 +33,11 @@ private extension SectionBackgroundVC {
 		do {
 			let section1 = try PlainListSection(
 				items: [
-					makeItem(text: "1"),
-					makeItem(text: "2"),
-					makeItem(text: "3"),
-					makeItem(text: "4"),
-					makeItem(text: "5")
+					AnKitPlayground.makePlainLabelItem(text: "1"),
+					AnKitPlayground.makePlainLabelItem(text: "2"),
+					AnKitPlayground.makePlainLabelItem(text: "3"),
+					AnKitPlayground.makePlainLabelItem(text: "4"),
+					AnKitPlayground.makePlainLabelItem(text: "5")
 				],
 				backgroundDecorationItem: SecondarySystemGroupedBackgroundDecorationItem(
 					elementKind: "SecondarySystemGroupedBackgroundDecorationItem",
@@ -64,11 +49,11 @@ private extension SectionBackgroundVC {
 
 			let section2 = try PlainListSection(
 				items: [
-					makeItem(text: "6"),
-					makeItem(text: "7"),
-					makeItem(text: "8"),
-					makeItem(text: "9"),
-					makeItem(text: "10")
+					AnKitPlayground.makePlainLabelItem(text: "6"),
+					AnKitPlayground.makePlainLabelItem(text: "7"),
+					AnKitPlayground.makePlainLabelItem(text: "8"),
+					AnKitPlayground.makePlainLabelItem(text: "9"),
+					AnKitPlayground.makePlainLabelItem(text: "10")
 				],
 				backgroundDecorationItem: SecondarySystemGroupedBackgroundDecorationItem(
 					elementKind: "SecondarySystemGroupedBackgroundDecorationItem",

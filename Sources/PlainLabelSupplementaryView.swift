@@ -1,5 +1,5 @@
 //
-//  PlainLabelSupplemetaryView.swift
+//  PlainLabelSupplementaryView.swift
 //  AnKit
 //
 //  Created by Anvipo on 29.08.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PlainLabelSupplemetaryView: CollectionViewSupplementaryView {
+final class PlainLabelSupplementaryView: CollectionViewSupplementaryView {
 	private let blurredView: BlurredView
 	private let label: UILabel
 	private var currentLabelConstraints: [NSLayoutConstraint]
@@ -34,18 +34,16 @@ final class PlainLabelSupplemetaryView: CollectionViewSupplementaryView {
 	override func fill(from item: CollectionViewSupplementaryItem, mode: FillMode) {
 		super.fill(from: item, mode: mode)
 
-		guard let castedItem = item as? PlainLabelSupplemetaryItem else {
-			fatalError("Item must be PlainLabelSupplemetaryItem")
+		guard let castedItem = item as? PlainLabelSupplementaryItem else {
+			fatalError("Item must be PlainLabelSupplementaryItem")
 		}
 
 		label.text = castedItem.text
-		label.tintColor = castedItem.tintColor
 		label.font = castedItem.textFont
 		label.textColor = castedItem.textColor
 		label.textAlignment = castedItem.textAlignment
 		label.numberOfLines = castedItem.textNumberOfLines
 
-		blurredView.tintColor = castedItem.tintColor
 		blurredView.set(style: castedItem.blurEffectStyle)
 
 		tintColor = castedItem.tintColor
@@ -69,7 +67,7 @@ final class PlainLabelSupplemetaryView: CollectionViewSupplementaryView {
 }
 
 // MARK: - Private methods
-private extension PlainLabelSupplemetaryView {
+private extension PlainLabelSupplementaryView {
 	func setupUI() {
 		shimmerableViews = [label]
 

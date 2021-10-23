@@ -56,21 +56,11 @@ open class CollectionViewSection {
 			throw InitError.itemsAreEmpty
 		}
 
-		for (_, groupedSupplementaryItems) in Dictionary(grouping: supplementaryItems, by: { $0.elementKind }) {
-			if groupedSupplementaryItems.count > 1 {
-				throw InitError.notUniqueSupplementaryItemsByElementKind(
-					supplementaryItemsWithSameElementKind: groupedSupplementaryItems
-				)
-			}
-		}
-
-		for (_, groupedDecorationItems) in Dictionary(grouping: decorationItems, by: { $0.elementKind }) {
-			if groupedDecorationItems.count > 1 {
-				throw InitError.notUniqueDecorationItemsByElementKind(
-					decorationItemsWithSameElementKind: groupedDecorationItems
-				)
-			}
-		}
+		try Self.checkElementKinds(
+			items: items,
+			supplementaryItems: supplementaryItems,
+			decorationItems: decorationItems
+		)
 
 		self.items = items
 		self.supplementaryItems = supplementaryItems
@@ -362,5 +352,49 @@ public extension Array where Element: CollectionViewSection {
 extension CollectionViewSection {
 	func supplementaryItem(for kind: String) -> CollectionViewSupplementaryItem? {
 		supplementaryItems.first { $0.elementKind == kind }
+	}
+}
+
+private extension CollectionViewSection {
+	// swiftlint:disable:next cyclomatic_complexity
+	static func checkElementKinds(
+		items: [CollectionViewItem],
+		supplementaryItems: [CollectionViewSupplementaryItem],
+		decorationItems: [CollectionViewDecorationItem]
+	) throws {
+		let groupedSupplementaryItems = Dictionary(grouping: supplementaryItems) { $0.elementKind }
+		for supplementaryItems in groupedSupplementaryItems.values {
+			if supplementaryItems.count > 1 {
+				throw InitError.duplicateSupplementaryItemsByElementKind(
+					supplementaryItemsWithSameElementKind: supplementaryItems
+				)
+			}
+		}
+
+		let groupedDecorationItems = Dictionary(grouping: decorationItems) { $0.elementKind }
+		for decorationItems in groupedDecorationItems.values {
+			if decorationItems.count > 1 {
+				throw InitError.duplicateDecorationItemsByElementKind(
+					decorationItemsWithSameElementKind: decorationItems
+				)
+			}
+		}
+
+		if !groupedSupplementaryItems.isEmpty || !groupedDecorationItems.isEmpty {
+			let supplementaryItemElementKinds = Set(groupedSupplementaryItems.keys)
+			let decorationItemElementKinds = Set(groupedDecorationItems.keys)
+
+			var sectionElementKinds = supplementaryItemElementKinds
+
+			for decorationItemElementKind in decorationItemElementKinds {
+				if !sectionElementKinds.insert(decorationItemElementKind).inserted {
+					throw InitError.duplicateElementKind(
+						decorationItemElementKind,
+						supplementaryItemElementKinds: supplementaryItemElementKinds,
+						decorationItemElementKinds: decorationItemElementKinds
+					)
+				}
+			}
+		}
 	}
 }

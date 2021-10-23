@@ -14,13 +14,20 @@ public extension CollectionViewSection {
 		case itemsAreEmpty
 
 		/// Passed supplementary items are not unique by element kind.
-		case notUniqueSupplementaryItemsByElementKind(
+		case duplicateSupplementaryItemsByElementKind(
 			supplementaryItemsWithSameElementKind: [CollectionViewSupplementaryItem]
 		)
 
 		/// Passed decoration items are not unique by element kind.
-		case notUniqueDecorationItemsByElementKind(
-			decorationItemsWithSameElementKind: [CollectionViewSupplementaryItem]
+		case duplicateDecorationItemsByElementKind(
+			decorationItemsWithSameElementKind: [CollectionViewDecorationItem]
+		)
+
+		/// Passed decoration items are not unique by element kind.
+		case duplicateElementKind(
+			String,
+			supplementaryItemElementKinds: Set<String>,
+			decorationItemElementKinds: Set<String>
 		)
 	}
 }
@@ -29,20 +36,30 @@ extension CollectionViewSection.InitError: LocalizedError {
 	public var errorDescription: String? {
 		switch self {
 		case .itemsAreEmpty:
-			return """
-			Passed items are empty
-			"""
+			return "Specified items are empty"
 
-		case let .notUniqueSupplementaryItemsByElementKind(items):
+		case let .duplicateSupplementaryItemsByElementKind(items):
 			return """
-			Passed supplementary items are not unique by element kind.
+			Specified supplementary items are not unique by element kind.
 			Supplementary items with same element kind: \(items).
 			"""
 
-		case let .notUniqueDecorationItemsByElementKind(items):
+		case let .duplicateDecorationItemsByElementKind(items):
 			return """
-			Passed decoration items are not unique by element kind.
+			Specified decoration items are not unique by element kind.
 			Decoration items with same element kind: \(items).
+			"""
+
+		case let .duplicateElementKind(
+			duplicateElementKind,
+			supplementaryItemElementKinds,
+			decorationItemElementKinds
+		):
+			return """
+			There is duplicate element kind in specified items.
+			Duplicate element kind - \(duplicateElementKind).
+			Supplementary item element kinds - \(supplementaryItemElementKinds).
+			Decoration item element kinds - \(decorationItemElementKinds)
 			"""
 		}
 	}

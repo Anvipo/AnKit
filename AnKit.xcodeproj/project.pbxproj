@@ -45,7 +45,6 @@
 		1D6566082720C2B000C75D34 /* CollectionViewSection.AppendDecorationItemError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6566072720C2B000C75D34 /* CollectionViewSection.AppendDecorationItemError.swift */; };
 		1D65660B2720C6B500C75D34 /* CollectionViewSection.RemoveItemError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D65660A2720C6B500C75D34 /* CollectionViewSection.RemoveItemError.swift */; };
 		1D65660D2720C6EF00C75D34 /* CollectionViewSection.AppendItemError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D65660C2720C6EF00C75D34 /* CollectionViewSection.AppendItemError.swift */; };
-		1DDF00E72709D19B00D88994 /* CollectionViewSection.ContentWidthCalculationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00852709D19900D88994 /* CollectionViewSection.ContentWidthCalculationError.swift */; };
 		1DDF00E82709D19B00D88994 /* UIView.ConstraintsMakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00862709D19900D88994 /* UIView.ConstraintsMakeData.swift */; };
 		1DDF00E92709D19B00D88994 /* CollectionViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00872709D19900D88994 /* CollectionViewSection.swift */; };
 		1DDF00EA2709D19B00D88994 /* DividerDefaultStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00882709D19900D88994 /* DividerDefaultStrategy.swift */; };
@@ -73,7 +72,6 @@
 		1DDF01002709D19B00D88994 /* ShimmerableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF009E2709D19900D88994 /* ShimmerableViewProtocol.swift */; };
 		1DDF01012709D19B00D88994 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF009F2709D19900D88994 /* Button.swift */; };
 		1DDF01022709D19B00D88994 /* UIView.ConstraintMakeData.MakeConstraintError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00A02709D19900D88994 /* UIView.ConstraintMakeData.MakeConstraintError.swift */; };
-		1DDF01032709D19B00D88994 /* CollectionViewSection.ContentHeightCalculationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00A12709D19900D88994 /* CollectionViewSection.ContentHeightCalculationError.swift */; };
 		1DDF01042709D19B00D88994 /* Result+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00A22709D19900D88994 /* Result+Extensions.swift */; };
 		1DDF01052709D19B00D88994 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00A32709D19900D88994 /* ContainerView.swift */; };
 		1DDF01062709D19B00D88994 /* CollectionViewPrefetchingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00A42709D19900D88994 /* CollectionViewPrefetchingDelegate.swift */; };
@@ -208,7 +206,6 @@
 		1DDF00772709CEF300D88994 /* AnKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AnKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DDF00812709D15E00D88994 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1DDF00822709D15E00D88994 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		1DDF00852709D19900D88994 /* CollectionViewSection.ContentWidthCalculationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewSection.ContentWidthCalculationError.swift; sourceTree = "<group>"; };
 		1DDF00862709D19900D88994 /* UIView.ConstraintsMakeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.ConstraintsMakeData.swift; sourceTree = "<group>"; };
 		1DDF00872709D19900D88994 /* CollectionViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewSection.swift; sourceTree = "<group>"; };
 		1DDF00882709D19900D88994 /* DividerDefaultStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DividerDefaultStrategy.swift; sourceTree = "<group>"; };
@@ -236,7 +233,6 @@
 		1DDF009E2709D19900D88994 /* ShimmerableViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShimmerableViewProtocol.swift; sourceTree = "<group>"; };
 		1DDF009F2709D19900D88994 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		1DDF00A02709D19900D88994 /* UIView.ConstraintMakeData.MakeConstraintError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.ConstraintMakeData.MakeConstraintError.swift; sourceTree = "<group>"; };
-		1DDF00A12709D19900D88994 /* CollectionViewSection.ContentHeightCalculationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewSection.ContentHeightCalculationError.swift; sourceTree = "<group>"; };
 		1DDF00A22709D19900D88994 /* Result+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Result+Extensions.swift"; sourceTree = "<group>"; };
 		1DDF00A32709D19900D88994 /* ContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		1DDF00A42709D19900D88994 /* CollectionViewPrefetchingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewPrefetchingDelegate.swift; sourceTree = "<group>"; };
@@ -409,8 +405,6 @@
 		1D7643B8270A54C800B840D2 /* Section */ = {
 			isa = PBXGroup;
 			children = (
-				1DDF00852709D19900D88994 /* CollectionViewSection.ContentWidthCalculationError.swift */,
-				1DDF00A12709D19900D88994 /* CollectionViewSection.ContentHeightCalculationError.swift */,
 				1DDF00CF2709D19B00D88994 /* CollectionViewSection.InitError.swift */,
 				1D6566092720C6AC00C75D34 /* Item errors */,
 				1D6566022720C13A00C75D34 /* Decoration item errors */,
@@ -1051,13 +1045,11 @@
 				1DDF00F72709D19B00D88994 /* Shimmerable.swift in Sources */,
 				1D65660D2720C6EF00C75D34 /* CollectionViewSection.AppendItemError.swift in Sources */,
 				1D3CD7B42724165E0074B6F6 /* AnyNSCollectionLayoutContainer.swift in Sources */,
-				1DDF01032709D19B00D88994 /* CollectionViewSection.ContentHeightCalculationError.swift in Sources */,
 				1DDF01302709D19B00D88994 /* ImageProvider.State.swift in Sources */,
 				1DDF01432709D19B00D88994 /* CollectionView.DiffableDataSource.swift in Sources */,
 				1DDF01162709D19B00D88994 /* CGSize+Extensions.swift in Sources */,
 				1DDF01132709D19B00D88994 /* URLProvider.swift in Sources */,
 				1DDF01292709D19B00D88994 /* CollectionViewCell.swift in Sources */,
-				1DDF00E72709D19B00D88994 /* CollectionViewSection.ContentWidthCalculationError.swift in Sources */,
 				1D6566002720AB2600C75D34 /* CollectionViewSection.AppendSupplementaryItemError.swift in Sources */,
 				1DDF013A2709D19B00D88994 /* ImageProvider.swift in Sources */,
 				1DDF01082709D19B00D88994 /* CornersStyle.swift in Sources */,

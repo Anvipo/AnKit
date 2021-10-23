@@ -15,6 +15,18 @@ public extension CollectionViewItem {
 
 		/// Information about the current layout environment.
 		public let layoutEnvironment: AnyNSCollectionLayoutEnvironment
+
+		/// Initializes with specified parameters.
+		/// - Parameters:
+		///   - availableWidthForCell: Available width for cell.
+		///   - layoutEnvironment: Information about the current layout environment.
+		public init(
+			availableWidthForCell: CGFloat,
+			layoutEnvironment: AnyNSCollectionLayoutEnvironment
+		) {
+			self.availableWidthForCell = availableWidthForCell
+			self.layoutEnvironment = layoutEnvironment
+		}
 	}
 }
 

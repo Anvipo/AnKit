@@ -16,4 +16,11 @@ public extension CGSize {
 	}
 }
 
-extension CGSize.ProportionallySizingError: LocalizedError {}
+extension CGSize.ProportionallySizingError: LocalizedError {
+	public var errorDescription: String? {
+		switch self {
+		case .hasAtLeastOneZeroSide:
+			return "Size has at least one zero side"
+		}
+	}
+}

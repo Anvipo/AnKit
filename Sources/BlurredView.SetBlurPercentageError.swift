@@ -16,4 +16,11 @@ public extension BlurredView {
 	}
 }
 
-extension BlurredView.SetBlurPercentageError: LocalizedError {}
+extension BlurredView.SetBlurPercentageError: LocalizedError {
+	public var errorDescription: String? {
+		switch self {
+		case let .wrongBlurPercentageValue(value):
+			return "\(value) should be in (0...1)"
+		}
+	}
+}

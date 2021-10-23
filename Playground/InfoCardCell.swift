@@ -83,7 +83,8 @@ final class InfoCardCell: CollectionViewCell {
 
 		layoutIfNeeded()
 
-		try? setupImage()
+		// swiftlint:disable:next force_try
+		try! setupImage()
 
 		if let imageViewShimmerLayer = imageView.shimmerLayer {
 			imageViewShimmerLayer.cornerRadius = imageView.layer.cornerRadius

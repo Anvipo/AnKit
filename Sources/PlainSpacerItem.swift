@@ -23,7 +23,7 @@ public final class PlainSpacerItem: CollectionViewItem {
 		super.init(typeErasedContent: height)
 	}
 
-	override public func cachedCellHeight(for availableWidth: CGFloat) -> CGFloat? {
+	override public func cachedCellHeight(context: CellHeightCalculationContext) -> CGFloat? {
 		height
 	}
 }

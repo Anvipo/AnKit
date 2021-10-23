@@ -222,6 +222,7 @@ private extension PlainListSection {
 		return supplementaryLayout
 	}
 
+	// swiftlint:disable:next function_body_length
 	func sectionLayout(
 		layoutEnvironment: NSCollectionLayoutEnvironment,
 		widthLayoutDimension: NSCollectionLayoutDimension
@@ -241,9 +242,14 @@ private extension PlainListSection {
 
 		// iOS < 14
 
+		let cellHeightCalculationContext = CollectionViewItem.CellHeightCalculationContext(
+			availableWidthForCell: widthLayoutDimension.dimension,
+			layoutEnvironment: AnyNSCollectionLayoutEnvironment(layoutEnvironment)
+		)
+
 		let layoutItems: [NSCollectionLayoutItem] = items.map { item in
 			let cellHeight = try! item.cellHeight(
-				availableWidth: widthLayoutDimension.dimension
+				context: cellHeightCalculationContext
 			)
 
 			return NSCollectionLayoutItem(

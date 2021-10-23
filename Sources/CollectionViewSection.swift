@@ -205,36 +205,36 @@ open class CollectionViewSection {
 }
 
 public extension CollectionViewSection {
-	/// Calculates height, which section will fill.
-	/// - Parameter availableWidth: Available width for section.
-	func contentHeight(availableWidth: CGFloat) throws -> CGFloat {
+	/// Calculates section height.
+	/// - Parameter context: Context for cell height calculation.
+	func contentHeight(context: CollectionViewItem.CellHeightCalculationContext) throws -> CGFloat {
 		let result = try items
-			.map { try $0.cellHeight(availableWidth: availableWidth) }
+			.map { try $0.cellHeight(context: context) }
 			.sum
 
 		if !result.isNormal {
-			throw ContentHeightCalculateError.isNotNormal(
+			throw ContentHeightCalculationError.isNotNormal(
 				section: self,
 				calculatedHeight: result,
-				availableWidth: availableWidth
+				context: context
 			)
 		}
 
 		if result < .zero {
-			throw ContentHeightCalculateError.isLessThanZero(
+			throw ContentHeightCalculationError.isLessThanZero(
 				section: self,
 				calculatedHeight: result,
-				availableWidth: availableWidth
+				context: context
 			)
 		}
 
 		return result
 	}
 
-	/// Calculates average height, which items will fill.
-	/// - Parameter availableWidth: Available width for section.
-	func contentAverageHeight(availableWidth: CGFloat) throws -> CGFloat {
-		let cellHeights = try contentHeight(availableWidth: availableWidth)
+	/// Calculates average cell height.
+	/// - Parameter context: Context for cell height calculation.
+	func contentAverageHeight(context: CollectionViewItem.CellHeightCalculationContext) throws -> CGFloat {
+		let cellHeights = try contentHeight(context: context)
 
 		return cellHeights / CGFloat(items.count)
 	}

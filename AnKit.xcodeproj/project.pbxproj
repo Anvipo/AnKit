@@ -27,8 +27,13 @@
 		1D34D10D272427930018CC3B /* CollectionViewSupplementaryItem.ViewWidthCalculationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D10C272427930018CC3B /* CollectionViewSupplementaryItem.ViewWidthCalculationContext.swift */; };
 		1D34D1172724402D0018CC3B /* Array.ChunkedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D1162724402D0018CC3B /* Array.ChunkedError.swift */; };
 		1D34D11E272466220018CC3B /* AnKitPlayground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D11D272466220018CC3B /* AnKitPlayground.swift */; };
+		1D34D120272468110018CC3B /* CollectionViewItem.InitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D11F272468110018CC3B /* CollectionViewItem.InitError.swift */; };
 		1D34D124272489430018CC3B /* CollectionViewCell.FillMode.FromDataSourceContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D123272489430018CC3B /* CollectionViewCell.FillMode.FromDataSourceContext.swift */; };
 		1D34D1292724A6D60018CC3B /* CollectionViewDecorationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D1282724A6D60018CC3B /* CollectionViewDecorationView.swift */; };
+		1D34D1342724A8BB0018CC3B /* InfoCardItem.BadgeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D12F2724A8B50018CC3B /* InfoCardItem.BadgeItem.swift */; };
+		1D34D1352724A8BD0018CC3B /* InfoCardItem.BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D12D2724A8B40018CC3B /* InfoCardItem.BadgeView.swift */; };
+		1D34D1362724A8C00018CC3B /* VerticalBadgedItemsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D12C2724A8B40018CC3B /* VerticalBadgedItemsSection.swift */; };
+		1D34D1372724A8C30018CC3B /* VerticalBadgedItemsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D12E2724A8B40018CC3B /* VerticalBadgedItemsVC.swift */; };
 		1D3CD7AD272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CD7AC272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift */; };
 		1D3CD7B027240B8F0074B6F6 /* CollectionViewItem.CellHeightCalculationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CD7AF27240B8F0074B6F6 /* CollectionViewItem.CellHeightCalculationContext.swift */; };
 		1D3CD7B2272411890074B6F6 /* AnyNSCollectionLayoutEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CD7B1272411890074B6F6 /* AnyNSCollectionLayoutEnvironment.swift */; };
@@ -192,8 +197,13 @@
 		1D34D10C272427930018CC3B /* CollectionViewSupplementaryItem.ViewWidthCalculationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryItem.ViewWidthCalculationContext.swift; sourceTree = "<group>"; };
 		1D34D1162724402D0018CC3B /* Array.ChunkedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.ChunkedError.swift; sourceTree = "<group>"; };
 		1D34D11D272466220018CC3B /* AnKitPlayground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnKitPlayground.swift; sourceTree = "<group>"; };
+		1D34D11F272468110018CC3B /* CollectionViewItem.InitError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewItem.InitError.swift; sourceTree = "<group>"; };
 		1D34D123272489430018CC3B /* CollectionViewCell.FillMode.FromDataSourceContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.FillMode.FromDataSourceContext.swift; sourceTree = "<group>"; };
 		1D34D1282724A6D60018CC3B /* CollectionViewDecorationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDecorationView.swift; sourceTree = "<group>"; };
+		1D34D12C2724A8B40018CC3B /* VerticalBadgedItemsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalBadgedItemsSection.swift; sourceTree = "<group>"; };
+		1D34D12D2724A8B40018CC3B /* InfoCardItem.BadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCardItem.BadgeView.swift; sourceTree = "<group>"; };
+		1D34D12E2724A8B40018CC3B /* VerticalBadgedItemsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalBadgedItemsVC.swift; sourceTree = "<group>"; };
+		1D34D12F2724A8B50018CC3B /* InfoCardItem.BadgeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCardItem.BadgeItem.swift; sourceTree = "<group>"; };
 		1D3CD7AC272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.FillMode.LayoutMode.swift; sourceTree = "<group>"; };
 		1D3CD7AF27240B8F0074B6F6 /* CollectionViewItem.CellHeightCalculationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewItem.CellHeightCalculationContext.swift; sourceTree = "<group>"; };
 		1D3CD7B1272411890074B6F6 /* AnyNSCollectionLayoutEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyNSCollectionLayoutEnvironment.swift; sourceTree = "<group>"; };
@@ -395,6 +405,24 @@
 			name = "Decoration item";
 			sourceTree = "<group>";
 		};
+		1D34D12B2724A8A60018CC3B /* Badge item */ = {
+			isa = PBXGroup;
+			children = (
+				1D34D12F2724A8B50018CC3B /* InfoCardItem.BadgeItem.swift */,
+				1D34D12D2724A8B40018CC3B /* InfoCardItem.BadgeView.swift */,
+			);
+			name = "Badge item";
+			sourceTree = "<group>";
+		};
+		1D34D1382724A8C70018CC3B /* Vertical badged items */ = {
+			isa = PBXGroup;
+			children = (
+				1D34D12C2724A8B40018CC3B /* VerticalBadgedItemsSection.swift */,
+				1D34D12E2724A8B40018CC3B /* VerticalBadgedItemsVC.swift */,
+			);
+			name = "Vertical badged items";
+			sourceTree = "<group>";
+		};
 		1D3CD7AE27240B810074B6F6 /* Cell height calculation */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,6 +444,7 @@
 		1D6565DF271C43EA00C75D34 /* Info card */ = {
 			isa = PBXGroup;
 			children = (
+				1D34D12B2724A8A60018CC3B /* Badge item */,
 				1D6565E0271C43F600C75D34 /* InfoCardItem.swift */,
 				1D6565E2271C445A00C75D34 /* InfoCardItem.Content.swift */,
 				1D6565E4271C448E00C75D34 /* InfoCardCell.swift */,
@@ -494,6 +523,7 @@
 				1D3CD7AE27240B810074B6F6 /* Cell height calculation */,
 				1DDF00C72709D19A00D88994 /* CollectionViewCell.swift */,
 				1DDF00CD2709D19A00D88994 /* CollectionViewItem.swift */,
+				1D34D11F272468110018CC3B /* CollectionViewItem.InitError.swift */,
 			);
 			name = Item;
 			sourceTree = "<group>";
@@ -587,6 +617,7 @@
 		1DDF01702709D36300D88994 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1D34D1382724A8C70018CC3B /* Vertical badged items */,
 				1D6565EC271C5C9000C75D34 /* Scale carousel */,
 				1DDF01662709D34D00D88994 /* SectionBackgroundVC.swift */,
 				1DDF01682709D34D00D88994 /* ShuffleItemsVC.swift */,
@@ -1079,6 +1110,7 @@
 				1D3CD7AD272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift in Sources */,
 				1DDF01452709D19B00D88994 /* CollectionView.SnapshotAction.swift in Sources */,
 				1D6565F6271CB6BF00C75D34 /* ComplexUIImageProvider.swift in Sources */,
+				1D34D120272468110018CC3B /* CollectionViewItem.InitError.swift in Sources */,
 				1DDF01252709D19B00D88994 /* CollectionViewSupplementaryView.swift in Sources */,
 				1D34D105272422080018CC3B /* CollectionViewSupplementaryView.FillMode.swift in Sources */,
 				1D34D124272489430018CC3B /* CollectionViewCell.FillMode.FromDataSourceContext.swift in Sources */,
@@ -1156,10 +1188,14 @@
 				1DDF01712709D3B600D88994 /* MainVC.swift in Sources */,
 				1D6565E3271C445A00C75D34 /* InfoCardItem.Content.swift in Sources */,
 				1DDF01722709D3BA00D88994 /* ButtonItem.swift in Sources */,
+				1D34D1342724A8BB0018CC3B /* InfoCardItem.BadgeItem.swift in Sources */,
 				1DDF01742709D3BF00D88994 /* ShuffleItemsVC.swift in Sources */,
 				1D6565E1271C43F600C75D34 /* InfoCardItem.swift in Sources */,
 				1DDF01732709D3BA00D88994 /* ButtonCell.swift in Sources */,
+				1D34D1372724A8C30018CC3B /* VerticalBadgedItemsVC.swift in Sources */,
+				1D34D1352724A8BD0018CC3B /* InfoCardItem.BadgeView.swift in Sources */,
 				1DDF01532709D28000D88994 /* SceneDelegate.swift in Sources */,
+				1D34D1362724A8C00018CC3B /* VerticalBadgedItemsSection.swift in Sources */,
 				1DDF01A02709E45100D88994 /* SimpleVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

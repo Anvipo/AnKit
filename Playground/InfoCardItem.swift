@@ -11,6 +11,7 @@ import UIKit
 final class InfoCardItem: CollectionViewItem {
 	let imageProvider: ImageProvider
 	let imageViewContentMode: UIView.ContentMode
+	let badgeItem: BadgeItem?
 
 	var content: Content
 
@@ -25,10 +26,12 @@ final class InfoCardItem: CollectionViewItem {
 
 	init(
 		content: Content,
-		imageViewContentMode: UIView.ContentMode
-	) {
+		imageViewContentMode: UIView.ContentMode,
+		badgeItem: BadgeItem? = nil
+	) throws {
 		self.content = content
 		self.imageViewContentMode = imageViewContentMode
+		self.badgeItem = badgeItem
 
 		imageProvider = ImageProvider(
 			imageContent: content.imageContent
@@ -38,7 +41,10 @@ final class InfoCardItem: CollectionViewItem {
 
 		isShimmering = false
 
-		super.init(typeErasedContent: content)
+		try super.init(
+			typeErasedContent: content,
+			supplementaryItems: [badgeItem].compactMap { $0 }
+		)
 	}
 }
 

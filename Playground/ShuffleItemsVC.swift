@@ -122,8 +122,14 @@ private extension ShuffleItemsVC {
 					AnKitPlayground.makePlainLabelItem(text: "9"),
 					AnKitPlayground.makePlainLabelItem(text: "10")
 				],
-				headerItem: AnKitPlayground.makePlainLabelSupplementaryItem(text: "Header", elementKind: "Header"),
-				footerItem: AnKitPlayground.makePlainLabelSupplementaryItem(text: "Footer", elementKind: "Footer")
+				headerItem: AnKitPlayground.makePlainLabelSupplementaryItem(
+					text: "Header",
+					elementKind: "Header"
+				),
+				footerItem: AnKitPlayground.makePlainLabelSupplementaryItem(
+					text: "Footer",
+					elementKind: "Footer"
+				)
 			)
 
 			try collectionView.set(

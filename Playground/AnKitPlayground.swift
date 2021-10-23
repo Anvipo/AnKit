@@ -14,8 +14,8 @@ extension AnKitPlayground {
 	static func makePlainLabelSupplementaryItem(
 		text: String,
 		elementKind: String
-	) -> CollectionViewSupplementaryItem {
-		PlainLabelSupplementaryItem(
+	) throws -> CollectionViewSupplementaryItem {
+		try PlainLabelSupplementaryItem(
 			text: text,
 			textColor: Color.label.uiColor,
 			textFont: Font.title1.uiFont,
@@ -30,8 +30,8 @@ extension AnKitPlayground {
 	static func makePlainLabelItem(
 		text: String,
 		dividerColor: UIColor = DividerModel.defaultColor
-	) -> CollectionViewItem {
-		PlainLabelItem(
+	) throws -> CollectionViewItem {
+		try PlainLabelItem(
 			text: text,
 			textColor: Color.label.uiColor,
 			textFont: Font.body.uiFont,

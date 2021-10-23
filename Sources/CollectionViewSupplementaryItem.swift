@@ -169,3 +169,22 @@ public extension CollectionViewSupplementaryItem {
 		return result
 	}
 }
+
+extension Array where Element == CollectionViewSupplementaryItem {
+	func hasSameContent(as other: [CollectionViewSupplementaryItem]) -> Bool {
+		guard count == other.count else {
+			return false
+		}
+
+		for index in indices {
+			let lhs = self[index]
+			let rhs = other[index]
+
+			if lhs.typeErasedContent != rhs.typeErasedContent {
+				return false
+			}
+		}
+
+		return true
+	}
+}

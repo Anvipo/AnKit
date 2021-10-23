@@ -24,13 +24,13 @@ final class ScaleCarouselVC: BaseVC {
 private extension ScaleCarouselVC {
 	func makeRemoteImageItem(
 		id: Int
-	) -> InfoCardItem {
+	) throws -> InfoCardItem {
 		let remoteURLImageViewWidth = Int(remoteImageCardWidth)
 		let remoteURLImageViewHeight = Int(remoteImageCardHeight * InfoCardCell.imageViewHeightMultiplier)
 		// swiftlint:disable:next force_unwrapping
 		let url = URL(string: "https://picsum.photos/id/1\(id)/\(remoteURLImageViewWidth)/\(remoteURLImageViewHeight)")!
 
-		return InfoCardItem(
+		return try InfoCardItem(
 			content: InfoCardItem.Content(
 				imageContent: .remoteURL(
 					urlProvider: url,
@@ -45,7 +45,7 @@ private extension ScaleCarouselVC {
 	func makeLocalImageItem(
 		text: String
 	) throws -> InfoCardItem {
-		InfoCardItem(
+		try InfoCardItem(
 			content: InfoCardItem.Content(
 				imageContent: .localImage(
 					uiImageProvider: try Image.star.complexProvider(

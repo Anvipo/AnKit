@@ -47,6 +47,13 @@ private extension MainVC {
 		)
 	}
 
+	func didTapVerticalBadgedItemsButtonItem() {
+		navigationController?.pushViewController(
+			VerticalBadgedItemsVC(),
+			animated: shouldAnimateDifferences
+		)
+	}
+
 	func setupUI() {
 		navigationItem.title = "Examples"
 
@@ -56,17 +63,20 @@ private extension MainVC {
 
 	func fillCollectionView() {
 		do {
-			let simpleScreenButtonItem = ButtonItem(text: "Simple screen example") { [weak self] in
+			let simpleScreenButtonItem = try ButtonItem(text: "Simple screen example") { [weak self] in
 				self?.didTapSimpleScreenButtonItem()
 			}
-			let shuffleItemsButtonItem = ButtonItem(text: "Shuffle items example") { [weak self] in
+			let shuffleItemsButtonItem = try ButtonItem(text: "Shuffle items example") { [weak self] in
 				self?.didTapShuffleItemsButtonItem()
 			}
-			let sectionBackgroundButtonItem = ButtonItem(text: "Section background example") { [weak self] in
+			let sectionBackgroundButtonItem = try ButtonItem(text: "Section background example") { [weak self] in
 				self?.didTapSectionBackgroundButtonItem()
 			}
-			let scaleCarouselButtonItem = ButtonItem(text: "Scale carousel example") { [weak self] in
+			let scaleCarouselButtonItem = try ButtonItem(text: "Scale carousel example") { [weak self] in
 				self?.didTapScaleCarouselButtonItem()
+			}
+			let verticalBadgedItemsVCButtonItem = try ButtonItem(text: "Vertical badged items example") { [weak self] in
+				self?.didTapVerticalBadgedItemsButtonItem()
 			}
 
 			let section = try PlainListSection(
@@ -78,7 +88,9 @@ private extension MainVC {
 					PlainSpacerItem(height: 32),
 					sectionBackgroundButtonItem,
 					PlainSpacerItem(height: 32),
-					scaleCarouselButtonItem
+					scaleCarouselButtonItem,
+					PlainSpacerItem(height: 32),
+					verticalBadgedItemsVCButtonItem
 				],
 				contentInsets: .default()
 			)

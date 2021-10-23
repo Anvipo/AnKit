@@ -9,7 +9,7 @@ import CoreGraphics
 
 /// Abstract DTO for cell.
 open class CollectionViewItem: Item {
-	private var cachedCellHeights: [CGFloat: CGFloat]
+	private var cachedCellHeights: [CellHeightCalculationContext: CGFloat]
 	private var cachedCellWidths: [CGFloat: CGFloat]
 
 	/// Type for cell, which will be created and filled from this item.
@@ -50,17 +50,17 @@ open class CollectionViewItem: Item {
 	}
 
 	/// Returns cached cell height.
-	/// - Parameter availableWidth: Available width for cell.
-	open func cachedCellHeight(for availableWidth: CGFloat) -> CGFloat? {
-		cachedCellHeights[availableWidth]
+	/// - Parameter context: Context for cell height calculation.
+	open func cachedCellHeight(context: CellHeightCalculationContext) -> CGFloat? {
+		cachedCellHeights[context]
 	}
 
 	/// Caches specified `cellHeight`.
 	/// - Parameters:
 	///   - cellHeight: Cell height, which would be cached.
-	///   - availableWidth: Available width for cell.
-	open func cache(cellHeight: CGFloat, for availableWidth: CGFloat) {
-		cachedCellHeights[availableWidth] = cellHeight
+	///   - context: Context for cell height calculation.
+	open func cache(cellHeight: CGFloat, context: CellHeightCalculationContext) {
+		cachedCellHeights[context] = cellHeight
 	}
 
 	/// Invalidates all cached cell heights.
@@ -107,38 +107,38 @@ public extension CollectionViewItem {
 	}
 
 	/// Calculates height, which cell will fill.
-	/// - Parameter availableWidth: Available width for cell.
-	func cellHeight(availableWidth: CGFloat) throws -> CGFloat {
-		if let cachedHeight = cachedCellHeight(for: availableWidth) {
+	/// - Parameter context: Context for cell height calculation.
+	func cellHeight(context: CellHeightCalculationContext) throws -> CGFloat {
+		if let cachedHeight = cachedCellHeight(context: context) {
 			return cachedHeight
 		}
 
 		let cellForCalculations = cellType.init()
 		cellForCalculations.fill(
 			from: self,
-			mode: .fromLayout(.heightCalculation(availableWidthForCell: availableWidth))
+			mode: .fromLayout(.heightCalculation(context: context))
 		)
-		let result = cellForCalculations.contentView.actualContentHeight(width: availableWidth)
+		let result = cellForCalculations.contentView.actualContentHeight(width: context.availableWidthForCell)
 
 		if !result.isNormal {
-			throw HeightCalculateError.isNotNormal(
+			throw CellHeightCalculationError.isNotNormal(
 				calculatedHeight: result,
 				item: self,
 				cell: cellForCalculations,
-				availableWidth: availableWidth
+				context: context
 			)
 		}
 
 		if result < .zero {
-			throw HeightCalculateError.isLessThanZero(
+			throw CellHeightCalculationError.isLessThanZero(
 				calculatedHeight: result,
 				item: self,
 				cell: cellForCalculations,
-				availableWidth: availableWidth
+				context: context
 			)
 		}
 
-		cache(cellHeight: result, for: availableWidth)
+		cache(cellHeight: result, context: context)
 		return result
 	}
 }

@@ -1,5 +1,5 @@
 //
-//  PlainLabelSupplemetaryItem.swift
+//  PlainLabelSupplementaryItem.swift
 //  AnKit
 //
 //  Created by Anvipo on 29.08.2021.
@@ -8,7 +8,7 @@
 import UIKit
 
 /// Item for plain header in section.
-public final class PlainLabelSupplemetaryItem: CollectionViewSupplementaryItem {
+public final class PlainLabelSupplementaryItem: CollectionViewSupplementaryItem {
 	let text: String
 	let textColor: UIColor
 	let textFont: UIFont
@@ -23,7 +23,7 @@ public final class PlainLabelSupplemetaryItem: CollectionViewSupplementaryItem {
 	public var isShimmering: Bool
 
 	override public var supplementaryViewType: CollectionViewSupplementaryView.Type {
-		PlainLabelSupplemetaryView.self
+		PlainLabelSupplementaryView.self
 	}
 
 	/// Initialize item with specified parameters.
@@ -74,4 +74,4 @@ public final class PlainLabelSupplemetaryItem: CollectionViewSupplementaryItem {
 	}
 }
 
-extension PlainLabelSupplemetaryItem: Shimmerable {}
+extension PlainLabelSupplementaryItem: Shimmerable {}

@@ -65,37 +65,6 @@ private extension ShuffleItemsVC {
 		}
 	}
 
-	func makeHeaderFooterItem(
-		text: String,
-		elementKind: String
-	) -> CollectionViewSupplementaryItem {
-		PlainLabelSupplemetaryItem(
-			text: text,
-			textColor: .label,
-			textFont: .preferredFont(forTextStyle: .title1),
-			tintColor: .systemIndigo,
-			elementKind: elementKind,
-			textInsets: .default(top: 14, bottom: 10),
-			blurEffectStyle: .systemUltraThinMaterial,
-			pinToVisibleBounds: true
-		)
-	}
-
-	func makeItem(text: String) -> CollectionViewItem {
-		PlainLabelItem(
-			text: text,
-			textColor: .label,
-			textFont: .preferredFont(forTextStyle: .body),
-			tintColor: .systemIndigo,
-			textAlignment: .center,
-			textInsets: NSDirectionalEdgeInsets(
-				horizontalInset: .defaultHorizontalOffset,
-				verticalInset: 8
-			),
-			dividerModel: .lineDefaultOffsetFromStart()
-		)
-	}
-
 	func setupUI() {
 		navigationItem.title = "Shuffle items example"
 
@@ -142,19 +111,19 @@ private extension ShuffleItemsVC {
 		do {
 			let section = try PlainListSection(
 				items: [
-					makeItem(text: "1"),
-					makeItem(text: "2"),
-					makeItem(text: "3"),
-					makeItem(text: "4"),
-					makeItem(text: "5"),
-					makeItem(text: "6"),
-					makeItem(text: "7"),
-					makeItem(text: "8"),
-					makeItem(text: "9"),
-					makeItem(text: "10")
+					AnKitPlayground.makePlainLabelItem(text: "1"),
+					AnKitPlayground.makePlainLabelItem(text: "2"),
+					AnKitPlayground.makePlainLabelItem(text: "3"),
+					AnKitPlayground.makePlainLabelItem(text: "4"),
+					AnKitPlayground.makePlainLabelItem(text: "5"),
+					AnKitPlayground.makePlainLabelItem(text: "6"),
+					AnKitPlayground.makePlainLabelItem(text: "7"),
+					AnKitPlayground.makePlainLabelItem(text: "8"),
+					AnKitPlayground.makePlainLabelItem(text: "9"),
+					AnKitPlayground.makePlainLabelItem(text: "10")
 				],
-				headerItem: makeHeaderFooterItem(text: "Header", elementKind: "Header"),
-				footerItem: makeHeaderFooterItem(text: "Footer", elementKind: "Footer")
+				headerItem: AnKitPlayground.makePlainLabelSupplementaryItem(text: "Header", elementKind: "Header"),
+				footerItem: AnKitPlayground.makePlainLabelSupplementaryItem(text: "Footer", elementKind: "Footer")
 			)
 
 			try collectionView.set(

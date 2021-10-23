@@ -85,7 +85,8 @@ public final class PlainListSection: CollectionViewSection {
 			let headerLayout = supplementaryLayout(
 				item: headerItem,
 				widthLayoutDimension: widthLayoutDimension,
-				alignment: .top
+				alignment: .top,
+				layoutEnvironment: layoutEnvironment
 			)
 			sectionLayout.boundarySupplementaryItems.append(headerLayout)
 
@@ -99,7 +100,8 @@ public final class PlainListSection: CollectionViewSection {
 			let footerLayout = supplementaryLayout(
 				item: footerItem,
 				widthLayoutDimension: widthLayoutDimension,
-				alignment: .bottom
+				alignment: .bottom,
+				layoutEnvironment: layoutEnvironment
 			)
 			sectionLayout.boundarySupplementaryItems.append(footerLayout)
 
@@ -201,10 +203,14 @@ private extension PlainListSection {
 	func supplementaryLayout(
 		item: CollectionViewSupplementaryItem,
 		widthLayoutDimension: NSCollectionLayoutDimension,
-		alignment: NSRectAlignment
+		alignment: NSRectAlignment,
+		layoutEnvironment: NSCollectionLayoutEnvironment
 	) -> NSCollectionLayoutBoundarySupplementaryItem {
 		let supplementaryViewHeight = try! item.supplementaryViewHeight(
-			availableWidth: widthLayoutDimension.dimension
+			context: CollectionViewSupplementaryItem.ViewHeightCalculationContext(
+				availableWidthForSupplementaryView: widthLayoutDimension.dimension,
+				layoutEnvironment: AnyNSCollectionLayoutEnvironment(layoutEnvironment)
+			)
 		)
 
 		let supplementarySize = NSCollectionLayoutSize(

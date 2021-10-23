@@ -9,7 +9,7 @@ import UIKit
 
 /// DTO for supplementary view in collection view.
 open class CollectionViewSupplementaryItem: Item {
-	private var cachedSupplementaryViewHeights: [CGFloat: CGFloat]
+	private var cachedSupplementaryViewHeights: [ViewHeightCalculationContext: CGFloat]
 	private var cachedSupplementaryViewWidths: [CGFloat: CGFloat]
 
 	/// The amount of space between the content of the view and its boundaries.
@@ -77,17 +77,17 @@ open class CollectionViewSupplementaryItem: Item {
 	}
 
 	/// Returns cached supplementary view height.
-	/// - Parameter availableWidth: Available width for supplementary view.
-	open func cachedSupplementaryViewHeight(for availableWidth: CGFloat) -> CGFloat? {
-		cachedSupplementaryViewHeights[availableWidth]
+	/// - Parameter context: Context for supplementary view height calculation.
+	open func cachedSupplementaryViewHeight(context: ViewHeightCalculationContext) -> CGFloat? {
+		cachedSupplementaryViewHeights[context]
 	}
 
 	/// Caches specified `supplementaryViewHeight`.
 	/// - Parameters:
 	///   - supplementaryViewHeight: Supplementary view height, which would be cached.
-	///   - availableWidth: Available width for supplementary view.
-	open func cache(supplementaryViewHeight: CGFloat, for availableWidth: CGFloat) {
-		cachedSupplementaryViewHeights[availableWidth] = supplementaryViewHeight
+	///   - context: Context for supplementary view height calculation.
+	open func cache(supplementaryViewHeight: CGFloat, context: ViewHeightCalculationContext) {
+		cachedSupplementaryViewHeights[context] = supplementaryViewHeight
 	}
 
 	/// Invalidates all cached supplementary view heights.
@@ -134,38 +134,38 @@ public extension CollectionViewSupplementaryItem {
 	}
 
 	/// Calculates height, which supplementary view will fill.
-	/// - Parameter availableWidth: Available width for supplementary view.
-	func supplementaryViewHeight(availableWidth: CGFloat) throws -> CGFloat {
-		if let cachedHeight = cachedSupplementaryViewHeight(for: availableWidth) {
+	/// - Parameter context: Context for supplementary view height calculation.
+	func supplementaryViewHeight(context: ViewHeightCalculationContext) throws -> CGFloat {
+		if let cachedHeight = cachedSupplementaryViewHeight(context: context) {
 			return cachedHeight
 		}
 
 		let supplementaryViewForCalculations = supplementaryViewType.init()
 		supplementaryViewForCalculations.fill(
 			from: self,
-			mode: .fromLayout(.heightCalculation(availableWidthForView: availableWidth))
+			mode: .fromLayout(.heightCalculation(context: context))
 		)
-		let result = supplementaryViewForCalculations.actualContentHeight(width: availableWidth)
+		let result = supplementaryViewForCalculations.actualContentHeight(width: context.availableWidthForSupplementaryView)
 
 		if !result.isNormal {
-			throw HeightCalculateError.isNotNormal(
+			throw ViewHeightCalculationError.isNotNormal(
 				calculatedHeight: result,
 				item: self,
 				view: supplementaryViewForCalculations,
-				availableWidth: availableWidth
+				context: context
 			)
 		}
 
 		if result < .zero {
-			throw HeightCalculateError.isLessThanZero(
+			throw ViewHeightCalculationError.isLessThanZero(
 				calculatedHeight: result,
 				item: self,
 				view: supplementaryViewForCalculations,
-				availableWidth: availableWidth
+				context: context
 			)
 		}
 
-		cache(supplementaryViewHeight: result, for: availableWidth)
+		cache(supplementaryViewHeight: result, context: context)
 		return result
 	}
 }

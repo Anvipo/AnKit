@@ -23,6 +23,7 @@
 /* Begin PBXBuildFile section */
 		1D34D105272422080018CC3B /* CollectionViewSupplementaryView.FillMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D104272422080018CC3B /* CollectionViewSupplementaryView.FillMode.swift */; };
 		1D34D1072724230C0018CC3B /* CollectionViewSupplementaryView.FillMode.LayoutMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D1062724230C0018CC3B /* CollectionViewSupplementaryView.FillMode.LayoutMode.swift */; };
+		1D34D10A272425650018CC3B /* CollectionViewSupplementaryItem.ViewHeightCalculationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D109272425650018CC3B /* CollectionViewSupplementaryItem.ViewHeightCalculationContext.swift */; };
 		1D3CD7AD272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CD7AC272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift */; };
 		1D3CD7B027240B8F0074B6F6 /* CollectionViewItem.CellHeightCalculationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CD7AF27240B8F0074B6F6 /* CollectionViewItem.CellHeightCalculationContext.swift */; };
 		1D3CD7B2272411890074B6F6 /* AnyNSCollectionLayoutEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CD7B1272411890074B6F6 /* AnyNSCollectionLayoutEnvironment.swift */; };
@@ -131,7 +132,7 @@
 		1DDF013C2709D19B00D88994 /* HasImageProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00DA2709D19B00D88994 /* HasImageProviders.swift */; };
 		1DDF013D2709D19B00D88994 /* ShadowParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00DB2709D19B00D88994 /* ShadowParameters.swift */; };
 		1DDF013E2709D19B00D88994 /* DividerStrategyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00DC2709D19B00D88994 /* DividerStrategyProtocol.swift */; };
-		1DDF013F2709D19B00D88994 /* CollectionViewSupplementaryItem.HeightCalculateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00DD2709D19B00D88994 /* CollectionViewSupplementaryItem.HeightCalculateError.swift */; };
+		1DDF013F2709D19B00D88994 /* CollectionViewSupplementaryItem.ViewHeightCalculationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00DD2709D19B00D88994 /* CollectionViewSupplementaryItem.ViewHeightCalculationError.swift */; };
 		1DDF01402709D19B00D88994 /* CollectionView.DataSourceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00DE2709D19B00D88994 /* CollectionView.DataSourceError.swift */; };
 		1DDF01412709D19B00D88994 /* KeyboardSubscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00DF2709D19B00D88994 /* KeyboardSubscriptions.swift */; };
 		1DDF01422709D19B00D88994 /* CollectionViewItem.CellHeightCalculationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00E02709D19B00D88994 /* CollectionViewItem.CellHeightCalculationError.swift */; };
@@ -182,6 +183,7 @@
 /* Begin PBXFileReference section */
 		1D34D104272422080018CC3B /* CollectionViewSupplementaryView.FillMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryView.FillMode.swift; sourceTree = "<group>"; };
 		1D34D1062724230C0018CC3B /* CollectionViewSupplementaryView.FillMode.LayoutMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryView.FillMode.LayoutMode.swift; sourceTree = "<group>"; };
+		1D34D109272425650018CC3B /* CollectionViewSupplementaryItem.ViewHeightCalculationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryItem.ViewHeightCalculationContext.swift; sourceTree = "<group>"; };
 		1D3CD7AC272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.FillMode.LayoutMode.swift; sourceTree = "<group>"; };
 		1D3CD7AF27240B8F0074B6F6 /* CollectionViewItem.CellHeightCalculationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewItem.CellHeightCalculationContext.swift; sourceTree = "<group>"; };
 		1D3CD7B1272411890074B6F6 /* AnyNSCollectionLayoutEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyNSCollectionLayoutEnvironment.swift; sourceTree = "<group>"; };
@@ -293,7 +295,7 @@
 		1DDF00DA2709D19B00D88994 /* HasImageProviders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasImageProviders.swift; sourceTree = "<group>"; };
 		1DDF00DB2709D19B00D88994 /* ShadowParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowParameters.swift; sourceTree = "<group>"; };
 		1DDF00DC2709D19B00D88994 /* DividerStrategyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DividerStrategyProtocol.swift; sourceTree = "<group>"; };
-		1DDF00DD2709D19B00D88994 /* CollectionViewSupplementaryItem.HeightCalculateError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryItem.HeightCalculateError.swift; sourceTree = "<group>"; };
+		1DDF00DD2709D19B00D88994 /* CollectionViewSupplementaryItem.ViewHeightCalculationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryItem.ViewHeightCalculationError.swift; sourceTree = "<group>"; };
 		1DDF00DE2709D19B00D88994 /* CollectionView.DataSourceError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.DataSourceError.swift; sourceTree = "<group>"; };
 		1DDF00DF2709D19B00D88994 /* KeyboardSubscriptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardSubscriptions.swift; sourceTree = "<group>"; };
 		1DDF00E02709D19B00D88994 /* CollectionViewItem.CellHeightCalculationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewItem.CellHeightCalculationError.swift; sourceTree = "<group>"; };
@@ -353,6 +355,15 @@
 				1D34D1062724230C0018CC3B /* CollectionViewSupplementaryView.FillMode.LayoutMode.swift */,
 			);
 			name = "Fill mode";
+			sourceTree = "<group>";
+		};
+		1D34D108272425040018CC3B /* View height calculation */ = {
+			isa = PBXGroup;
+			children = (
+				1DDF00DD2709D19B00D88994 /* CollectionViewSupplementaryItem.ViewHeightCalculationError.swift */,
+				1D34D109272425650018CC3B /* CollectionViewSupplementaryItem.ViewHeightCalculationContext.swift */,
+			);
+			name = "View height calculation";
 			sourceTree = "<group>";
 		};
 		1D3CD7AE27240B810074B6F6 /* Cell height calculation */ = {
@@ -438,7 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				1D34D103272421C30018CC3B /* Fill mode */,
-				1DDF00DD2709D19B00D88994 /* CollectionViewSupplementaryItem.HeightCalculateError.swift */,
+				1D34D108272425040018CC3B /* View height calculation */,
 				1DDF00B52709D19A00D88994 /* CollectionViewSupplementaryItem.WidthCalculateError.swift */,
 				1DDF00A82709D19900D88994 /* CollectionViewSupplementaryItem.swift */,
 				1DDF00C32709D19A00D88994 /* CollectionViewSupplementaryView.swift */,
@@ -1021,7 +1032,7 @@
 				1DDF01272709D19B00D88994 /* TimeInterval+Extensions.swift in Sources */,
 				1DDF01462709D19B00D88994 /* CGSize.ProportionallySizingError.swift in Sources */,
 				1DDF01212709D19B00D88994 /* CurrentResponderProviderProtocol.swift in Sources */,
-				1DDF013F2709D19B00D88994 /* CollectionViewSupplementaryItem.HeightCalculateError.swift in Sources */,
+				1DDF013F2709D19B00D88994 /* CollectionViewSupplementaryItem.ViewHeightCalculationError.swift in Sources */,
 				1DDF00F52709D19B00D88994 /* CollectionView.CompositionalLayout.swift in Sources */,
 				1DDF00F32709D19B00D88994 /* CollectionViewSection.SetItemsError.swift in Sources */,
 				1DDF01392709D19B00D88994 /* BlurredView.SetBlurPercentageError.swift in Sources */,
@@ -1085,6 +1096,7 @@
 				1DDF010E2709D19B00D88994 /* PlainShimmerCell.swift in Sources */,
 				1DDF01332709D19B00D88994 /* CACornerMask+Extensions.swift in Sources */,
 				1DDF00F82709D19B00D88994 /* NextResponderProviderProtocol.swift in Sources */,
+				1D34D10A272425650018CC3B /* CollectionViewSupplementaryItem.ViewHeightCalculationContext.swift in Sources */,
 				1DDF00EC2709D19B00D88994 /* CGFloat.PercentageCalculatingError.swift in Sources */,
 				1DDF00EB2709D19B00D88994 /* Dividerable.swift in Sources */,
 				1DDF00F02709D19B00D88994 /* Decimal+Extensions.swift in Sources */,

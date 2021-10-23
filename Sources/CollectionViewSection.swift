@@ -255,25 +255,25 @@ public extension CollectionViewSection {
 	}
 
 	/// Calculates width, which section will fill.
-	/// - Parameter availableHeight: Available height for section.
-	func contentWidth(availableHeight: CGFloat) throws -> CGFloat {
+	/// - Parameter context: Context for cell width calculation.
+	func contentWidth(context: CollectionViewItem.CellWidthCalculationContext) throws -> CGFloat {
 		let result = try items
-			.map { try $0.cellWidth(availableHeight: availableHeight) }
+			.map { try $0.cellWidth(context: context) }
 			.sum
 
 		if !result.isNormal {
-			throw ContentWidthCalculateError.isNotNormal(
+			throw ContentWidthCalculationError.isNotNormal(
 				section: self,
 				calculatedWidth: result,
-				availableHeight: availableHeight
+				context: context
 			)
 		}
 
 		if result < .zero {
-			throw ContentWidthCalculateError.isLessThanZero(
+			throw ContentWidthCalculationError.isLessThanZero(
 				section: self,
 				calculatedWidth: result,
-				availableHeight: availableHeight
+				context: context
 			)
 		}
 
@@ -281,9 +281,9 @@ public extension CollectionViewSection {
 	}
 
 	/// Calculates average width, which items will fill.
-	/// - Parameter availableWidth: Available height for section.
-	func contentAverageWidth(availableHeight: CGFloat) throws -> CGFloat {
-		let cellWidths = try contentWidth(availableHeight: availableHeight)
+	/// - Parameter context: Context for cell width calculation.
+	func contentAverageWidth(context: CollectionViewItem.CellWidthCalculationContext) throws -> CGFloat {
+		let cellWidths = try contentWidth(context: context)
 
 		return cellWidths / CGFloat(items.count)
 	}

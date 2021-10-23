@@ -14,6 +14,6 @@ public extension CollectionViewCell.FillMode {
 		case heightCalculation(context: CollectionViewItem.CellHeightCalculationContext)
 
 		/// Method is called from cell width calculation.
-		case widthCalculation(availableHeightForCell: CGFloat)
+		case widthCalculation(context: CollectionViewItem.CellWidthCalculationContext)
 	}
 }

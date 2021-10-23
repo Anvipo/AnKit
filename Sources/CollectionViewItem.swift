@@ -10,7 +10,7 @@ import CoreGraphics
 /// Abstract DTO for cell.
 open class CollectionViewItem: Item {
 	private var cachedCellHeights: [CellHeightCalculationContext: CGFloat]
-	private var cachedCellWidths: [CGFloat: CGFloat]
+	private var cachedCellWidths: [CellWidthCalculationContext: CGFloat]
 
 	/// Type for cell, which will be created and filled from this item.
 	open var cellType: CollectionViewCell.Type {
@@ -31,17 +31,17 @@ open class CollectionViewItem: Item {
 	}
 
 	/// Returns cached cell width.
-	/// - Parameter availableHeight: Available height for cell.
-	open func cachedCellWidth(for availableHeight: CGFloat) -> CGFloat? {
-		cachedCellWidths[availableHeight]
+	/// - Parameter context: Context for cell width calculation.
+	open func cachedCellWidth(context: CellWidthCalculationContext) -> CGFloat? {
+		cachedCellWidths[context]
 	}
 
 	/// Caches specified `cellWidth`.
 	/// - Parameters:
 	///   - cellWidth: Cell width, which would be cached.
-	///   - availableHeight: Available height for cell.
-	open func cache(cellWidth: CGFloat, for availableHeight: CGFloat) {
-		cachedCellWidths[availableHeight] = cellWidth
+	///   - context: Context for cell width calculation.
+	open func cache(cellWidth: CGFloat, context: CellWidthCalculationContext) {
+		cachedCellWidths[context] = cellWidth
 	}
 
 	/// Invalidates all cached cell widths.
@@ -71,38 +71,38 @@ open class CollectionViewItem: Item {
 
 public extension CollectionViewItem {
 	/// Calculates width, which cell will fill.
-	/// - Parameter availableHeight: Available height for cell.
-	func cellWidth(availableHeight: CGFloat) throws -> CGFloat {
-		if let cachedCellWidth = cachedCellWidth(for: availableHeight) {
+	/// - Parameter context: Context for cell width calculation.
+	func cellWidth(context: CellWidthCalculationContext) throws -> CGFloat {
+		if let cachedCellWidth = cachedCellWidth(context: context) {
 			return cachedCellWidth
 		}
 
 		let cellForCalculations = cellType.init()
 		cellForCalculations.fill(
 			from: self,
-			mode: .fromLayout(.widthCalculation(availableHeightForCell: availableHeight))
+			mode: .fromLayout(.widthCalculation(context: context))
 		)
-		let result = cellForCalculations.contentView.actualContentWidth(availableHeight: availableHeight)
+		let result = cellForCalculations.contentView.actualContentWidth(availableHeight: context.availableHeightForCell)
 
 		if !result.isNormal {
-			throw WidthCalculateError.isNotNormal(
+			throw CellWidthCalculationError.isNotNormal(
 				calculatedWidth: result,
 				item: self,
 				cell: cellForCalculations,
-				availableHeight: availableHeight
+				context: context
 			)
 		}
 
 		if result < .zero {
-			throw WidthCalculateError.isLessThanZero(
+			throw CellWidthCalculationError.isLessThanZero(
 				calculatedWidth: result,
 				item: self,
 				cell: cellForCalculations,
-				availableHeight: availableHeight
+				context: context
 			)
 		}
 
-		cache(cellWidth: result, for: availableHeight)
+		cache(cellWidth: result, context: context)
 		return result
 	}
 

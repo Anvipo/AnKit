@@ -5,8 +5,6 @@
 //  Created by Anvipo on 23.10.2021.
 //
 
-import CoreGraphics
-
 public extension CollectionViewSupplementaryView.FillMode {
 	/// Mode, when `fill(from:mode:)` method is called from collection view layout.
 	enum LayoutMode {
@@ -14,6 +12,6 @@ public extension CollectionViewSupplementaryView.FillMode {
 		case heightCalculation(context: CollectionViewSupplementaryItem.ViewHeightCalculationContext)
 
 		/// Method is called from view width calculation.
-		case widthCalculation(availableHeightForView: CGFloat)
+		case widthCalculation(context: CollectionViewSupplementaryItem.ViewWidthCalculationContext)
 	}
 }

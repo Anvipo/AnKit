@@ -24,6 +24,7 @@
 		1D34D105272422080018CC3B /* CollectionViewSupplementaryView.FillMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D104272422080018CC3B /* CollectionViewSupplementaryView.FillMode.swift */; };
 		1D34D1072724230C0018CC3B /* CollectionViewSupplementaryView.FillMode.LayoutMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D1062724230C0018CC3B /* CollectionViewSupplementaryView.FillMode.LayoutMode.swift */; };
 		1D34D10A272425650018CC3B /* CollectionViewSupplementaryItem.ViewHeightCalculationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D109272425650018CC3B /* CollectionViewSupplementaryItem.ViewHeightCalculationContext.swift */; };
+		1D34D10D272427930018CC3B /* CollectionViewSupplementaryItem.ViewWidthCalculationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D10C272427930018CC3B /* CollectionViewSupplementaryItem.ViewWidthCalculationContext.swift */; };
 		1D3CD7AD272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CD7AC272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift */; };
 		1D3CD7B027240B8F0074B6F6 /* CollectionViewItem.CellHeightCalculationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CD7AF27240B8F0074B6F6 /* CollectionViewItem.CellHeightCalculationContext.swift */; };
 		1D3CD7B2272411890074B6F6 /* AnyNSCollectionLayoutEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CD7B1272411890074B6F6 /* AnyNSCollectionLayoutEnvironment.swift */; };
@@ -93,7 +94,7 @@
 		1DDF01142709D19B00D88994 /* PlainListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00B22709D19A00D88994 /* PlainListSection.swift */; };
 		1DDF01152709D19B00D88994 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00B32709D19A00D88994 /* UIView+Extensions.swift */; };
 		1DDF01162709D19B00D88994 /* CGSize+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00B42709D19A00D88994 /* CGSize+Extensions.swift */; };
-		1DDF01172709D19B00D88994 /* CollectionViewSupplementaryItem.WidthCalculateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00B52709D19A00D88994 /* CollectionViewSupplementaryItem.WidthCalculateError.swift */; };
+		1DDF01172709D19B00D88994 /* CollectionViewSupplementaryItem.ViewWidthCalculationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00B52709D19A00D88994 /* CollectionViewSupplementaryItem.ViewWidthCalculationError.swift */; };
 		1DDF01182709D19B00D88994 /* ImageProvider.ProcessingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00B62709D19A00D88994 /* ImageProvider.ProcessingError.swift */; };
 		1DDF01192709D19B00D88994 /* PlainListBackgroundDecorationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00B72709D19A00D88994 /* PlainListBackgroundDecorationItem.swift */; };
 		1DDF011A2709D19B00D88994 /* MultilineShimmerableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00B82709D19A00D88994 /* MultilineShimmerableLabel.swift */; };
@@ -184,6 +185,7 @@
 		1D34D104272422080018CC3B /* CollectionViewSupplementaryView.FillMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryView.FillMode.swift; sourceTree = "<group>"; };
 		1D34D1062724230C0018CC3B /* CollectionViewSupplementaryView.FillMode.LayoutMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryView.FillMode.LayoutMode.swift; sourceTree = "<group>"; };
 		1D34D109272425650018CC3B /* CollectionViewSupplementaryItem.ViewHeightCalculationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryItem.ViewHeightCalculationContext.swift; sourceTree = "<group>"; };
+		1D34D10C272427930018CC3B /* CollectionViewSupplementaryItem.ViewWidthCalculationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryItem.ViewWidthCalculationContext.swift; sourceTree = "<group>"; };
 		1D3CD7AC272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.FillMode.LayoutMode.swift; sourceTree = "<group>"; };
 		1D3CD7AF27240B8F0074B6F6 /* CollectionViewItem.CellHeightCalculationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewItem.CellHeightCalculationContext.swift; sourceTree = "<group>"; };
 		1D3CD7B1272411890074B6F6 /* AnyNSCollectionLayoutEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyNSCollectionLayoutEnvironment.swift; sourceTree = "<group>"; };
@@ -256,7 +258,7 @@
 		1DDF00B22709D19A00D88994 /* PlainListSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlainListSection.swift; sourceTree = "<group>"; };
 		1DDF00B32709D19A00D88994 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		1DDF00B42709D19A00D88994 /* CGSize+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Extensions.swift"; sourceTree = "<group>"; };
-		1DDF00B52709D19A00D88994 /* CollectionViewSupplementaryItem.WidthCalculateError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryItem.WidthCalculateError.swift; sourceTree = "<group>"; };
+		1DDF00B52709D19A00D88994 /* CollectionViewSupplementaryItem.ViewWidthCalculationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryItem.ViewWidthCalculationError.swift; sourceTree = "<group>"; };
 		1DDF00B62709D19A00D88994 /* ImageProvider.ProcessingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProvider.ProcessingError.swift; sourceTree = "<group>"; };
 		1DDF00B72709D19A00D88994 /* PlainListBackgroundDecorationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlainListBackgroundDecorationItem.swift; sourceTree = "<group>"; };
 		1DDF00B82709D19A00D88994 /* MultilineShimmerableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultilineShimmerableLabel.swift; sourceTree = "<group>"; };
@@ -366,6 +368,15 @@
 			name = "View height calculation";
 			sourceTree = "<group>";
 		};
+		1D34D10B2724274F0018CC3B /* View width dimension */ = {
+			isa = PBXGroup;
+			children = (
+				1DDF00B52709D19A00D88994 /* CollectionViewSupplementaryItem.ViewWidthCalculationError.swift */,
+				1D34D10C272427930018CC3B /* CollectionViewSupplementaryItem.ViewWidthCalculationContext.swift */,
+			);
+			name = "View width dimension";
+			sourceTree = "<group>";
+		};
 		1D3CD7AE27240B810074B6F6 /* Cell height calculation */ = {
 			isa = PBXGroup;
 			children = (
@@ -449,8 +460,8 @@
 			isa = PBXGroup;
 			children = (
 				1D34D103272421C30018CC3B /* Fill mode */,
+				1D34D10B2724274F0018CC3B /* View width dimension */,
 				1D34D108272425040018CC3B /* View height calculation */,
-				1DDF00B52709D19A00D88994 /* CollectionViewSupplementaryItem.WidthCalculateError.swift */,
 				1DDF00A82709D19900D88994 /* CollectionViewSupplementaryItem.swift */,
 				1DDF00C32709D19A00D88994 /* CollectionViewSupplementaryView.swift */,
 			);
@@ -1019,6 +1030,7 @@
 				1DDF01022709D19B00D88994 /* UIView.ConstraintMakeData.MakeConstraintError.swift in Sources */,
 				1D6565FA27209BC000C75D34 /* PlainListSection.SetHeaderItemError.swift in Sources */,
 				1DDF011F2709D19B00D88994 /* String+Extensions.swift in Sources */,
+				1D34D10D272427930018CC3B /* CollectionViewSupplementaryItem.ViewWidthCalculationContext.swift in Sources */,
 				1DDF01072709D19B00D88994 /* CGPoint+Extensions.swift in Sources */,
 				1DDF01242709D19B00D88994 /* KeyboardNotification.swift in Sources */,
 				1D6565FE2720A9AC00C75D34 /* CollectionViewSection.RemoveSupplementaryItemError.swift in Sources */,
@@ -1040,7 +1052,7 @@
 				1D3CD7B2272411890074B6F6 /* AnyNSCollectionLayoutEnvironment.swift in Sources */,
 				1DDF010D2709D19B00D88994 /* UIImageView+Shimmerable.swift in Sources */,
 				1DDF01372709D19B00D88994 /* PlainLabelCell.swift in Sources */,
-				1DDF01172709D19B00D88994 /* CollectionViewSupplementaryItem.WidthCalculateError.swift in Sources */,
+				1DDF01172709D19B00D88994 /* CollectionViewSupplementaryItem.ViewWidthCalculationError.swift in Sources */,
 				1DDF01222709D19B00D88994 /* DividerModel.swift in Sources */,
 				1DDF00EE2709D19B00D88994 /* Array+Extensions.swift in Sources */,
 				1DDF00FA2709D19B00D88994 /* PlainLabelSupplemetaryItem.swift in Sources */,

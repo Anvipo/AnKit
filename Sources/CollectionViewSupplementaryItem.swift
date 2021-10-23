@@ -107,10 +107,7 @@ public extension CollectionViewSupplementaryItem {
 		let supplementaryViewForCalculations = supplementaryViewType.init()
 		supplementaryViewForCalculations.fill(
 			from: self,
-			context: CollectionViewSupplementaryView.FillContext(
-				availableWidth: nil,
-				availableHeight: availableHeight
-			)
+			mode: .fromLayout(.widthCalculation(availableHeightForView: availableHeight))
 		)
 		let result = supplementaryViewForCalculations.actualContentWidth(availableHeight: availableHeight)
 
@@ -146,10 +143,7 @@ public extension CollectionViewSupplementaryItem {
 		let supplementaryViewForCalculations = supplementaryViewType.init()
 		supplementaryViewForCalculations.fill(
 			from: self,
-			context: CollectionViewSupplementaryView.FillContext(
-				availableWidth: availableWidth,
-				availableHeight: nil
-			)
+			mode: .fromLayout(.heightCalculation(availableWidthForView: availableWidth))
 		)
 		let result = supplementaryViewForCalculations.actualContentHeight(width: availableWidth)
 

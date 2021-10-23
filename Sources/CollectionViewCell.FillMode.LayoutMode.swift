@@ -5,8 +5,6 @@
 //  Created by Anvipo on 21.10.2021.
 //
 
-import CoreGraphics
-
 public extension CollectionViewCell.FillMode {
 	/// Mode, when `fill(from:mode:)` method is called from collection view layout.
 	enum LayoutMode {

@@ -25,7 +25,7 @@ final class ScaleCarouselSection: CollectionViewSection {
 	}
 
 	init(
-		items: [CollectionViewItem],
+		items: [InfoCardItem],
 		itemWidthDimension: NSCollectionLayoutDimension,
 		itemHeightDimension: NSCollectionLayoutDimension,
 		interItemSpacing: CGFloat = .zero,

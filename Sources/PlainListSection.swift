@@ -67,15 +67,11 @@ public final class PlainListSection: CollectionViewSection {
 	override public func layoutConfiguration(
 		layoutEnvironment: NSCollectionLayoutEnvironment
 	) -> NSCollectionLayoutSection {
-		let availableWidth = layoutEnvironment.container.effectiveContentSize.width
-		- contentInsets.leading
-		- contentInsets.trailing
-
-		let widthLayoutDimension = NSCollectionLayoutDimension.absolute(availableWidth)
+		let effectiveContentWidth = effectiveContentWidthLayoutDimension(layoutEnvironment: layoutEnvironment)
 
 		let sectionLayout = sectionLayout(
 			layoutEnvironment: layoutEnvironment,
-			widthLayoutDimension: widthLayoutDimension
+			effectiveContentWidth: effectiveContentWidth
 		)
 		sectionLayout.contentInsets = contentInsets
 		sectionLayout.visibleItemsInvalidationHandler = visibleItemsInvalidationHandler
@@ -84,7 +80,7 @@ public final class PlainListSection: CollectionViewSection {
 		if let headerItem = headerItem {
 			let headerLayout = supplementaryLayout(
 				item: headerItem,
-				widthLayoutDimension: widthLayoutDimension,
+				effectiveContentWidth: effectiveContentWidth,
 				alignment: .top,
 				layoutEnvironment: layoutEnvironment
 			)
@@ -99,7 +95,7 @@ public final class PlainListSection: CollectionViewSection {
 		if let footerItem = footerItem {
 			let footerLayout = supplementaryLayout(
 				item: footerItem,
-				widthLayoutDimension: widthLayoutDimension,
+				effectiveContentWidth: effectiveContentWidth,
 				alignment: .bottom,
 				layoutEnvironment: layoutEnvironment
 			)
@@ -202,19 +198,19 @@ public extension PlainListSection {
 private extension PlainListSection {
 	func supplementaryLayout(
 		item: CollectionViewSupplementaryItem,
-		widthLayoutDimension: NSCollectionLayoutDimension,
+		effectiveContentWidth: NSCollectionLayoutDimension,
 		alignment: NSRectAlignment,
 		layoutEnvironment: NSCollectionLayoutEnvironment
 	) -> NSCollectionLayoutBoundarySupplementaryItem {
 		let supplementaryViewHeight = try! item.supplementaryViewHeight(
 			context: CollectionViewSupplementaryItem.ViewHeightCalculationContext(
-				availableWidthForSupplementaryView: widthLayoutDimension.dimension,
+				availableWidthForSupplementaryView: effectiveContentWidth.dimension,
 				layoutEnvironment: AnyNSCollectionLayoutEnvironment(layoutEnvironment)
 			)
 		)
 
 		let supplementarySize = NSCollectionLayoutSize(
-			widthDimension: widthLayoutDimension,
+			widthDimension: effectiveContentWidth,
 			heightDimension: .absolute(supplementaryViewHeight)
 		)
 		let supplementaryLayout = NSCollectionLayoutBoundarySupplementaryItem(
@@ -231,7 +227,7 @@ private extension PlainListSection {
 	// swiftlint:disable:next function_body_length
 	func sectionLayout(
 		layoutEnvironment: NSCollectionLayoutEnvironment,
-		widthLayoutDimension: NSCollectionLayoutDimension
+		effectiveContentWidth: NSCollectionLayoutDimension
 	) -> NSCollectionLayoutSection {
 		if #available(iOS 14, *) {
 			var sectionConfiguration = UICollectionLayoutListConfiguration(
@@ -249,7 +245,7 @@ private extension PlainListSection {
 		// iOS < 14
 
 		let cellHeightCalculationContext = CollectionViewItem.CellHeightCalculationContext(
-			availableWidthForCell: widthLayoutDimension.dimension,
+			availableWidthForCell: effectiveContentWidth.dimension,
 			layoutEnvironment: AnyNSCollectionLayoutEnvironment(layoutEnvironment)
 		)
 
@@ -260,7 +256,7 @@ private extension PlainListSection {
 
 			return NSCollectionLayoutItem(
 				layoutSize: NSCollectionLayoutSize(
-					widthDimension: widthLayoutDimension,
+					widthDimension: effectiveContentWidth,
 					heightDimension: .absolute(cellHeight)
 				)
 			)
@@ -274,7 +270,7 @@ private extension PlainListSection {
 			let error = ContentHeightCalculateError.isNotNormal(
 				section: self,
 				calculatedHeight: contentHeight,
-				availableWidth: widthLayoutDimension.dimension,
+				availableWidth: effectiveContentWidth.dimension,
 				layoutEnvironment: layoutEnvironment,
 				layoutItems: layoutItems
 			)
@@ -285,7 +281,7 @@ private extension PlainListSection {
 			let error = ContentHeightCalculateError.isLessThanZero(
 				section: self,
 				calculatedHeight: contentHeight,
-				availableWidth: widthLayoutDimension.dimension,
+				availableWidth: effectiveContentWidth.dimension,
 				layoutEnvironment: layoutEnvironment,
 				layoutItems: layoutItems
 			)
@@ -294,7 +290,7 @@ private extension PlainListSection {
 
 		let verticalGroupLayout = NSCollectionLayoutGroup.vertical(
 			layoutSize: NSCollectionLayoutSize(
-				widthDimension: widthLayoutDimension,
+				widthDimension: effectiveContentWidth,
 				heightDimension: .absolute(contentHeight)
 			),
 			subitems: layoutItems

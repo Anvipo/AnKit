@@ -234,6 +234,26 @@ public extension CollectionViewSection {
 			decorationItem.invalidateCachedSupplementaryViewWidths()
 		}
 	}
+
+	/// The absolute width of the section content after content insets are applied.
+	/// - Parameter layoutEnvironment: Information about the layout's container and environment traits,
+	/// such as size classes and display scale factor.
+	func effectiveContentWidthLayoutDimension(
+		layoutEnvironment: NSCollectionLayoutEnvironment
+	) -> NSCollectionLayoutDimension {
+		.absolute(effectiveContentWidth(layoutEnvironment: layoutEnvironment))
+	}
+
+	/// The width of the section content after content insets are applied.
+	/// - Parameter layoutEnvironment: Information about the layout's container and environment traits,
+	/// such as size classes and display scale factor.
+	func effectiveContentWidth(
+		layoutEnvironment: NSCollectionLayoutEnvironment
+	) -> CGFloat {
+		layoutEnvironment.container.effectiveContentSize.width
+		- contentInsets.leading
+		- contentInsets.trailing
+	}
 }
 
 extension CollectionViewSection: Equatable {

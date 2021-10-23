@@ -24,7 +24,7 @@ final class ScaleCarouselVC: BaseVC {
 private extension ScaleCarouselVC {
 	func makeRemoteImageItem(
 		id: Int
-	) -> CollectionViewItem {
+	) -> InfoCardItem {
 		let remoteURLImageViewWidth = Int(remoteImageCardWidth)
 		let remoteURLImageViewHeight = Int(remoteImageCardHeight * InfoCardCell.imageViewHeightMultiplier)
 		// swiftlint:disable:next force_unwrapping
@@ -44,7 +44,7 @@ private extension ScaleCarouselVC {
 
 	func makeLocalImageItem(
 		text: String
-	) throws -> CollectionViewItem {
+	) throws -> InfoCardItem {
 		InfoCardItem(
 			content: InfoCardItem.Content(
 				imageContent: .localImage(

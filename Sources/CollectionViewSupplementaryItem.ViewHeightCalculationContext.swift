@@ -15,6 +15,18 @@ public extension CollectionViewSupplementaryItem {
 
 		/// Information about the current layout environment.
 		public let layoutEnvironment: AnyNSCollectionLayoutEnvironment
+
+		/// Initializes with specified parameters.
+		/// - Parameters:
+		///   - availableWidthForSupplementaryView: Available width for supplementary view.
+		///   - layoutEnvironment: Information about the current layout environment.
+		public init(
+			availableWidthForSupplementaryView: CGFloat,
+			layoutEnvironment: AnyNSCollectionLayoutEnvironment
+		) {
+			self.availableWidthForSupplementaryView = availableWidthForSupplementaryView
+			self.layoutEnvironment = layoutEnvironment
+		}
 	}
 }
 

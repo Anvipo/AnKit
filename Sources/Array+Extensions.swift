@@ -24,6 +24,17 @@ public extension Array {
 		return result
 	}
 
+	/// Chunks array into specified `size`.
+	/// - Parameter size: Chunk size.
+	/// - Throws: `ChunkedError`.
+	func chunked(into size: Int) throws -> [[Element]] {
+		if size < 1 {
+			throw ChunkedError.notPositiveSize
+		}
+
+		return stride(from: 0, to: count, by: size).map { Self(self[$0..<Swift.min($0 + size, count)]) }
+	}
+
 	/// Accesses the element at the specified position, if array contains it.
 	/// - Parameter index: The position of the element to access.
 	subscript(safe index: Int) -> Element? {

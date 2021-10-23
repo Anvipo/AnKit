@@ -25,6 +25,7 @@
 		1D34D1072724230C0018CC3B /* CollectionViewSupplementaryView.FillMode.LayoutMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D1062724230C0018CC3B /* CollectionViewSupplementaryView.FillMode.LayoutMode.swift */; };
 		1D34D10A272425650018CC3B /* CollectionViewSupplementaryItem.ViewHeightCalculationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D109272425650018CC3B /* CollectionViewSupplementaryItem.ViewHeightCalculationContext.swift */; };
 		1D34D10D272427930018CC3B /* CollectionViewSupplementaryItem.ViewWidthCalculationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D10C272427930018CC3B /* CollectionViewSupplementaryItem.ViewWidthCalculationContext.swift */; };
+		1D34D1172724402D0018CC3B /* Array.ChunkedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D1162724402D0018CC3B /* Array.ChunkedError.swift */; };
 		1D3CD7AD272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CD7AC272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift */; };
 		1D3CD7B027240B8F0074B6F6 /* CollectionViewItem.CellHeightCalculationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CD7AF27240B8F0074B6F6 /* CollectionViewItem.CellHeightCalculationContext.swift */; };
 		1D3CD7B2272411890074B6F6 /* AnyNSCollectionLayoutEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CD7B1272411890074B6F6 /* AnyNSCollectionLayoutEnvironment.swift */; };
@@ -186,6 +187,7 @@
 		1D34D1062724230C0018CC3B /* CollectionViewSupplementaryView.FillMode.LayoutMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryView.FillMode.LayoutMode.swift; sourceTree = "<group>"; };
 		1D34D109272425650018CC3B /* CollectionViewSupplementaryItem.ViewHeightCalculationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryItem.ViewHeightCalculationContext.swift; sourceTree = "<group>"; };
 		1D34D10C272427930018CC3B /* CollectionViewSupplementaryItem.ViewWidthCalculationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryItem.ViewWidthCalculationContext.swift; sourceTree = "<group>"; };
+		1D34D1162724402D0018CC3B /* Array.ChunkedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.ChunkedError.swift; sourceTree = "<group>"; };
 		1D3CD7AC272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.FillMode.LayoutMode.swift; sourceTree = "<group>"; };
 		1D3CD7AF27240B8F0074B6F6 /* CollectionViewItem.CellHeightCalculationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewItem.CellHeightCalculationContext.swift; sourceTree = "<group>"; };
 		1D3CD7B1272411890074B6F6 /* AnyNSCollectionLayoutEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyNSCollectionLayoutEnvironment.swift; sourceTree = "<group>"; };
@@ -608,6 +610,7 @@
 			isa = PBXGroup;
 			children = (
 				1DDF008C2709D19900D88994 /* Array+Extensions.swift */,
+				1D34D1162724402D0018CC3B /* Array.ChunkedError.swift */,
 				1DDF00C92709D19A00D88994 /* CABasicAnimation+Extensions.swift */,
 				1DDF00D12709D19B00D88994 /* CACornerMask+Extensions.swift */,
 				1DDF00BA2709D19A00D88994 /* CAGradientLayer+Extensions.swift */,
@@ -1066,6 +1069,7 @@
 				1DDF01152709D19B00D88994 /* UIView+Extensions.swift in Sources */,
 				1DDF00F62709D19B00D88994 /* KeyboardNotification.MapFromNotificationError.swift in Sources */,
 				1DDF01232709D19B00D88994 /* PlainListSection.HeightCalculateError.swift in Sources */,
+				1D34D1172724402D0018CC3B /* Array.ChunkedError.swift in Sources */,
 				1DDF01352709D19B00D88994 /* CALayer+Extensions.swift in Sources */,
 				1DDF01142709D19B00D88994 /* PlainListSection.swift in Sources */,
 				1DDF00F22709D19B00D88994 /* CollectionView.swift in Sources */,

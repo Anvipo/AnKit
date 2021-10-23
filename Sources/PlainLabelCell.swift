@@ -31,7 +31,6 @@ final class PlainLabelCell: CollectionViewCell {
 			fatalError("Item must be PlainLabelItem")
 		}
 
-		label.tintColor = castedItem.tintColor
 		label.text = castedItem.text
 		label.font = castedItem.textFont
 		label.textColor = castedItem.textColor

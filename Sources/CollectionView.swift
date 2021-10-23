@@ -444,10 +444,10 @@ private extension CollectionView {
 			}
 
 			for decorationItem in section.decorationItems {
-				let supplementaryViewType = decorationItem.supplementaryViewType
+				let decorationViewType = decorationItem.decorationViewType
 
 				compositionalLayout.register(
-					supplementaryViewType,
+					decorationViewType,
 					forDecorationViewOfKind: decorationItem.elementKind
 				)
 			}

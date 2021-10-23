@@ -11,8 +11,8 @@ public extension CollectionViewSection {
 	/// Error, which could occure in `CollectionViewSection` `append(decorationItem:)` method.
 	enum AppendDecorationItemError {
 		/// Specified decoration item is not unique by element kind.
-		case notUniqueElementKind(
-			existingDecorationItemWithSameElementKind: CollectionViewSupplementaryItem
+		case duplicateElementKind(
+			existingDecorationItemWithSameElementKind: CollectionViewDecorationItem
 		)
 	}
 }
@@ -20,7 +20,7 @@ public extension CollectionViewSection {
 extension CollectionViewSection.AppendDecorationItemError: LocalizedError {
 	public var errorDescription: String? {
 		switch self {
-		case let .notUniqueElementKind(item):
+		case let .duplicateElementKind(item):
 			return """
 			Specified decoration item is not unique by element kind.
 			Existing decoration item with same element kind: \(item).

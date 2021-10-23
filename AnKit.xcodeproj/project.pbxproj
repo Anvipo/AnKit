@@ -28,6 +28,7 @@
 		1D34D1172724402D0018CC3B /* Array.ChunkedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D1162724402D0018CC3B /* Array.ChunkedError.swift */; };
 		1D34D11E272466220018CC3B /* AnKitPlayground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D11D272466220018CC3B /* AnKitPlayground.swift */; };
 		1D34D124272489430018CC3B /* CollectionViewCell.FillMode.FromDataSourceContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D123272489430018CC3B /* CollectionViewCell.FillMode.FromDataSourceContext.swift */; };
+		1D34D1292724A6D60018CC3B /* CollectionViewDecorationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D1282724A6D60018CC3B /* CollectionViewDecorationView.swift */; };
 		1D3CD7AD272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CD7AC272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift */; };
 		1D3CD7B027240B8F0074B6F6 /* CollectionViewItem.CellHeightCalculationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CD7AF27240B8F0074B6F6 /* CollectionViewItem.CellHeightCalculationContext.swift */; };
 		1D3CD7B2272411890074B6F6 /* AnyNSCollectionLayoutEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CD7B1272411890074B6F6 /* AnyNSCollectionLayoutEnvironment.swift */; };
@@ -192,6 +193,7 @@
 		1D34D1162724402D0018CC3B /* Array.ChunkedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.ChunkedError.swift; sourceTree = "<group>"; };
 		1D34D11D272466220018CC3B /* AnKitPlayground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnKitPlayground.swift; sourceTree = "<group>"; };
 		1D34D123272489430018CC3B /* CollectionViewCell.FillMode.FromDataSourceContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.FillMode.FromDataSourceContext.swift; sourceTree = "<group>"; };
+		1D34D1282724A6D60018CC3B /* CollectionViewDecorationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDecorationView.swift; sourceTree = "<group>"; };
 		1D3CD7AC272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.FillMode.LayoutMode.swift; sourceTree = "<group>"; };
 		1D3CD7AF27240B8F0074B6F6 /* CollectionViewItem.CellHeightCalculationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewItem.CellHeightCalculationContext.swift; sourceTree = "<group>"; };
 		1D3CD7B1272411890074B6F6 /* AnyNSCollectionLayoutEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyNSCollectionLayoutEnvironment.swift; sourceTree = "<group>"; };
@@ -382,6 +384,15 @@
 				1D34D10C272427930018CC3B /* CollectionViewSupplementaryItem.ViewWidthCalculationContext.swift */,
 			);
 			name = "View width dimension";
+			sourceTree = "<group>";
+		};
+		1D34D1272724A6CD0018CC3B /* Decoration item */ = {
+			isa = PBXGroup;
+			children = (
+				1DDF008B2709D19900D88994 /* CollectionViewDecorationItem.swift */,
+				1D34D1282724A6D60018CC3B /* CollectionViewDecorationView.swift */,
+			);
+			name = "Decoration item";
 			sourceTree = "<group>";
 		};
 		1D3CD7AE27240B810074B6F6 /* Cell height calculation */ = {
@@ -681,7 +692,7 @@
 			children = (
 				1DDF00902709D19900D88994 /* CollectionView.swift */,
 				1DDF00932709D19900D88994 /* CollectionView.CompositionalLayout.swift */,
-				1DDF008B2709D19900D88994 /* CollectionViewDecorationItem.swift */,
+				1D34D1272724A6CD0018CC3B /* Decoration item */,
 				1DDF01A3270A549100D88994 /* Diffable datasource */,
 				1D7643BA270A54F500B840D2 /* Item */,
 				1DDF00A42709D19900D88994 /* CollectionViewPrefetchingDelegate.swift */,
@@ -1091,6 +1102,7 @@
 				1DDF01192709D19B00D88994 /* PlainListBackgroundDecorationItem.swift in Sources */,
 				1DDF011C2709D19B00D88994 /* CAGradientLayer+Extensions.swift in Sources */,
 				1DDF01102709D19B00D88994 /* UIView.ConstraintMakeData.swift in Sources */,
+				1D34D1292724A6D60018CC3B /* CollectionViewDecorationView.swift in Sources */,
 				1DDF01092709D19B00D88994 /* PlainLabelItem.swift in Sources */,
 				1DDF011B2709D19B00D88994 /* UIImage+Extensions.swift in Sources */,
 				1D6565FC2720A05500C75D34 /* CollectionViewSection.SetSupplementaryItemsError.swift in Sources */,

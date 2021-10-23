@@ -160,7 +160,7 @@ open class CollectionViewSection {
 	open func set(decorationItems: [CollectionViewDecorationItem]) throws {
 		for (_, groupedDecorationItems) in Dictionary(grouping: decorationItems, by: { $0.elementKind }) {
 			if groupedDecorationItems.count > 1 {
-				throw SetDecorationItemsError.notUniqueDecorationItemsByElementKind(
+				throw SetDecorationItemsError.duplicateDecorationItemsByElementKind(
 					decorationItemsWithSameElementKind: groupedDecorationItems
 				)
 			}
@@ -185,7 +185,7 @@ open class CollectionViewSection {
 	/// - Throws: `CollectionViewSection.AppendDecorationItemError`.
 	open func append(decorationItem: CollectionViewDecorationItem) throws {
 		if let existingItem = decorationItems.first(where: { $0.elementKind == decorationItem.elementKind }) {
-			throw AppendDecorationItemError.notUniqueElementKind(
+			throw AppendDecorationItemError.duplicateElementKind(
 				existingDecorationItemWithSameElementKind: existingItem
 			)
 		}
@@ -204,10 +204,6 @@ public extension CollectionViewSection {
 		for supplementaryItem in supplementaryItems {
 			supplementaryItem.invalidateCachedSupplementaryViewHeights()
 		}
-
-		for decorationItem in decorationItems {
-			decorationItem.invalidateCachedSupplementaryViewHeights()
-		}
 	}
 
 	/// Invalidates all cached heights.
@@ -218,10 +214,6 @@ public extension CollectionViewSection {
 
 		for supplementaryItem in supplementaryItems {
 			supplementaryItem.invalidateCachedSupplementaryViewWidths()
-		}
-
-		for decorationItem in decorationItems {
-			decorationItem.invalidateCachedSupplementaryViewWidths()
 		}
 	}
 
@@ -356,7 +348,6 @@ extension CollectionViewSection {
 }
 
 private extension CollectionViewSection {
-	// swiftlint:disable:next cyclomatic_complexity
 	static func checkElementKinds(
 		items: [CollectionViewItem],
 		supplementaryItems: [CollectionViewSupplementaryItem],

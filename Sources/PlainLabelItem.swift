@@ -55,7 +55,7 @@ public final class PlainLabelItem: CollectionViewItem {
 		textInsets: NSDirectionalEdgeInsets = .zero,
 		backgroundColor: UIColor = .clear,
 		dividerModel: DividerModel? = nil
-	) {
+	) throws {
 		self.text = text
 		self.textColor = textColor
 		self.textFont = textFont
@@ -69,7 +69,7 @@ public final class PlainLabelItem: CollectionViewItem {
 
 		isShimmering = false
 
-		super.init(typeErasedContent: text)
+		try super.init(typeErasedContent: text)
 	}
 }
 

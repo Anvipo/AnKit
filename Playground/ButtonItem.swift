@@ -21,10 +21,10 @@ final class ButtonItem: CollectionViewItem {
 	init(
 		text: String,
 		onTapButton: @escaping () -> Void = {}
-	) {
+	) throws {
 		self.text = text
 		self.onTapButton = onTapButton
 
-		super.init(typeErasedContent: text)
+		try super.init(typeErasedContent: text)
 	}
 }

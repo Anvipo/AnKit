@@ -12,15 +12,38 @@ open class CollectionViewItem: Item {
 	private var cachedCellHeights: [CellHeightCalculationContext: CGFloat]
 	private var cachedCellWidths: [CellWidthCalculationContext: CGFloat]
 
+	/// Supplementary items in item.
+	///
+	/// Could be empty.
+	public let supplementaryItems: [CollectionViewSupplementaryItem]
+
 	/// Type for cell, which will be created and filled from this item.
 	open var cellType: CollectionViewCell.Type {
 		fatalError("Implement this method in your class")
 	}
 
-	override public init(
+	/// Initializes item with specified parameters.
+	/// - Parameters:
+	///   - typeErasedContent: Content, which will be used for identifing item.
+	///   - supplementaryItems: Supplementary items in item.
+	///   - id: The stable identity of the entity associated with this instance.
+	///
+	/// - Throws: `CollectionViewItem.InitError`.
+	public init(
 		typeErasedContent: AnyHashable,
+		supplementaryItems: [CollectionViewSupplementaryItem] = [],
 		id: ID = ID()
-	) {
+	) throws {
+		for (_, groupedSupplementaryItems) in Dictionary(grouping: supplementaryItems, by: { $0.elementKind }) {
+			if groupedSupplementaryItems.count > 1 {
+				throw InitError.duplicateSupplementaryItemsByElementKind(
+					supplementaryItemsWithSameElementKind: groupedSupplementaryItems
+				)
+			}
+		}
+
+		self.supplementaryItems = supplementaryItems
+
 		cachedCellHeights = [:]
 		cachedCellWidths = [:]
 
@@ -143,6 +166,16 @@ public extension CollectionViewItem {
 	}
 }
 
+extension CollectionViewItem {
+	func supplementaryItem(for kind: String) -> CollectionViewSupplementaryItem? {
+		if supplementaryItems.isEmpty {
+			return nil
+		}
+
+		return supplementaryItems.first { $0.elementKind == kind }
+	}
+}
+
 extension Array where Element == CollectionViewItem {
 	func hasSameContent(as other: [CollectionViewItem]) -> Bool {
 		guard count == other.count else {
@@ -159,5 +192,19 @@ extension Array where Element == CollectionViewItem {
 		}
 
 		return true
+	}
+
+	func supplementaryItem(for kind: String) -> CollectionViewSupplementaryItem? {
+		if isEmpty {
+			return nil
+		}
+
+		for item in self {
+			if let supplementaryItem = item.supplementaryItem(for: kind) {
+				return supplementaryItem
+			}
+		}
+
+		return nil
 	}
 }

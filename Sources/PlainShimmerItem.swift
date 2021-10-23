@@ -17,11 +17,9 @@ public final class PlainShimmerItem: CollectionViewItem {
 
 	/// Initializes item with specified `height`.
 	/// - Parameter height: Height of item.
-	public init(
-		height: CGFloat
-	) {
+	public init(height: CGFloat) throws {
 		self.height = height
 
-		super.init(typeErasedContent: height)
+		try super.init(typeErasedContent: height)
 	}
 }

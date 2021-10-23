@@ -43,6 +43,7 @@ open class CollectionViewSection {
 	///   - visibleItemsInvalidationHandler: A closure called before each layout cycle to allow modification of the items
 	///   in the section immediately before they are displayed.
 	///   - id: The stable identity of the entity associated with this instance.
+	///
 	/// - Throws: `CollectionViewSection.InitError`.
 	public init(
 		items: [CollectionViewItem],
@@ -343,16 +344,26 @@ public extension Array where Element: CollectionViewSection {
 
 extension CollectionViewSection {
 	func supplementaryItem(for kind: String) -> CollectionViewSupplementaryItem? {
-		supplementaryItems.first { $0.elementKind == kind }
+		supplementaryItems.first { $0.elementKind == kind } ?? items.supplementaryItem(for: kind)
 	}
 }
 
 private extension CollectionViewSection {
+	// swiftlint:disable:next cyclomatic_complexity
 	static func checkElementKinds(
 		items: [CollectionViewItem],
 		supplementaryItems: [CollectionViewSupplementaryItem],
 		decorationItems: [CollectionViewDecorationItem]
 	) throws {
+		let groupedItemSupplementaryItems = Dictionary(grouping: items.flatMap { $0.supplementaryItems }) { $0.elementKind }
+		for itemSupplementaryItems in groupedItemSupplementaryItems.values {
+			if itemSupplementaryItems.count > 1 {
+				throw InitError.duplicateItemSupplementaryItemsByElementKind(
+					itemSupplementaryItemsWithSameElementKind: itemSupplementaryItems
+				)
+			}
+		}
+
 		let groupedSupplementaryItems = Dictionary(grouping: supplementaryItems) { $0.elementKind }
 		for supplementaryItems in groupedSupplementaryItems.values {
 			if supplementaryItems.count > 1 {
@@ -374,6 +385,7 @@ private extension CollectionViewSection {
 		if !groupedSupplementaryItems.isEmpty || !groupedDecorationItems.isEmpty {
 			let supplementaryItemElementKinds = Set(groupedSupplementaryItems.keys)
 			let decorationItemElementKinds = Set(groupedDecorationItems.keys)
+			let itemSupplementaryItemElementKinds = Set(groupedItemSupplementaryItems.keys)
 
 			var sectionElementKinds = supplementaryItemElementKinds
 
@@ -381,6 +393,18 @@ private extension CollectionViewSection {
 				if !sectionElementKinds.insert(decorationItemElementKind).inserted {
 					throw InitError.duplicateElementKind(
 						decorationItemElementKind,
+						itemSupplementaryItemElementKinds: itemSupplementaryItemElementKinds,
+						supplementaryItemElementKinds: supplementaryItemElementKinds,
+						decorationItemElementKinds: decorationItemElementKinds
+					)
+				}
+			}
+
+			for itemSupplementaryItemElementKind in itemSupplementaryItemElementKinds {
+				if !sectionElementKinds.insert(itemSupplementaryItemElementKind).inserted {
+					throw InitError.duplicateElementKind(
+						itemSupplementaryItemElementKind,
+						itemSupplementaryItemElementKinds: itemSupplementaryItemElementKinds,
 						supplementaryItemElementKinds: supplementaryItemElementKinds,
 						decorationItemElementKinds: decorationItemElementKinds
 					)

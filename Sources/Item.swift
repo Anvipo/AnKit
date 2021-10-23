@@ -26,21 +26,9 @@ open class Item {
 		self.typeErasedContent = typeErasedContent
 		self.id = id
 	}
-}
 
-extension Item: Equatable {
-	public static func == (lhs: Item, rhs: Item) -> Bool {
-		lhs.typeErasedContent == rhs.typeErasedContent &&
-		lhs.id == rhs.id &&
-		(lhs as? Tappable)?.canResponseToTap == (rhs as? Tappable)?.canResponseToTap &&
-		(lhs as? Shimmerable)?.isShimmering == (rhs as? Shimmerable)?.isShimmering &&
-		(lhs as? Dividerable)?.dividerModel == (rhs as? Dividerable)?.dividerModel &&
-		(lhs as? HasImageProviders)?.imageProviders == (rhs as? HasImageProviders)?.imageProviders
-	}
-}
-
-extension Item: Hashable {
-	public func hash(into hasher: inout Hasher) {
+	// swiftlint:disable:next missing_docs
+	open func hash(into hasher: inout Hasher) {
 		hasher.combine(typeErasedContent)
 		hasher.combine(id)
 
@@ -61,6 +49,19 @@ extension Item: Hashable {
 		}
 	}
 }
+
+extension Item: Equatable {
+	public static func == (lhs: Item, rhs: Item) -> Bool {
+		lhs.typeErasedContent == rhs.typeErasedContent &&
+		lhs.id == rhs.id &&
+		(lhs as? Tappable)?.canResponseToTap == (rhs as? Tappable)?.canResponseToTap &&
+		(lhs as? Shimmerable)?.isShimmering == (rhs as? Shimmerable)?.isShimmering &&
+		(lhs as? Dividerable)?.dividerModel == (rhs as? Dividerable)?.dividerModel &&
+		(lhs as? HasImageProviders)?.imageProviders == (rhs as? HasImageProviders)?.imageProviders
+	}
+}
+
+extension Item: Hashable {}
 
 extension Item: Identifiable {
 	public typealias ID = UUID

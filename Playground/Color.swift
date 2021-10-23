@@ -10,6 +10,7 @@ import UIKit
 enum Color {
 	case shadow
 	case brand
+	case white
 
 	case systemBackground
 	case secondarySystemBackground
@@ -27,6 +28,9 @@ extension Color {
 
 		case .brand:
 			return .systemIndigo
+
+		case .white:
+			return .white
 
 		case .systemBackground:
 			return .systemBackground

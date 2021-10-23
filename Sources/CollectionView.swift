@@ -433,6 +433,18 @@ private extension CollectionView {
 		}
 
 		for section in sections {
+			for itemSupplementaryItems in section.items.map({ $0.supplementaryItems }) {
+				for itemSupplementaryItem in itemSupplementaryItems {
+					let supplementaryViewType = itemSupplementaryItem.supplementaryViewType
+
+					register(
+						supplementaryViewType,
+						forSupplementaryViewOfKind: itemSupplementaryItem.elementKind,
+						withReuseIdentifier: supplementaryViewType.reuseIdentifier
+					)
+				}
+			}
+
 			for supplementaryItem in section.supplementaryItems {
 				let supplementaryViewType = supplementaryItem.supplementaryViewType
 

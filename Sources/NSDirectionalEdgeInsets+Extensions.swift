@@ -24,6 +24,17 @@ public extension NSDirectionalEdgeInsets {
 		)
 	}
 
+	/// Creates instance, which describing square insets.
+	/// - Parameter side: Amount for side.
+	static func square(side: CGFloat) -> Self {
+		Self(
+			top: side,
+			leading: side,
+			bottom: side,
+			trailing: side
+		)
+	}
+
 	/// Creates instance with specified `top` and `bottom` and default leading and trailing values.
 	/// - Parameters:
 	///   - top: The top edge inset value.

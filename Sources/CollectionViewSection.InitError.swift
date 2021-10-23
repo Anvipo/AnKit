@@ -14,6 +14,11 @@ public extension CollectionViewSection {
 		case itemsAreEmpty
 
 		/// Passed supplementary items are not unique by element kind.
+		case duplicateItemSupplementaryItemsByElementKind(
+			itemSupplementaryItemsWithSameElementKind: [CollectionViewSupplementaryItem]
+		)
+
+		/// Passed supplementary items are not unique by element kind.
 		case duplicateSupplementaryItemsByElementKind(
 			supplementaryItemsWithSameElementKind: [CollectionViewSupplementaryItem]
 		)
@@ -26,6 +31,7 @@ public extension CollectionViewSection {
 		/// Passed decoration items are not unique by element kind.
 		case duplicateElementKind(
 			String,
+			itemSupplementaryItemElementKinds: Set<String>,
 			supplementaryItemElementKinds: Set<String>,
 			decorationItemElementKinds: Set<String>
 		)
@@ -36,7 +42,15 @@ extension CollectionViewSection.InitError: LocalizedError {
 	public var errorDescription: String? {
 		switch self {
 		case .itemsAreEmpty:
-			return "Specified items are empty"
+			return """
+			Specified items are empty
+			"""
+
+		case let .duplicateItemSupplementaryItemsByElementKind(items):
+			return """
+			Specified item's supplementary items are not unique by element kind.
+			Item's supplementary items with same element kind: \(items).
+			"""
 
 		case let .duplicateSupplementaryItemsByElementKind(items):
 			return """
@@ -52,12 +66,14 @@ extension CollectionViewSection.InitError: LocalizedError {
 
 		case let .duplicateElementKind(
 			duplicateElementKind,
+			itemSupplementaryItemElementKinds,
 			supplementaryItemElementKinds,
 			decorationItemElementKinds
 		):
 			return """
 			There is duplicate element kind in specified items.
 			Duplicate element kind - \(duplicateElementKind).
+			Item's supplementary item element kinds - \(itemSupplementaryItemElementKinds).
 			Supplementary item element kinds - \(supplementaryItemElementKinds).
 			Decoration item element kinds - \(decorationItemElementKinds)
 			"""

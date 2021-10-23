@@ -51,8 +51,10 @@ public final class PlainLabelSupplementaryItem: CollectionViewSupplementaryItem 
 		textInsets: NSDirectionalEdgeInsets = .zero,
 		backgroundColor: UIColor = .clear,
 		blurEffectStyle: UIBlurEffect.Style? = nil,
-		pinToVisibleBounds: Bool = false
-	) {
+		pinToVisibleBounds: Bool = false,
+		contentInsets: NSDirectionalEdgeInsets = .zero,
+		id: ID = ID()
+	) throws {
 		self.text = text
 		self.textColor = textColor
 		self.textFont = textFont
@@ -69,7 +71,9 @@ public final class PlainLabelSupplementaryItem: CollectionViewSupplementaryItem 
 		super.init(
 			typeErasedContent: text,
 			elementKind: elementKind,
-			pinToVisibleBounds: pinToVisibleBounds
+			contentInsets: contentInsets,
+			pinToVisibleBounds: pinToVisibleBounds,
+			id: id
 		)
 	}
 }

@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1D34D105272422080018CC3B /* CollectionViewSupplementaryView.FillMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D104272422080018CC3B /* CollectionViewSupplementaryView.FillMode.swift */; };
+		1D34D1072724230C0018CC3B /* CollectionViewSupplementaryView.FillMode.LayoutMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D1062724230C0018CC3B /* CollectionViewSupplementaryView.FillMode.LayoutMode.swift */; };
 		1D3CD7AD272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CD7AC272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift */; };
 		1D3CD7B027240B8F0074B6F6 /* CollectionViewItem.CellHeightCalculationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CD7AF27240B8F0074B6F6 /* CollectionViewItem.CellHeightCalculationContext.swift */; };
 		1D3CD7B2272411890074B6F6 /* AnyNSCollectionLayoutEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3CD7B1272411890074B6F6 /* AnyNSCollectionLayoutEnvironment.swift */; };
@@ -151,7 +153,6 @@
 		1DDF01772709D40B00D88994 /* AnKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DDF00772709CEF300D88994 /* AnKit.framework */; platformFilter = ios; };
 		1DDF01782709D40B00D88994 /* AnKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1DDF00772709CEF300D88994 /* AnKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1DDF01A02709E45100D88994 /* SimpleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF019F2709E45100D88994 /* SimpleVC.swift */; };
-		1DDF01A2270A198200D88994 /* CollectionViewSupplementaryView.FillContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF01A1270A198100D88994 /* CollectionViewSupplementaryView.FillContext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -179,6 +180,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1D34D104272422080018CC3B /* CollectionViewSupplementaryView.FillMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryView.FillMode.swift; sourceTree = "<group>"; };
+		1D34D1062724230C0018CC3B /* CollectionViewSupplementaryView.FillMode.LayoutMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryView.FillMode.LayoutMode.swift; sourceTree = "<group>"; };
 		1D3CD7AC272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.FillMode.LayoutMode.swift; sourceTree = "<group>"; };
 		1D3CD7AF27240B8F0074B6F6 /* CollectionViewItem.CellHeightCalculationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewItem.CellHeightCalculationContext.swift; sourceTree = "<group>"; };
 		1D3CD7B1272411890074B6F6 /* AnyNSCollectionLayoutEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyNSCollectionLayoutEnvironment.swift; sourceTree = "<group>"; };
@@ -313,7 +316,6 @@
 		1DDF01692709D34D00D88994 /* ButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonItem.swift; sourceTree = "<group>"; };
 		1DDF019A2709DA4200D88994 /* make_xcframework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = make_xcframework.sh; sourceTree = "<group>"; };
 		1DDF019F2709E45100D88994 /* SimpleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleVC.swift; sourceTree = "<group>"; };
-		1DDF01A1270A198100D88994 /* CollectionViewSupplementaryView.FillContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryView.FillContext.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +337,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D34D102272421AC0018CC3B /* Fill mode */ = {
+			isa = PBXGroup;
+			children = (
+				1DDF00E52709D19B00D88994 /* CollectionViewCell.FillMode.swift */,
+				1D3CD7AC272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift */,
+			);
+			name = "Fill mode";
+			sourceTree = "<group>";
+		};
+		1D34D103272421C30018CC3B /* Fill mode */ = {
+			isa = PBXGroup;
+			children = (
+				1D34D104272422080018CC3B /* CollectionViewSupplementaryView.FillMode.swift */,
+				1D34D1062724230C0018CC3B /* CollectionViewSupplementaryView.FillMode.LayoutMode.swift */,
+			);
+			name = "Fill mode";
+			sourceTree = "<group>";
+		};
 		1D3CD7AE27240B810074B6F6 /* Cell height calculation */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,11 +437,11 @@
 		1D7643B9270A54E500B840D2 /* Supplementary item */ = {
 			isa = PBXGroup;
 			children = (
+				1D34D103272421C30018CC3B /* Fill mode */,
 				1DDF00DD2709D19B00D88994 /* CollectionViewSupplementaryItem.HeightCalculateError.swift */,
 				1DDF00B52709D19A00D88994 /* CollectionViewSupplementaryItem.WidthCalculateError.swift */,
 				1DDF00A82709D19900D88994 /* CollectionViewSupplementaryItem.swift */,
 				1DDF00C32709D19A00D88994 /* CollectionViewSupplementaryView.swift */,
-				1DDF01A1270A198100D88994 /* CollectionViewSupplementaryView.FillContext.swift */,
 			);
 			name = "Supplementary item";
 			sourceTree = "<group>";
@@ -429,11 +449,10 @@
 		1D7643BA270A54F500B840D2 /* Item */ = {
 			isa = PBXGroup;
 			children = (
-				1DDF00E52709D19B00D88994 /* CollectionViewCell.FillMode.swift */,
-				1D3CD7AC272209070074B6F6 /* CollectionViewCell.FillMode.LayoutMode.swift */,
-				1DDF00C72709D19A00D88994 /* CollectionViewCell.swift */,
+				1D34D102272421AC0018CC3B /* Fill mode */,
 				1D3CD7B5272418690074B6F6 /* Cell width calculation */,
 				1D3CD7AE27240B810074B6F6 /* Cell height calculation */,
+				1DDF00C72709D19A00D88994 /* CollectionViewCell.swift */,
 				1DDF00CD2709D19A00D88994 /* CollectionViewItem.swift */,
 			);
 			name = Item;
@@ -629,14 +648,14 @@
 		1DDF01892709D7D800D88994 /* Collection view */ = {
 			isa = PBXGroup;
 			children = (
-				1DDF00932709D19900D88994 /* CollectionView.CompositionalLayout.swift */,
 				1DDF00902709D19900D88994 /* CollectionView.swift */,
+				1DDF00932709D19900D88994 /* CollectionView.CompositionalLayout.swift */,
 				1DDF008B2709D19900D88994 /* CollectionViewDecorationItem.swift */,
-				1DDF00A42709D19900D88994 /* CollectionViewPrefetchingDelegate.swift */,
 				1DDF01A3270A549100D88994 /* Diffable datasource */,
 				1D7643BA270A54F500B840D2 /* Item */,
-				1D7643B8270A54C800B840D2 /* Section */,
+				1DDF00A42709D19900D88994 /* CollectionViewPrefetchingDelegate.swift */,
 				1D7643B9270A54E500B840D2 /* Supplementary item */,
+				1D7643B8270A54C800B840D2 /* Section */,
 			);
 			name = "Collection view";
 			sourceTree = "<group>";
@@ -1018,7 +1037,7 @@
 				1DDF01452709D19B00D88994 /* CollectionView.SnapshotAction.swift in Sources */,
 				1D6565F6271CB6BF00C75D34 /* ComplexUIImageProvider.swift in Sources */,
 				1DDF01252709D19B00D88994 /* CollectionViewSupplementaryView.swift in Sources */,
-				1DDF01A2270A198200D88994 /* CollectionViewSupplementaryView.FillContext.swift in Sources */,
+				1D34D105272422080018CC3B /* CollectionViewSupplementaryView.FillMode.swift in Sources */,
 				1DDF00EF2709D19B00D88994 /* BaseVC.swift in Sources */,
 				1DDF010B2709D19B00D88994 /* UIAlertController+Extensions.swift in Sources */,
 				1DDF01152709D19B00D88994 /* UIView+Extensions.swift in Sources */,
@@ -1041,6 +1060,7 @@
 				1DDF01092709D19B00D88994 /* PlainLabelItem.swift in Sources */,
 				1DDF011B2709D19B00D88994 /* UIImage+Extensions.swift in Sources */,
 				1D6565FC2720A05500C75D34 /* CollectionViewSection.SetSupplementaryItemsError.swift in Sources */,
+				1D34D1072724230C0018CC3B /* CollectionViewSupplementaryView.FillMode.LayoutMode.swift in Sources */,
 				1DDF01412709D19B00D88994 /* KeyboardSubscriptions.swift in Sources */,
 				1DDF00F72709D19B00D88994 /* Shimmerable.swift in Sources */,
 				1D65660D2720C6EF00C75D34 /* CollectionViewSection.AppendItemError.swift in Sources */,

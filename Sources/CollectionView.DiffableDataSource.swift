@@ -746,12 +746,20 @@ private extension CollectionView.DiffableDataSource {
 			)
 		}
 
+		guard let collectionView = collectionView as? CollectionView else {
+			fatalError(
+				"""
+				Collection view \(collectionView) should inherit CollectionView
+				Supplementary view: \(castedSupplementaryView)
+				Index path: \(indexPath)
+				Supplementary item: \(supplementaryItem)
+				"""
+			)
+		}
+
 		castedSupplementaryView.fill(
 			from: supplementaryItem,
-			context: CollectionViewSupplementaryView.FillContext(
-				availableWidth: collectionView.bounds.width,
-				availableHeight: collectionView.bounds.height
-			)
+			mode: .fromDataSource(collectionView)
 		)
 
 		return supplementaryView

@@ -31,8 +31,8 @@ final class PlainLabelSupplemetaryView: CollectionViewSupplementaryView {
 		currentLabelInsets = .zero
 	}
 
-	override func fill(from item: CollectionViewSupplementaryItem, context: FillContext) {
-		super.fill(from: item, context: context)
+	override func fill(from item: CollectionViewSupplementaryItem, mode: FillMode) {
+		super.fill(from: item, mode: mode)
 
 		guard let castedItem = item as? PlainLabelSupplemetaryItem else {
 			fatalError("Item must be PlainLabelSupplemetaryItem")

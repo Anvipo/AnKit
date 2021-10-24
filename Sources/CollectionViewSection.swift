@@ -193,6 +193,15 @@ open class CollectionViewSection {
 
 		decorationItems.append(decorationItem)
 	}
+
+	// swiftlint:disable:next missing_docs
+	open func hash(into hasher: inout Hasher) {
+		hasher.combine(items)
+		hasher.combine(supplementaryItems)
+		hasher.combine(decorationItems)
+		hasher.combine(contentInsets)
+		hasher.combine(id)
+	}
 }
 
 public extension CollectionViewSection {
@@ -252,15 +261,7 @@ extension CollectionViewSection: Equatable {
 	}
 }
 
-extension CollectionViewSection: Hashable {
-	public func hash(into hasher: inout Hasher) {
-		hasher.combine(items)
-		hasher.combine(supplementaryItems)
-		hasher.combine(decorationItems)
-		hasher.combine(contentInsets)
-		hasher.combine(id)
-	}
-}
+extension CollectionViewSection: Hashable {}
 
 extension CollectionViewSection: Identifiable {
 	public typealias ID = UUID
@@ -293,33 +294,9 @@ public extension CollectionViewSection {
 			shimmerableDecorationItem.isShimmering = true
 		}
 	}
-
-	/// Has section same content as passed `other`.
-	/// - Parameter other: Other section, which will be used in compare.
-	func hasSameContent(as other: CollectionViewSection) -> Bool {
-		supplementaryItems.map { $0.typeErasedContent } == other.supplementaryItems.map { $0.typeErasedContent } &&
-		decorationItems.map { $0.typeErasedContent } == other.decorationItems.map { $0.typeErasedContent } &&
-		items.hasSameContent(as: other.items)
-	}
 }
 
 public extension Array where Element: CollectionViewSection {
-	/// Has section same content as passed `other`.
-	/// - Parameter other: Other section, which will be used in compare.
-	func hasSameContent(as other: [CollectionViewSection]) -> Bool {
-		guard count == other.count else {
-			return false
-		}
-
-		for index in self.indices {
-			if !self[index].hasSameContent(as: other[index]) {
-				return false
-			}
-		}
-
-		return true
-	}
-
 	/// Set `isShimmering` property to true in sections items.
 	func shimmerItems() {
 		for section in self {

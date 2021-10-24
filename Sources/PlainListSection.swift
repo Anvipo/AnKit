@@ -11,7 +11,7 @@ import UIKit
 /// List-based section.
 ///
 /// Behaves like in table view (full width section).
-open class PlainListSection: CollectionViewSection {
+public final class PlainListSection: CollectionViewSection {
 	/// Item for header in section.
 	public private(set) var headerItem: CollectionViewSupplementaryItem?
 

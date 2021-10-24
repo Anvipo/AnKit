@@ -1,5 +1,5 @@
 //
-//  PlainLabelSupplementaryItem.swift
+//  PlainLabelBoundarySupplementaryItem.swift
 //  AnKit
 //
 //  Created by Anvipo on 29.08.2021.
@@ -8,7 +8,7 @@
 import UIKit
 
 /// Item for plain header in section.
-public final class PlainLabelSupplementaryItem: CollectionViewSupplementaryItem {
+public final class PlainLabelBoundarySupplementaryItem: CollectionViewBoundarySupplementaryItem {
 	let text: String
 	let textColor: UIColor
 	let textFont: UIFont
@@ -23,7 +23,7 @@ public final class PlainLabelSupplementaryItem: CollectionViewSupplementaryItem 
 	public var isShimmering: Bool
 
 	override public var supplementaryViewType: CollectionViewSupplementaryView.Type {
-		PlainLabelSupplementaryView.self
+		PlainLabelBoundarySupplementaryView.self
 	}
 
 	/// Initialize item with specified parameters.
@@ -74,8 +74,8 @@ public final class PlainLabelSupplementaryItem: CollectionViewSupplementaryItem 
 
 		super.init(
 			elementKind: elementKind,
-			contentInsets: contentInsets,
 			pinToVisibleBounds: pinToVisibleBounds,
+			contentInsets: contentInsets,
 			id: id
 		)
 	}
@@ -97,15 +97,15 @@ public final class PlainLabelSupplementaryItem: CollectionViewSupplementaryItem 
 	}
 }
 
-extension PlainLabelSupplementaryItem: Shimmerable {}
+extension PlainLabelBoundarySupplementaryItem: Shimmerable {}
 
-public extension PlainLabelSupplementaryItem {
+public extension PlainLabelBoundarySupplementaryItem {
 	// swiftlint:disable:next missing_docs
 	static func == (
-		lhs: PlainLabelSupplementaryItem,
-		rhs: PlainLabelSupplementaryItem
+		lhs: PlainLabelBoundarySupplementaryItem,
+		rhs: PlainLabelBoundarySupplementaryItem
 	) -> Bool {
-		(lhs as CollectionViewSupplementaryItem) == (rhs as CollectionViewSupplementaryItem) &&
+		(lhs as CollectionViewBoundarySupplementaryItem) == (rhs as CollectionViewBoundarySupplementaryItem) &&
 
 		lhs.text == rhs.text &&
 		lhs.textColor == rhs.textColor &&

@@ -14,7 +14,7 @@ open class Item {
 
 	/// Initialize item with specified parameters.
 	/// - Parameter id: The stable identity of the entity associated with this instance.
-	init(id: ID) {
+	public init(id: ID) {
 		self.id = id
 	}
 

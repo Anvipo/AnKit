@@ -1,5 +1,5 @@
 //
-//  PlainLabelSupplementaryView.swift
+//  PlainLabelBoundarySupplementaryView.swift
 //  AnKit
 //
 //  Created by Anvipo on 29.08.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PlainLabelSupplementaryView: CollectionViewSupplementaryView {
+final class PlainLabelBoundarySupplementaryView: CollectionViewSupplementaryView {
 	private let blurredView: BlurredView
 	private let label: UILabel
 	private var currentLabelConstraints: [NSLayoutConstraint]
@@ -34,8 +34,8 @@ final class PlainLabelSupplementaryView: CollectionViewSupplementaryView {
 	override func fill(from item: CollectionViewSupplementaryItem, mode: FillMode) {
 		super.fill(from: item, mode: mode)
 
-		guard let castedItem = item as? PlainLabelSupplementaryItem else {
-			fatalError("Item must be PlainLabelSupplementaryItem")
+		guard let castedItem = item as? PlainLabelBoundarySupplementaryItem else {
+			fatalError("Item must be PlainLabelBoundarySupplementaryItem")
 		}
 
 		label.text = castedItem.text
@@ -67,7 +67,7 @@ final class PlainLabelSupplementaryView: CollectionViewSupplementaryView {
 }
 
 // MARK: - Private methods
-private extension PlainLabelSupplementaryView {
+private extension PlainLabelBoundarySupplementaryView {
 	func setupUI() {
 		shimmerableViews = [label]
 

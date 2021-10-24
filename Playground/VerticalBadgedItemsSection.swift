@@ -11,12 +11,12 @@ import UIKit
 final class VerticalBadgedItemsSection: CollectionViewSection {
 	private let itemSize: NSCollectionLayoutSize
 	private let interItemSpacing: CGFloat
-	private let headerItem: CollectionViewSupplementaryItem?
+	private let headerItem: CollectionViewBoundarySupplementaryItem?
 
 	init(
 		items: [InfoCardItem],
 		itemSize: NSCollectionLayoutSize,
-		headerItem: CollectionViewSupplementaryItem?,
+		headerItem: CollectionViewBoundarySupplementaryItem?,
 		interItemSpacing: CGFloat = .zero,
 		contentInsets: NSDirectionalEdgeInsets = .zero
 	) throws {
@@ -26,7 +26,7 @@ final class VerticalBadgedItemsSection: CollectionViewSection {
 
 		try super.init(
 			items: items,
-			supplementaryItems: [headerItem].compactMap { $0 },
+			boundarySupplementaryItems: [headerItem].compactMap { $0 },
 			contentInsets: contentInsets
 		)
 	}

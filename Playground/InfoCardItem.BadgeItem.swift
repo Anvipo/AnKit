@@ -35,7 +35,8 @@ extension InfoCardItem {
 			textInsets: NSDirectionalEdgeInsets,
 			containerAnchor: NSCollectionLayoutAnchor,
 			tintColor: UIColor,
-			backgroundColor: UIColor
+			backgroundColor: UIColor,
+			id: ID = ID()
 		) {
 			self.text = text
 			self.textColor = textColor
@@ -48,8 +49,8 @@ extension InfoCardItem {
 			self.backgroundColor = backgroundColor
 
 			super.init(
-				typeErasedContent: text,
-				elementKind: elementKind
+				elementKind: elementKind,
+				id: id
 			)
 		}
 	}

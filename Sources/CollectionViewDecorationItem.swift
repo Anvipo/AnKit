@@ -27,9 +27,22 @@ open class CollectionViewDecorationItem: Item {
 	) {
 		self.elementKind = elementKind
 
-		super.init(
-			typeErasedContent: elementKind,
-			id: id
-		)
+		super.init(id: id)
+	}
+
+	override open func hash(into hasher: inout Hasher) {
+		super.hash(into: &hasher)
+		hasher.combine(elementKind)
+	}
+}
+
+public extension CollectionViewDecorationItem {
+	// swiftlint:disable:next missing_docs
+	static func == (
+		lhs: CollectionViewDecorationItem,
+		rhs: CollectionViewDecorationItem
+	) -> Bool {
+		(lhs as Item) == (rhs as Item) &&
+		lhs.elementKind == rhs.elementKind
 	}
 }

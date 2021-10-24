@@ -24,13 +24,11 @@ open class CollectionViewItem: Item {
 
 	/// Initializes item with specified parameters.
 	/// - Parameters:
-	///   - typeErasedContent: Content, which will be used for identifing item.
 	///   - supplementaryItems: Supplementary items in item.
 	///   - id: The stable identity of the entity associated with this instance.
 	///
 	/// - Throws: `CollectionViewItem.InitError`.
 	public init(
-		typeErasedContent: AnyHashable,
 		supplementaryItems: [CollectionViewSupplementaryItem] = [],
 		id: ID = ID()
 	) throws {
@@ -47,10 +45,7 @@ open class CollectionViewItem: Item {
 		cachedCellHeights = [:]
 		cachedCellWidths = [:]
 
-		super.init(
-			typeErasedContent: typeErasedContent,
-			id: id
-		)
+		super.init(id: id)
 	}
 
 	/// Returns cached cell width.
@@ -90,9 +85,27 @@ open class CollectionViewItem: Item {
 	open func invalidateCachedCellHeights() {
 		cachedCellHeights.removeAll()
 	}
+
+	override open func hash(into hasher: inout Hasher) {
+		super.hash(into: &hasher)
+		hasher.combine(supplementaryItems)
+		hasher.combine(cachedCellHeights)
+		hasher.combine(cachedCellWidths)
+	}
 }
 
 public extension CollectionViewItem {
+	// swiftlint:disable:next missing_docs
+	static func == (
+		lhs: CollectionViewItem,
+		rhs: CollectionViewItem
+	) -> Bool {
+		(lhs as Item) == (rhs as Item) &&
+		lhs.supplementaryItems == rhs.supplementaryItems &&
+		lhs.cachedCellHeights == rhs.cachedCellHeights &&
+		lhs.cachedCellWidths == rhs.cachedCellWidths
+	}
+
 	/// Calculates width, which cell will fill.
 	/// - Parameter context: Context for cell width calculation.
 	func cellWidth(context: CellWidthCalculationContext) throws -> CGFloat {
@@ -177,23 +190,6 @@ extension CollectionViewItem {
 }
 
 extension Array where Element == CollectionViewItem {
-	func hasSameContent(as other: [CollectionViewItem]) -> Bool {
-		guard count == other.count else {
-			return false
-		}
-
-		for index in indices {
-			let lhs = self[index]
-			let rhs = other[index]
-
-			if lhs.typeErasedContent != rhs.typeErasedContent {
-				return false
-			}
-		}
-
-		return true
-	}
-
 	func supplementaryItem(for kind: String) -> CollectionViewSupplementaryItem? {
 		if isEmpty {
 			return nil

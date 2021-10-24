@@ -31,14 +31,12 @@ open class CollectionViewSupplementaryItem: Item {
 
 	/// Initializes item with specified parameters.
 	/// - Parameters:
-	///   - typeErasedContent: Content, which will be used for identifing item.
 	///   - elementKind: A string that identifies the type of supplementary item.
 	///   - contentInsets: The amount of space between the content of the item and its boundaries.
 	///   - pinToVisibleBounds: A Boolean value that indicates whether a header is pinned
 	///   to the top or bottom visible boundary of the section or layout it's attached to.
 	///   - id: The stable identity of the entity associated with this instance.
 	public init(
-		typeErasedContent: AnyHashable,
 		elementKind: String,
 		contentInsets: NSDirectionalEdgeInsets = .zero,
 		pinToVisibleBounds: Bool = false,
@@ -51,10 +49,7 @@ open class CollectionViewSupplementaryItem: Item {
 		cachedSupplementaryViewHeights = [:]
 		cachedSupplementaryViewWidths = [:]
 
-		super.init(
-			typeErasedContent: typeErasedContent,
-			id: id
-		)
+		super.init(id: id)
 	}
 
 	/// Returns cached supplementary view width.
@@ -94,9 +89,31 @@ open class CollectionViewSupplementaryItem: Item {
 	open func invalidateCachedSupplementaryViewHeights() {
 		cachedSupplementaryViewHeights.removeAll()
 	}
+
+	override open func hash(into hasher: inout Hasher) {
+		super.hash(into: &hasher)
+		hasher.combine(contentInsets)
+		hasher.combine(pinToVisibleBounds)
+		hasher.combine(elementKind)
+		hasher.combine(cachedSupplementaryViewHeights)
+		hasher.combine(cachedSupplementaryViewWidths)
+	}
 }
 
 public extension CollectionViewSupplementaryItem {
+	// swiftlint:disable:next missing_docs
+	static func == (
+		lhs: CollectionViewSupplementaryItem,
+		rhs: CollectionViewSupplementaryItem
+	) -> Bool {
+		(lhs as Item) == (rhs as Item) &&
+		lhs.contentInsets == rhs.contentInsets &&
+		lhs.pinToVisibleBounds == rhs.pinToVisibleBounds &&
+		lhs.elementKind == rhs.elementKind &&
+		lhs.cachedSupplementaryViewHeights == rhs.cachedSupplementaryViewHeights &&
+		lhs.cachedSupplementaryViewWidths == rhs.cachedSupplementaryViewWidths
+	}
+
 	/// Calculates width, which supplementary view will fill.
 	/// - Parameter context: Context for supplementary view width calculation.
 	func supplementaryViewWidth(context: ViewWidthCalculationContext) throws -> CGFloat {
@@ -167,24 +184,5 @@ public extension CollectionViewSupplementaryItem {
 
 		cache(supplementaryViewHeight: result, context: context)
 		return result
-	}
-}
-
-extension Array where Element == CollectionViewSupplementaryItem {
-	func hasSameContent(as other: [CollectionViewSupplementaryItem]) -> Bool {
-		guard count == other.count else {
-			return false
-		}
-
-		for index in indices {
-			let lhs = self[index]
-			let rhs = other[index]
-
-			if lhs.typeErasedContent != rhs.typeErasedContent {
-				return false
-			}
-		}
-
-		return true
 	}
 }

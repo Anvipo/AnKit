@@ -27,7 +27,8 @@ final class InfoCardItem: CollectionViewItem {
 	init(
 		content: Content,
 		imageViewContentMode: UIView.ContentMode,
-		badgeItem: BadgeItem? = nil
+		badgeItem: BadgeItem? = nil,
+		id: ID = ID()
 	) throws {
 		self.content = content
 		self.imageViewContentMode = imageViewContentMode
@@ -42,8 +43,8 @@ final class InfoCardItem: CollectionViewItem {
 		isShimmering = false
 
 		try super.init(
-			typeErasedContent: content,
-			supplementaryItems: [badgeItem].compactMap { $0 }
+			supplementaryItems: [badgeItem].compactMap { $0 },
+			id: id
 		)
 	}
 }

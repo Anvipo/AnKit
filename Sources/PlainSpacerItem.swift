@@ -15,15 +15,36 @@ public final class PlainSpacerItem: CollectionViewItem {
 		PlainSpacerCell.self
 	}
 
-	/// Initializes item with specified `height`.
-	/// - Parameter height: Spacer height.
-	public init(height: CGFloat) {
+	/// Initializes item with specified parameters.
+	/// - Parameters:
+	///   - height: Spacer height.
+	///   - id: The stable identity of the entity associated with this instance.
+	public init(
+		height: CGFloat,
+		id: ID = ID()
+	) throws {
 		self.height = height
 
-		super.init(typeErasedContent: height)
+		try super.init(id: id)
 	}
 
-	override public func cachedCellHeight(for availableWidth: CGFloat) -> CGFloat? {
+	override public func cachedCellHeight(context: CellHeightCalculationContext) -> CGFloat? {
 		height
+	}
+
+	override public func hash(into hasher: inout Hasher) {
+		super.hash(into: &hasher)
+		hasher.combine(height)
+	}
+}
+
+public extension PlainSpacerItem {
+	// swiftlint:disable:next missing_docs
+	static func == (
+		lhs: PlainSpacerItem,
+		rhs: PlainSpacerItem
+	) -> Bool {
+		(lhs as CollectionViewItem) == (rhs as CollectionViewItem) &&
+		lhs.height == rhs.height
 	}
 }

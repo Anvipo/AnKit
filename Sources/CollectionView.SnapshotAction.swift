@@ -43,7 +43,7 @@ public extension CollectionView {
 		case reconfigureItems([CollectionViewItem])
 
 		/// Updates the data for the items you specify in the snapshot, preserving the existing cells for the items, if iOS version is 15 or older
-		/// else Reloads the data within the specified items in the snapshot.
+		/// else reloads the data within the specified items in the snapshot.
 		case reconfigureOrReloadItems([CollectionViewItem])
 	}
 }

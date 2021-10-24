@@ -92,7 +92,7 @@ extension MultilineShimmerableLabel: ShimmerableViewProtocol {
 
 	public func layoutShimmer(by rect: CGRect) {
 		let shimmerLayers = shimmeredView.shimmerLayers
-		guard !shimmerLayers.isEmpty else {
+		if shimmerLayers.isEmpty {
 			return
 		}
 

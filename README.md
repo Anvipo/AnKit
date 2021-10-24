@@ -35,8 +35,8 @@ private extension SimpleVC {
 		])
 	}
 
-	func makeItem(text: String) -> CollectionViewItem {
-		PlainLabelItem(
+	func makeItem(text: String) throws -> CollectionViewItem {
+		try PlainLabelItem(
 			text: text,
 			textColor: .label,
 			textFont: .preferredFont(forTextStyle: .title1),
@@ -54,11 +54,11 @@ private extension SimpleVC {
 		do {
 			let section = try PlainListSection(
 				items: [
-					makeItem(text: "Text 1"),
-					makeItem(text: "Text 2"),
-					makeItem(text: "Text 3"),
-					makeItem(text: "Text 4"),
-					makeItem(text: "Text 5")
+					try makeItem(text: "Text 1"),
+					try makeItem(text: "Text 2"),
+					try makeItem(text: "Text 3"),
+					try makeItem(text: "Text 4"),
+					try makeItem(text: "Text 5")
 				]
 			)
 
@@ -97,11 +97,11 @@ For example, see `PlainLabelItem` in `Sources` folder.
 ### Create custom items for supplementary views
 You can create custom items and do any supplementary views, which inherits from `CollectionViewSupplementaryView`.
 Just create new class, inherit it from `CollectionViewSupplementaryItem` and override `supplementaryViewType` property to implement.
-For example, see `PlainLabelSupplemetaryItem` in `Sources` folder.
+For example, see `PlainLabelBoundarySupplemetaryItem` in `Sources` folder.
 
 ### Create custom background items for section
 You can create custom background items for each section in your collection view.
-Just create new class, inherit it from `CollectionViewDecorationItem` and override `supplementaryViewType` property to implement.
+Just create new class, inherit it from `CollectionViewDecorationItem` and override `decorationViewType` property to implement.
 For example, see `SecondarySystemGroupedBackgroundDecorationItem` in `Sources` folder.
 
 ### Create custom transaction to collection view's snapshot data
@@ -113,6 +113,9 @@ and pass to `snapshotTransaction` parameter any array of `CollectionView.Snapsho
 Also, there is `BaseVC` for convenient methods, which you could need in your `UIViewController`s.
 Just inherit `BaseVC` in your view controller.
 For example, see `ShuffleItemsVC` and `SectionBackgroundVC` in `Playground` folder.
+
+### Other examples
+See more screen examples in `Playground` folder.
 
 ## Requirements
 

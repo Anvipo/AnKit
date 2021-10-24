@@ -12,7 +12,7 @@ enum KeyboardSubscriptions {}
 
 extension KeyboardSubscriptions {
 	static func willShowSubscription(
-		onReceiveNotification: @escaping (KeyboardNotification) -> Void
+		onReceiveNotification: @escaping (Result<KeyboardNotification, KeyboardNotification.MapFromNotificationError>) -> Void
 	) -> AnyCancellable {
 		keyboardNotificationSubscription(
 			notificationName: UIResponder.keyboardWillShowNotification,
@@ -21,7 +21,7 @@ extension KeyboardSubscriptions {
 	}
 
 	static func didShowSubscription(
-		onReceiveNotification: @escaping (KeyboardNotification) -> Void
+		onReceiveNotification: @escaping (Result<KeyboardNotification, KeyboardNotification.MapFromNotificationError>) -> Void
 	) -> AnyCancellable {
 		keyboardNotificationSubscription(
 			notificationName: UIResponder.keyboardDidShowNotification,
@@ -30,7 +30,7 @@ extension KeyboardSubscriptions {
 	}
 
 	static func willHideSubscription(
-		onReceiveNotification: @escaping (KeyboardNotification) -> Void
+		onReceiveNotification: @escaping (Result<KeyboardNotification, KeyboardNotification.MapFromNotificationError>) -> Void
 	) -> AnyCancellable {
 		keyboardNotificationSubscription(
 			notificationName: UIResponder.keyboardWillHideNotification,
@@ -39,7 +39,7 @@ extension KeyboardSubscriptions {
 	}
 
 	static func didHideSubscription(
-		onReceiveNotification: @escaping (KeyboardNotification) -> Void
+		onReceiveNotification: @escaping (Result<KeyboardNotification, KeyboardNotification.MapFromNotificationError>) -> Void
 	) -> AnyCancellable {
 		keyboardNotificationSubscription(
 			notificationName: UIResponder.keyboardDidHideNotification,
@@ -55,7 +55,7 @@ private extension KeyboardSubscriptions {
 
 	static func keyboardNotificationSubscription(
 		notificationName: Notification.Name,
-		onReceiveNotification: @escaping (KeyboardNotification) -> Void
+		onReceiveNotification: @escaping (Result<KeyboardNotification, KeyboardNotification.MapFromNotificationError>) -> Void
 	) -> AnyCancellable {
 		notificationCenter
 			.publisher(for: notificationName)
@@ -63,7 +63,9 @@ private extension KeyboardSubscriptions {
 			.sink { notification in
 				do {
 					let keyboardNotification = try KeyboardNotification(notification: notification)
-					onReceiveNotification(keyboardNotification)
+					onReceiveNotification(.success(keyboardNotification))
+				} catch let error as KeyboardNotification.MapFromNotificationError {
+					onReceiveNotification(.failure(error))
 				} catch {
 					assertionFailure(error.localizedDescription)
 				}

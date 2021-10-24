@@ -16,4 +16,11 @@ public extension UIView.ConstraintMakeData {
 	}
 }
 
-extension UIView.ConstraintMakeData.MakeConstraintError: LocalizedError {}
+extension UIView.ConstraintMakeData.MakeConstraintError: LocalizedError {
+	public var errorDescription: String? {
+		switch self {
+		case let .unknownRelation(relation):
+			return "\(relation) is unknown"
+		}
+	}
+}

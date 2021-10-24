@@ -14,3 +14,12 @@ public protocol ImageDownloader {
 	/// - Parameter imageRemoteURL: Image remote URL.
 	func downloadImage(imageRemoteURL: URL) -> AnyPublisher<Data, Error>
 }
+
+extension URLSession: ImageDownloader {
+	public func downloadImage(imageRemoteURL: URL) -> AnyPublisher<Data, Error> {
+		dataTaskPublisher(for: imageRemoteURL)
+			.map { $0.data }
+			.mapError { $0 }
+			.eraseToAnyPublisher()
+	}
+}

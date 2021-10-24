@@ -33,11 +33,8 @@ open class CollectionViewSupplementaryView: UICollectionReusableView {
 	/// Fills view by data in item.
 	/// - Parameters:
 	///   - item: Item for view.
-	///   - context: Context.
-	open func fill(
-		from item: CollectionViewSupplementaryItem,
-		context: FillContext
-	) {
+	///   - context: Context for method calling.
+	open func fill(from item: CollectionViewSupplementaryItem, mode: FillMode) {
 		// no code
 	}
 }

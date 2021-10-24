@@ -38,9 +38,11 @@ extension KeyboardNotification {
 			throw MapFromNotificationError.notKeyboardNotification(notification)
 		}
 
-		guard var userInfo = notification.userInfo,
-			  !userInfo.isEmpty
-		else {
+		guard var userInfo = notification.userInfo else {
+			throw MapFromNotificationError.nilUserInfo(notification)
+		}
+
+		if userInfo.isEmpty {
 			throw MapFromNotificationError.emptyUserInfo(notification)
 		}
 

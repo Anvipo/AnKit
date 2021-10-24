@@ -101,7 +101,7 @@ public extension BaseVC {
 	/// Add view controller as observer fo keyboard will show event.
 	/// - Parameter onReceiveNotification: Closure for handling notification.
 	func observeKeyboardWillShow(
-		onReceiveNotification: @escaping (KeyboardNotification) -> Void
+		onReceiveNotification: @escaping (Result<KeyboardNotification, KeyboardNotification.MapFromNotificationError>) -> Void
 	) {
 		let keyboardWillShowSubscription = KeyboardSubscriptions.willShowSubscription(
 			onReceiveNotification: onReceiveNotification
@@ -112,7 +112,7 @@ public extension BaseVC {
 	/// Add view controller as observer fo keyboard did show event.
 	/// - Parameter onReceiveNotification: Closure for handling notification.
 	func observeKeyboardDidShow(
-		onReceiveNotification: @escaping (KeyboardNotification) -> Void
+		onReceiveNotification: @escaping (Result<KeyboardNotification, KeyboardNotification.MapFromNotificationError>) -> Void
 	) {
 		let keyboardDidShowSubscription = KeyboardSubscriptions.didShowSubscription(
 			onReceiveNotification: onReceiveNotification
@@ -123,7 +123,7 @@ public extension BaseVC {
 	/// Add view controller as observer fo keyboard will hide event.
 	/// - Parameter onReceiveNotification: Closure for handling notification.
 	func observeKeyboardWillHide(
-		onReceiveNotification: @escaping (KeyboardNotification) -> Void
+		onReceiveNotification: @escaping (Result<KeyboardNotification, KeyboardNotification.MapFromNotificationError>) -> Void
 	) {
 		let keyboardWillHideSubscription = KeyboardSubscriptions.willHideSubscription(
 			onReceiveNotification: onReceiveNotification
@@ -134,7 +134,7 @@ public extension BaseVC {
 	/// Add view controller as observer fo keyboard did hide event.
 	/// - Parameter onReceiveNotification: Closure for handling notification.
 	func observeKeyboardDidHide(
-		onReceiveNotification: @escaping (KeyboardNotification) -> Void
+		onReceiveNotification: @escaping (Result<KeyboardNotification, KeyboardNotification.MapFromNotificationError>) -> Void
 	) {
 		let keyboardDidHideSubscription = KeyboardSubscriptions.didHideSubscription(
 			onReceiveNotification: onReceiveNotification

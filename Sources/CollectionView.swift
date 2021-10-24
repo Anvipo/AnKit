@@ -11,7 +11,7 @@ import UIKit
 @MainActor
 public final class CollectionView: UICollectionView {
 	private lazy var diffableDataSource = DiffableDataSource(collectionView: self)
-	private lazy var compositionalLayout = CompositionalLayout(collectionView: self)
+	private lazy var layout = CompositionalLayout(collectionView: self)
 
 	@available(*, unavailable)
 	override public var collectionViewLayout: UICollectionViewLayout {
@@ -168,6 +168,11 @@ public extension CollectionView {
 		set {
 			diffableDataSource.prefetchingDelegate = newValue
 		}
+	}
+
+	/// The layout used to organize the collected view’s items.
+	var compositionalLayout: UICollectionViewCompositionalLayout {
+		layout
 	}
 
 	/// Returns an index path for the `item` in the collection view.
@@ -428,22 +433,34 @@ private extension CollectionView {
 		}
 
 		for section in sections {
-			for (supplementaryKind, supplementaryItem) in section.supplementaryItems {
-				let supplementaryViewType = supplementaryItem.supplementaryViewType
+			for itemSupplementaryItems in section.items.map({ $0.supplementaryItems }) {
+				for itemSupplementaryItem in itemSupplementaryItems {
+					let supplementaryViewType = itemSupplementaryItem.supplementaryViewType
+
+					register(
+						supplementaryViewType,
+						forSupplementaryViewOfKind: itemSupplementaryItem.elementKind,
+						withReuseIdentifier: supplementaryViewType.reuseIdentifier
+					)
+				}
+			}
+
+			for boundarySupplementaryItem in section.boundarySupplementaryItems {
+				let supplementaryViewType = boundarySupplementaryItem.supplementaryViewType
 
 				register(
 					supplementaryViewType,
-					forSupplementaryViewOfKind: supplementaryKind,
+					forSupplementaryViewOfKind: boundarySupplementaryItem.elementKind,
 					withReuseIdentifier: supplementaryViewType.reuseIdentifier
 				)
 			}
 
-			for (decorationItemElementKind, decorationItem) in section.decorationItems {
-				let supplementaryViewType = decorationItem.supplementaryViewType
+			for decorationItem in section.decorationItems {
+				let decorationViewType = decorationItem.decorationViewType
 
 				compositionalLayout.register(
-					supplementaryViewType,
-					forDecorationViewOfKind: decorationItemElementKind
+					decorationViewType,
+					forDecorationViewOfKind: decorationItem.elementKind
 				)
 			}
 

@@ -35,30 +35,15 @@ private extension SimpleVC {
 		])
 	}
 
-	func makeItem(text: String) -> CollectionViewItem {
-		PlainLabelItem(
-			text: text,
-			textColor: .label,
-			textFont: .preferredFont(forTextStyle: .title1),
-			tintColor: .systemIndigo,
-			textAlignment: .center,
-			textInsets: NSDirectionalEdgeInsets(
-				horizontalInset: .defaultHorizontalOffset,
-				verticalInset: 8
-			),
-			dividerModel: .lineDefaultOffsetFromStart(color: .systemRed)
-		)
-	}
-
 	func fillCollectionView() {
 		do {
 			let section = try PlainListSection(
 				items: [
-					makeItem(text: "Text 1"),
-					makeItem(text: "Text 2"),
-					makeItem(text: "Text 3"),
-					makeItem(text: "Text 4"),
-					makeItem(text: "Text 5")
+					AnKitPlayground.makePlainLabelItem(text: "Text 1", dividerColor: .systemRed),
+					AnKitPlayground.makePlainLabelItem(text: "Text 2", dividerColor: .systemRed),
+					AnKitPlayground.makePlainLabelItem(text: "Text 3", dividerColor: .systemRed),
+					AnKitPlayground.makePlainLabelItem(text: "Text 4", dividerColor: .systemRed),
+					AnKitPlayground.makePlainLabelItem(text: "Text 5", dividerColor: .systemRed)
 				]
 			)
 

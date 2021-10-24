@@ -10,19 +10,15 @@ import UIKit
 /// Item for plain label cell in section.
 public final class PlainLabelItem: CollectionViewItem {
 	/// The text that the label displays.
-	public var text: String {
-		didSet {
-			typeErasedContent = text
-		}
-	}
+	public var text: String
 
 	let textColor: UIColor
 	let textFont: UIFont
-	let tintColor: UIColor
-
 	let textAlignment: NSTextAlignment
 	let textNumberOfLines: Int
 	let textInsets: NSDirectionalEdgeInsets
+
+	let tintColor: UIColor
 	let backgroundColor: UIColor
 
 	public var dividerModel: DividerModel?
@@ -45,6 +41,7 @@ public final class PlainLabelItem: CollectionViewItem {
 	///   - textInsets: The inset distances for text.
 	///   - backgroundColor: The view’s background color.
 	///   - dividerModel: Divider model.
+	///   - id: The stable identity of the entity associated with this instance.
 	public init(
 		text: String,
 		textColor: UIColor,
@@ -54,25 +51,64 @@ public final class PlainLabelItem: CollectionViewItem {
 		textNumberOfLines: Int = 1,
 		textInsets: NSDirectionalEdgeInsets = .zero,
 		backgroundColor: UIColor = .clear,
-		dividerModel: DividerModel? = nil
-	) {
+		dividerModel: DividerModel? = nil,
+		isShimmering: Bool = false,
+		id: ID = ID()
+	) throws {
 		self.text = text
 		self.textColor = textColor
 		self.textFont = textFont
-		self.tintColor = tintColor
-
 		self.textAlignment = textAlignment
 		self.textNumberOfLines = textNumberOfLines
 		self.textInsets = textInsets
+
+		self.tintColor = tintColor
 		self.backgroundColor = backgroundColor
 		self.dividerModel = dividerModel
+		self.isShimmering = isShimmering
 
-		isShimmering = false
+		try super.init(id: id)
+	}
 
-		super.init(typeErasedContent: text)
+	override public func hash(into hasher: inout Hasher) {
+		super.hash(into: &hasher)
+
+		hasher.combine(text)
+		hasher.combine(textColor)
+		hasher.combine(textFont)
+		hasher.combine(textAlignment)
+		hasher.combine(textNumberOfLines)
+		hasher.combine(textInsets)
+
+		hasher.combine(tintColor)
+		hasher.combine(backgroundColor)
+		hasher.combine(dividerModel)
+		hasher.combine(isShimmering)
 	}
 }
 
 extension PlainLabelItem: Dividerable {}
 
 extension PlainLabelItem: Shimmerable {}
+
+public extension PlainLabelItem {
+	// swiftlint:disable:next missing_docs
+	static func == (
+		lhs: PlainLabelItem,
+		rhs: PlainLabelItem
+	) -> Bool {
+		(lhs as CollectionViewItem) == (rhs as CollectionViewItem) &&
+
+		lhs.text == rhs.text &&
+		lhs.textColor == rhs.textColor &&
+		lhs.textFont == rhs.textFont &&
+		lhs.textAlignment == rhs.textAlignment &&
+		lhs.textNumberOfLines == rhs.textNumberOfLines &&
+		lhs.textInsets == rhs.textInsets &&
+
+		lhs.tintColor == rhs.tintColor &&
+		lhs.backgroundColor == rhs.backgroundColor &&
+		lhs.dividerModel == rhs.dividerModel &&
+		lhs.isShimmering == rhs.isShimmering
+	}
+}

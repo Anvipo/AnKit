@@ -54,6 +54,7 @@ extension CollectionView.DiffableDataSource {
 		completion: (() -> Void)? = nil
 	) throws {
 		var newSnapshot = Snapshot()
+
 		try append(sections: sections, to: &newSnapshot)
 
 		apply(
@@ -697,13 +698,21 @@ private extension CollectionView.DiffableDataSource {
 			)
 		}
 
-		castedCell.fill(
-			from: item,
-			context: CollectionViewCell.FillContext(
-				availableWidth: collectionView.bounds.width,
-				availableHeight: collectionView.bounds.height
+		guard let section = collectionView.sections[safe: indexPath.section] else {
+			fatalError(
+				"""
+				Collection view must have specified section at index path \(indexPath)
+				Collection view: \(collectionView)
+				Index path: \(indexPath)
+				"""
 			)
+		}
+
+		let context = CollectionViewCell.FillMode.FromDataSourceContext(
+			collectionView: collectionView,
+			section: section
 		)
+		castedCell.fill(from: item, mode: .fromDataSource(context: context))
 
 		return cell
 	}
@@ -752,12 +761,20 @@ private extension CollectionView.DiffableDataSource {
 			)
 		}
 
+		guard let collectionView = collectionView as? CollectionView else {
+			fatalError(
+				"""
+				Collection view \(collectionView) should inherit CollectionView
+				Supplementary view: \(castedSupplementaryView)
+				Index path: \(indexPath)
+				Supplementary item: \(supplementaryItem)
+				"""
+			)
+		}
+
 		castedSupplementaryView.fill(
 			from: supplementaryItem,
-			context: CollectionViewSupplementaryView.FillContext(
-				availableWidth: collectionView.bounds.width,
-				availableHeight: collectionView.bounds.height
-			)
+			mode: .fromDataSource(collectionView)
 		)
 
 		return supplementaryView
@@ -805,11 +822,11 @@ private extension CollectionView.DiffableDataSource {
 
 	func imageProviders(for indexPaths: [IndexPath]) -> [ImageProvider] {
 		let currentSnapshot = snapshot()
-		let supplementaryItemsImageProviders: [ImageProvider] = indexPaths
+		let boundarySupplementaryItemsImageProviders: [ImageProvider] = indexPaths
 			.map { $0.section }
 			.unique { $0 }
 			.sorted()
-			.compactMap { currentSnapshot.sectionIdentifiers[safe: $0]?.supplementaryItemsArray }
+			.compactMap { currentSnapshot.sectionIdentifiers[safe: $0]?.boundarySupplementaryItems }
 			.flatMap { $0 }
 			.compactMap { $0 as? HasImageProviders }
 			.flatMap { $0.imageProviders }
@@ -819,6 +836,12 @@ private extension CollectionView.DiffableDataSource {
 			.compactMap { $0 as? HasImageProviders }
 			.flatMap { $0.imageProviders }
 
-		return supplementaryItemsImageProviders + itemsImageProviders
+		let itemSupplementaryItemsImageProviders = indexPaths
+			.compactMap { itemIdentifier(for: $0)?.supplementaryItems }
+			.flatMap { $0 }
+			.compactMap { $0 as? HasImageProviders }
+			.flatMap { $0.imageProviders }
+
+		return boundarySupplementaryItemsImageProviders + itemsImageProviders + itemSupplementaryItemsImageProviders
 	}
 }

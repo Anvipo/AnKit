@@ -13,26 +13,23 @@ open class CollectionViewSection {
 	/// The amount of space between the content of the section and its boundaries.
 	public final var contentInsets: NSDirectionalEdgeInsets
 
+	/// A closure called before each layout cycle to allow modification of the items in the section immediately before they are displayed.
+	open var visibleItemsInvalidationHandler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler?
+
 	/// Items in section
 	///
 	/// This property always is not empty.
-	public private(set) final var items: [CollectionViewItem] {
-		willSet {
-			if newValue.isEmpty {
-				fatalError("Items must not be empty")
-			}
-		}
-	}
+	open private(set) var items: [CollectionViewItem]
 
-	/// Supplementary items in section.
+	/// The supplementary items that are associated with the boundary edges of the section, such as headers and footers.
 	///
 	/// Could be empty.
-	public final var supplementaryItems: [String: CollectionViewSupplementaryItem]
+	open private(set) var boundarySupplementaryItems: [CollectionViewBoundarySupplementaryItem]
 
 	/// Decoration items in section.
 	///
 	/// Could be empty.
-	public final let decorationItems: [String: CollectionViewDecorationItem]
+	open private(set) var decorationItems: [CollectionViewDecorationItem]
 
 	// swiftlint:disable:next missing_docs
 	public final let id: ID
@@ -40,26 +37,38 @@ open class CollectionViewSection {
 	/// Initializes section with specified parameters.
 	/// - Parameters:
 	///   - items: Items in section. Must not be empty.
-	///   - supplementaryItems: Supplementary items in section. Could be empty.
+	///   - boundarySupplementaryItems: The supplementary items that are associated with the boundary edges of the section,
+	///   such as headers and footers. Could be empty.
+	///   - decorationItems: Decoration items in section.
 	///   - contentInsets: The amount of space between the content of the section and its boundaries.
-	///   - headerItem: Item for header in section.
+	///   - visibleItemsInvalidationHandler: A closure called before each layout cycle to allow modification of the items
+	///   in the section immediately before they are displayed.
 	///   - id: The stable identity of the entity associated with this instance.
-	/// - Throws: `CollectionViewSection.SetItemsError`.
+	///
+	/// - Throws: `CollectionViewSection.InitError`.
 	public init(
 		items: [CollectionViewItem],
-		supplementaryItems: [String: CollectionViewSupplementaryItem] = [:],
-		decorationItems: [String: CollectionViewDecorationItem] = [:],
+		boundarySupplementaryItems: [CollectionViewBoundarySupplementaryItem] = [],
+		decorationItems: [CollectionViewDecorationItem] = [],
 		contentInsets: NSDirectionalEdgeInsets = .zero,
+		visibleItemsInvalidationHandler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler? = nil,
 		id: ID = ID()
 	) throws {
 		if items.isEmpty {
 			throw InitError.itemsAreEmpty
 		}
 
+		try Self.checkElementKinds(
+			items: items,
+			boundarySupplementaryItems: boundarySupplementaryItems,
+			decorationItems: decorationItems
+		)
+
 		self.items = items
-		self.supplementaryItems = supplementaryItems
+		self.boundarySupplementaryItems = boundarySupplementaryItems
 		self.decorationItems = decorationItems
 		self.contentInsets = contentInsets
+		self.visibleItemsInvalidationHandler = visibleItemsInvalidationHandler
 		self.id = id
 	}
 
@@ -70,86 +79,173 @@ open class CollectionViewSection {
 	) -> NSCollectionLayoutSection {
 		fatalError("Implement this method in your class")
 	}
-}
 
-public extension CollectionViewSection {
+	// MARK: items methods
+
 	/// Sets specified items.
 	/// - Parameter items: Items, which will be set.
 	/// - Throws: `CollectionViewSection.SetItemsError`.
-	func set(items: [CollectionViewItem]) throws {
+	open func set(items: [CollectionViewItem]) throws {
 		if items.isEmpty {
-			throw SetItemsError.areEmpty
+			throw SetItemsError.itemsAreEmpty
 		}
 
 		self.items = items
 	}
 
-	/// Calculates height, which section will fill.
-	/// - Parameter availableWidth: Available width for section.
-	func contentHeight(availableWidth: CGFloat) throws -> CGFloat {
-		let result = try items
-			.map { try $0.cellHeight(availableWidth: availableWidth) }
-			.sum
-
-		if !result.isNormal {
-			throw ContentHeightCalculateError.isNotNormal(
-				section: self,
-				calculatedHeight: result,
-				availableWidth: availableWidth
-			)
+	/// Removes specified item.
+	/// - Parameter item: Item, which will be removed.
+	/// - Throws: `CollectionViewSection.RemoveItemError`.
+	open func remove(item: CollectionViewItem) throws {
+		guard let index = items.firstIndex(of: item) else {
+			throw RemoveItemError.noItem
 		}
 
-		if result < .zero {
-			throw ContentHeightCalculateError.isLessThanZero(
-				section: self,
-				calculatedHeight: result,
-				availableWidth: availableWidth
-			)
-		}
-
-		return result
+		items.remove(at: index)
 	}
 
-	/// Calculates average height, which items will fill.
-	/// - Parameter availableWidth: Available width for section.
-	func contentAverageHeight(availableWidth: CGFloat) throws -> CGFloat {
-		let cellHeights = try contentHeight(availableWidth: availableWidth)
+	/// Appends specified item.
+	/// - Parameter item: Item, which will be removed.
+	/// - Throws: `CollectionViewSection.AppendItemError`.
+	open func append(item: CollectionViewItem) throws {
+		if let existingItem = items.first(where: { $0 == item }) {
+			throw AppendItemError.duplicateItem(existingSameItem: existingItem)
+		}
 
-		return cellHeights / CGFloat(items.count)
+		items.append(item)
 	}
 
-	/// Calculates width, which section will fill.
-	/// - Parameter availableHeight: Available height for section.
-	func contentWidth(availableHeight: CGFloat) throws -> CGFloat {
-		let result = try items
-			.map { try $0.cellWidth(availableHeight: availableHeight) }
-			.sum
+	// MARK: boundary supplementary items methods
 
-		if !result.isNormal {
-			throw ContentWidthCalculateError.isNotNormal(
-				section: self,
-				calculatedWidth: result,
-				availableHeight: availableHeight
+	/// Sets specified boundary supplementary items.
+	/// - Parameter boundarySupplementaryItems: Boundary supplementary items, which will be set.
+	/// - Throws: `CollectionViewSection.SetBoundarySupplementaryItemsError`.
+	open func set(boundarySupplementaryItems: [CollectionViewBoundarySupplementaryItem]) throws {
+		for (_, groupedBoundarySupplementaryItems) in Dictionary(grouping: boundarySupplementaryItems, by: { $0.elementKind }) {
+			if groupedBoundarySupplementaryItems.count > 1 {
+				throw SetBoundarySupplementaryItemsError.duplicateBoundarySupplementaryItemsByElementKind(
+					groupedBoundarySupplementaryItems
+				)
+			}
+		}
+
+		self.boundarySupplementaryItems = boundarySupplementaryItems
+	}
+
+	/// Removes specified boundary supplementary item.
+	/// - Parameter boundarySupplementaryItem: Boundary Supplementary item, which will be removed.
+	/// - Throws: `CollectionViewSection.RemoveBoundarySupplementaryItemError`.
+	open func remove(boundarySupplementaryItem: CollectionViewBoundarySupplementaryItem) throws {
+		guard let index = boundarySupplementaryItems.firstIndex(of: boundarySupplementaryItem) else {
+			throw RemoveBoundarySupplementaryItemError.noSuchBoundarySupplementaryItem
+		}
+
+		boundarySupplementaryItems.remove(at: index)
+	}
+
+	/// Appends specified boundary supplementary item.
+	/// - Parameter boundarySupplementaryItem: Boundary supplementary item, which will be removed.
+	/// - Throws: `CollectionViewSection.AppendSupplementaryItemError`.
+	open func append(boundarySupplementaryItem: CollectionViewBoundarySupplementaryItem) throws {
+		if let existingItem = boundarySupplementaryItems.first(where: { $0.elementKind == boundarySupplementaryItem.elementKind }) {
+			throw AppendBoundarySupplementaryItemError.duplicateBoundarySupplementaryItem(existingItem)
+		}
+
+		boundarySupplementaryItems.append(boundarySupplementaryItem)
+	}
+
+	// MARK: decoration items methods
+
+	/// Sets specified decoration items.
+	/// - Parameter decorationItems: Decoration items, which will be set.
+	/// - Throws: `CollectionViewSection.SetDecorationItemsError`.
+	open func set(decorationItems: [CollectionViewDecorationItem]) throws {
+		for (_, groupedDecorationItems) in Dictionary(grouping: decorationItems, by: { $0.elementKind }) {
+			if groupedDecorationItems.count > 1 {
+				throw SetDecorationItemsError.duplicateDecorationItemsByElementKind(
+					decorationItemsWithSameElementKind: groupedDecorationItems
+				)
+			}
+		}
+
+		self.decorationItems = decorationItems
+	}
+
+	/// Removes specified decoration item.
+	/// - Parameter decorationItem: Decoration item, which will be removed.
+	/// - Throws: `CollectionViewSection.RemoveDecorationItemError`.
+	open func remove(decorationItem: CollectionViewDecorationItem) throws {
+		guard let index = decorationItems.firstIndex(of: decorationItem) else {
+			throw RemoveDecorationItemError.noDecorationItem
+		}
+
+		decorationItems.remove(at: index)
+	}
+
+	/// Appends specified decoration item.
+	/// - Parameter decorationItem: Decoration item, which will be removed.
+	/// - Throws: `CollectionViewSection.AppendDecorationItemError`.
+	open func append(decorationItem: CollectionViewDecorationItem) throws {
+		if let existingItem = decorationItems.first(where: { $0.elementKind == decorationItem.elementKind }) {
+			throw AppendDecorationItemError.duplicateElementKind(
+				existingDecorationItemWithSameElementKind: existingItem
 			)
 		}
 
-		if result < .zero {
-			throw ContentWidthCalculateError.isLessThanZero(
-				section: self,
-				calculatedWidth: result,
-				availableHeight: availableHeight
-			)
-		}
-
-		return result
+		decorationItems.append(decorationItem)
 	}
 
-	/// Calculates average width, which items will fill.
-	/// - Parameter availableWidth: Available height for section.
-	func contentAverageWidth(availableHeight: CGFloat) throws -> CGFloat {
-		let cellWidths = try contentWidth(availableHeight: availableHeight)
+	// swiftlint:disable:next missing_docs
+	open func hash(into hasher: inout Hasher) {
+		hasher.combine(items)
+		hasher.combine(boundarySupplementaryItems)
+		hasher.combine(decorationItems)
+		hasher.combine(contentInsets)
+		hasher.combine(id)
+	}
+}
 
-		return cellWidths / CGFloat(items.count)
+public extension CollectionViewSection {
+	/// Invalidates all cached heights.
+	func invalidateCachedHeights() {
+		for item in items {
+			item.invalidateCachedCellHeights()
+		}
+
+		for boundarySupplementaryItem in boundarySupplementaryItems {
+			boundarySupplementaryItem.invalidateCachedSupplementaryViewHeights()
+		}
+	}
+
+	/// Invalidates all cached heights.
+	func invalidateCachedWidths() {
+		for item in items {
+			item.invalidateCachedCellWidths()
+		}
+
+		for boundarySupplementaryItem in boundarySupplementaryItems {
+			boundarySupplementaryItem.invalidateCachedSupplementaryViewWidths()
+		}
+	}
+
+	/// The absolute width of the section content after content insets are applied.
+	/// - Parameter layoutEnvironment: Information about the layout's container and environment traits,
+	/// such as size classes and display scale factor.
+	func effectiveContentWidthLayoutDimension(
+		layoutEnvironment: NSCollectionLayoutEnvironment
+	) -> NSCollectionLayoutDimension {
+		.absolute(effectiveContentWidth(layoutEnvironment: layoutEnvironment))
+	}
+
+	/// The width of the section content after content insets are applied.
+	/// - Parameter layoutEnvironment: Information about the layout's container and environment traits,
+	/// such as size classes and display scale factor.
+	func effectiveContentWidth(
+		layoutEnvironment: NSCollectionLayoutEnvironment
+	) -> CGFloat {
+		layoutEnvironment.container.effectiveContentSize.width
+		- contentInsets.leading
+		- contentInsets.trailing
 	}
 }
 
@@ -159,20 +255,14 @@ extension CollectionViewSection: Equatable {
 		rhs: CollectionViewSection
 	) -> Bool {
 		lhs.items == rhs.items &&
-		lhs.supplementaryItems == rhs.supplementaryItems &&
+		lhs.boundarySupplementaryItems == rhs.boundarySupplementaryItems &&
+		lhs.decorationItems == rhs.decorationItems &&
 		lhs.contentInsets == rhs.contentInsets &&
 		lhs.id == rhs.id
 	}
 }
 
-extension CollectionViewSection: Hashable {
-	public func hash(into hasher: inout Hasher) {
-		hasher.combine(items)
-		hasher.combine(supplementaryItems)
-		hasher.combine(contentInsets)
-		hasher.combine(id)
-	}
-}
+extension CollectionViewSection: Hashable {}
 
 extension CollectionViewSection: Identifiable {
 	public typealias ID = UUID
@@ -181,10 +271,12 @@ extension CollectionViewSection: Identifiable {
 public extension CollectionViewSection {
 	/// Set `isShimmering` property to true in items.
 	func shimmerItems() {
-		for supplementaryItem in supplementaryItemsArray {
-			if var shimmerableSupplementaryItem = supplementaryItem as? Shimmerable {
-				shimmerableSupplementaryItem.isShimmering = true
+		for boundarySupplementaryItem in boundarySupplementaryItems {
+			guard var shimmerableBoundarySupplementaryItem = boundarySupplementaryItem as? Shimmerable else {
+				continue
 			}
+
+			shimmerableBoundarySupplementaryItem.isShimmering = true
 		}
 
 		for item in items {
@@ -194,47 +286,102 @@ public extension CollectionViewSection {
 
 			shimmerableItem.isShimmering = true
 		}
-	}
 
-	/// Has section same content as passed `other`.
-	/// - Parameter other: Other section, which will be used in compare.
-	func hasSameContent(as other: CollectionViewSection) -> Bool {
-		supplementaryItemsArray.map { $0.typeErasedContent } == other.supplementaryItemsArray.map { $0.typeErasedContent } &&
-		items.hasSameContent(as: other.items)
+		for decorationItem in decorationItems {
+			guard var shimmerableDecorationItem = decorationItem as? Shimmerable else {
+				continue
+			}
+
+			shimmerableDecorationItem.isShimmering = true
+		}
 	}
 }
 
 public extension Array where Element: CollectionViewSection {
-	/// Has section same content as passed `other`.
-	/// - Parameter other: Other section, which will be used in compare.
-	func hasSameContent(as other: [CollectionViewSection]) -> Bool {
-		guard count == other.count else {
-			return false
-		}
-
-		for index in self.indices {
-			if !self[index].hasSameContent(as: other[index]) {
-				return false
-			}
-		}
-
-		return true
-	}
-
 	/// Set `isShimmering` property to true in sections items.
 	func shimmerItems() {
 		for section in self {
 			section.shimmerItems()
 		}
 	}
+
+	/// Invalidates all cached heights.
+	func invalidateCachedHeights() {
+		for section in self {
+			section.invalidateCachedHeights()
+		}
+	}
+
+	/// Invalidates all cached widths.
+	func invalidateCachedWidths() {
+		for section in self {
+			section.invalidateCachedWidths()
+		}
+	}
 }
 
 extension CollectionViewSection {
-	var supplementaryItemsArray: [CollectionViewSupplementaryItem] {
-		Array(supplementaryItems.values)
-	}
-
 	func supplementaryItem(for kind: String) -> CollectionViewSupplementaryItem? {
-		supplementaryItems[kind]
+		boundarySupplementaryItems.first { $0.elementKind == kind } ?? items.supplementaryItem(for: kind)
+	}
+}
+
+private extension CollectionViewSection {
+	// swiftlint:disable:next cyclomatic_complexity
+	static func checkElementKinds(
+		items: [CollectionViewItem],
+		boundarySupplementaryItems: [CollectionViewBoundarySupplementaryItem],
+		decorationItems: [CollectionViewDecorationItem]
+	) throws {
+		let groupedItemSupplementaryItems = Dictionary(grouping: items.flatMap { $0.supplementaryItems }) { $0.elementKind }
+		for itemSupplementaryItems in groupedItemSupplementaryItems.values {
+			if itemSupplementaryItems.count > 1 {
+				throw InitError.duplicateItemSupplementaryItemsByElementKind(itemSupplementaryItems)
+			}
+		}
+
+		let groupedBoundarySupplementaryItems = Dictionary(grouping: boundarySupplementaryItems) { $0.elementKind }
+		for boundarySupplementaryItems in groupedBoundarySupplementaryItems.values {
+			if boundarySupplementaryItems.count > 1 {
+				throw InitError.duplicateBoundarySupplementaryItemsByElementKind(boundarySupplementaryItems)
+			}
+		}
+
+		let groupedDecorationItems = Dictionary(grouping: decorationItems) { $0.elementKind }
+		for decorationItems in groupedDecorationItems.values {
+			if decorationItems.count > 1 {
+				throw InitError.duplicateDecorationItemsByElementKind(decorationItems)
+			}
+		}
+
+		if !groupedBoundarySupplementaryItems.isEmpty || !groupedDecorationItems.isEmpty {
+			let boundarySupplementaryItemElementKinds = Set(groupedBoundarySupplementaryItems.keys)
+			let decorationItemElementKinds = Set(groupedDecorationItems.keys)
+			let itemSupplementaryItemElementKinds = Set(groupedItemSupplementaryItems.keys)
+
+			var sectionElementKinds = boundarySupplementaryItemElementKinds
+
+			for decorationItemElementKind in decorationItemElementKinds {
+				if !sectionElementKinds.insert(decorationItemElementKind).inserted {
+					throw InitError.duplicateElementKind(
+						decorationItemElementKind,
+						itemSupplementaryItemElementKinds: itemSupplementaryItemElementKinds,
+						boundarySupplementaryItemElementKinds: boundarySupplementaryItemElementKinds,
+						decorationItemElementKinds: decorationItemElementKinds
+					)
+				}
+			}
+
+			for itemSupplementaryItemElementKind in itemSupplementaryItemElementKinds {
+				if !sectionElementKinds.insert(itemSupplementaryItemElementKind).inserted {
+					throw InitError.duplicateElementKind(
+						itemSupplementaryItemElementKind,
+						itemSupplementaryItemElementKinds: itemSupplementaryItemElementKinds,
+						boundarySupplementaryItemElementKinds: boundarySupplementaryItemElementKinds,
+						decorationItemElementKinds: decorationItemElementKinds
+					)
+				}
+			}
+		}
 	}
 }

@@ -10,35 +10,25 @@ import UIKit
 /// Enumeration for image content types.
 public enum ImageContent {
 	/// Content will be provided by remote provider.
-	case remoteURL(URLProvider)
+	case remoteURL(
+		urlProvider: URLProvider,
+		imageDownloader: ImageDownloader,
+		imageModifiers: [ComplexUIImageProvider.Modifier] = []
+	)
 
 	/// Content will be provided by local provider.
-	case localImage(UIImageProvider)
-}
-
-extension ImageContent {
-	var remoteURL: URL? {
-		guard case let .remoteURL(urlProvider) = self else {
-			return nil
-		}
-
-		return urlProvider.url
-	}
-
-	var uiImage: UIImage? {
-		guard case let .localImage(uiImageProvider) = self else {
-			return nil
-		}
-
-		return uiImageProvider.uiImage
-	}
+	case localImage(uiImageProvider: UIImageProvider)
 }
 
 extension ImageContent: Equatable {
 	public static func == (lhs: ImageContent, rhs: ImageContent) -> Bool {
 		switch (lhs, rhs) {
-		case let (.remoteURL(lhs), .remoteURL(rhs)):
-			return lhs.url == rhs.url
+		case let (
+			.remoteURL(lhsURLProvider, _, lhsImageModifiers),
+			.remoteURL(rhsURLProvider, _, rhsImageModifiers)
+		):
+			return lhsURLProvider.url == rhsURLProvider.url &&
+			lhsImageModifiers == rhsImageModifiers
 
 		case let (.localImage(lhs), .localImage(rhs)):
 			return lhs.uiImage == rhs.uiImage
@@ -52,8 +42,9 @@ extension ImageContent: Equatable {
 extension ImageContent: Hashable {
 	public func hash(into hasher: inout Hasher) {
 		switch self {
-		case let .remoteURL(urlProvider):
+		case let .remoteURL(urlProvider, _, imageModifiers):
 			hasher.combine(urlProvider.url)
+			hasher.combine(imageModifiers)
 
 		case let .localImage(uiImageProvider):
 			hasher.combine(uiImageProvider.uiImage)

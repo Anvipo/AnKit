@@ -19,4 +19,14 @@ public extension CGFloat {
 	}
 }
 
-extension CGFloat.PercentageCalculatingError: LocalizedError {}
+extension CGFloat.PercentageCalculatingError: LocalizedError {
+	public var errorDescription: String? {
+		switch self {
+		case .invalidRange:
+			return "Range is invalid. Lower bound is greater than upper bound"
+
+		case .rangeDoesNotContainSelf:
+			return "Range does not contain self"
+		}
+	}
+}

@@ -15,10 +15,6 @@ open class CollectionViewSupplementaryItem: Item {
 	/// The amount of space between the content of the view and its boundaries.
 	public let contentInsets: NSDirectionalEdgeInsets
 
-	/// A Boolean value that indicates whether a view is pinned
-	/// to the top or bottom visible boundary of the section or layout it's attached to.
-	public let pinToVisibleBounds: Bool
-
 	/// A string that identifies the type of supplementary view.
 	///
 	/// Must be same in all collection view lifecycle.
@@ -33,18 +29,14 @@ open class CollectionViewSupplementaryItem: Item {
 	/// - Parameters:
 	///   - elementKind: A string that identifies the type of supplementary item.
 	///   - contentInsets: The amount of space between the content of the item and its boundaries.
-	///   - pinToVisibleBounds: A Boolean value that indicates whether a header is pinned
-	///   to the top or bottom visible boundary of the section or layout it's attached to.
 	///   - id: The stable identity of the entity associated with this instance.
 	public init(
 		elementKind: String,
 		contentInsets: NSDirectionalEdgeInsets = .zero,
-		pinToVisibleBounds: Bool = false,
 		id: ID = ID()
 	) {
 		self.elementKind = elementKind
 		self.contentInsets = contentInsets
-		self.pinToVisibleBounds = pinToVisibleBounds
 
 		cachedSupplementaryViewHeights = [:]
 		cachedSupplementaryViewWidths = [:]
@@ -93,7 +85,6 @@ open class CollectionViewSupplementaryItem: Item {
 	override open func hash(into hasher: inout Hasher) {
 		super.hash(into: &hasher)
 		hasher.combine(contentInsets)
-		hasher.combine(pinToVisibleBounds)
 		hasher.combine(elementKind)
 		hasher.combine(cachedSupplementaryViewHeights)
 		hasher.combine(cachedSupplementaryViewWidths)
@@ -108,7 +99,6 @@ public extension CollectionViewSupplementaryItem {
 	) -> Bool {
 		(lhs as Item) == (rhs as Item) &&
 		lhs.contentInsets == rhs.contentInsets &&
-		lhs.pinToVisibleBounds == rhs.pinToVisibleBounds &&
 		lhs.elementKind == rhs.elementKind &&
 		lhs.cachedSupplementaryViewHeights == rhs.cachedSupplementaryViewHeights &&
 		lhs.cachedSupplementaryViewWidths == rhs.cachedSupplementaryViewWidths

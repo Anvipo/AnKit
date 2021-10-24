@@ -445,12 +445,12 @@ private extension CollectionView {
 				}
 			}
 
-			for supplementaryItem in section.supplementaryItems {
-				let supplementaryViewType = supplementaryItem.supplementaryViewType
+			for boundarySupplementaryItem in section.boundarySupplementaryItems {
+				let supplementaryViewType = boundarySupplementaryItem.supplementaryViewType
 
 				register(
 					supplementaryViewType,
-					forSupplementaryViewOfKind: supplementaryItem.elementKind,
+					forSupplementaryViewOfKind: boundarySupplementaryItem.elementKind,
 					withReuseIdentifier: supplementaryViewType.reuseIdentifier
 				)
 			}

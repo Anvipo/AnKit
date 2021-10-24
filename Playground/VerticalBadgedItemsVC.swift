@@ -79,7 +79,7 @@ private extension VerticalBadgedItemsVC {
 					widthDimension: .absolute(remoteImageCardWidth),
 					heightDimension: .absolute(remoteImageCardHeight)
 				),
-				headerItem: try AnKitPlayground.makePlainLabelSupplementaryItem(
+				headerItem: try AnKitPlayground.makePlainLabelBoundarySupplementaryItem(
 					text: "Header",
 					elementKind: "Header"
 				),

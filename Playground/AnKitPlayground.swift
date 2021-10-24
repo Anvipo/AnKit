@@ -11,11 +11,11 @@ import UIKit
 enum AnKitPlayground {}
 
 extension AnKitPlayground {
-	static func makePlainLabelSupplementaryItem(
+	static func makePlainLabelBoundarySupplementaryItem(
 		text: String,
 		elementKind: String
-	) throws -> CollectionViewSupplementaryItem {
-		try PlainLabelSupplementaryItem(
+	) throws -> CollectionViewBoundarySupplementaryItem {
+		try PlainLabelBoundarySupplementaryItem(
 			text: text,
 			textColor: Color.label.uiColor,
 			textFont: Font.title1.uiFont,

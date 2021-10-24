@@ -13,9 +13,11 @@ extension CollectionView {
 		init(collectionView: CollectionView) {
 			// swiftlint:disable:next unowned_variable_capture
 			super.init { [unowned collectionView] sectionIndex, layoutEnvironment in
-				collectionView
-					.sections[sectionIndex]
-					.layoutConfiguration(layoutEnvironment: layoutEnvironment)
+				guard let section = collectionView.sections[safe: sectionIndex] else {
+					fatalError("There is no section at index \(sectionIndex)")
+				}
+
+				return section.layoutConfiguration(layoutEnvironment: layoutEnvironment)
 			}
 		}
 

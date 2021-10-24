@@ -54,6 +54,7 @@ extension CollectionView.DiffableDataSource {
 		completion: (() -> Void)? = nil
 	) throws {
 		var newSnapshot = Snapshot()
+
 		try append(sections: sections, to: &newSnapshot)
 
 		apply(
@@ -821,11 +822,11 @@ private extension CollectionView.DiffableDataSource {
 
 	func imageProviders(for indexPaths: [IndexPath]) -> [ImageProvider] {
 		let currentSnapshot = snapshot()
-		let supplementaryItemsImageProviders: [ImageProvider] = indexPaths
+		let boundarySupplementaryItemsImageProviders: [ImageProvider] = indexPaths
 			.map { $0.section }
 			.unique { $0 }
 			.sorted()
-			.compactMap { currentSnapshot.sectionIdentifiers[safe: $0]?.supplementaryItems }
+			.compactMap { currentSnapshot.sectionIdentifiers[safe: $0]?.boundarySupplementaryItems }
 			.flatMap { $0 }
 			.compactMap { $0 as? HasImageProviders }
 			.flatMap { $0.imageProviders }
@@ -835,6 +836,12 @@ private extension CollectionView.DiffableDataSource {
 			.compactMap { $0 as? HasImageProviders }
 			.flatMap { $0.imageProviders }
 
-		return supplementaryItemsImageProviders + itemsImageProviders
+		let itemSupplementaryItemsImageProviders = indexPaths
+			.compactMap { itemIdentifier(for: $0)?.supplementaryItems }
+			.flatMap { $0 }
+			.compactMap { $0 as? HasImageProviders }
+			.flatMap { $0.imageProviders }
+
+		return boundarySupplementaryItemsImageProviders + itemsImageProviders + itemSupplementaryItemsImageProviders
 	}
 }

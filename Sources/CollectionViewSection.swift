@@ -21,10 +21,10 @@ open class CollectionViewSection {
 	/// This property always is not empty.
 	open private(set) var items: [CollectionViewItem]
 
-	/// Supplementary items in section.
+	/// The supplementary items that are associated with the boundary edges of the section, such as headers and footers.
 	///
 	/// Could be empty.
-	open private(set) var supplementaryItems: [CollectionViewSupplementaryItem]
+	open private(set) var boundarySupplementaryItems: [CollectionViewBoundarySupplementaryItem]
 
 	/// Decoration items in section.
 	///
@@ -37,7 +37,8 @@ open class CollectionViewSection {
 	/// Initializes section with specified parameters.
 	/// - Parameters:
 	///   - items: Items in section. Must not be empty.
-	///   - supplementaryItems: Supplementary items in section. Could be empty.
+	///   - boundarySupplementaryItems: The supplementary items that are associated with the boundary edges of the section,
+	///   such as headers and footers. Could be empty.
 	///   - decorationItems: Decoration items in section.
 	///   - contentInsets: The amount of space between the content of the section and its boundaries.
 	///   - visibleItemsInvalidationHandler: A closure called before each layout cycle to allow modification of the items
@@ -47,7 +48,7 @@ open class CollectionViewSection {
 	/// - Throws: `CollectionViewSection.InitError`.
 	public init(
 		items: [CollectionViewItem],
-		supplementaryItems: [CollectionViewSupplementaryItem] = [],
+		boundarySupplementaryItems: [CollectionViewBoundarySupplementaryItem] = [],
 		decorationItems: [CollectionViewDecorationItem] = [],
 		contentInsets: NSDirectionalEdgeInsets = .zero,
 		visibleItemsInvalidationHandler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler? = nil,
@@ -59,12 +60,12 @@ open class CollectionViewSection {
 
 		try Self.checkElementKinds(
 			items: items,
-			supplementaryItems: supplementaryItems,
+			boundarySupplementaryItems: boundarySupplementaryItems,
 			decorationItems: decorationItems
 		)
 
 		self.items = items
-		self.supplementaryItems = supplementaryItems
+		self.boundarySupplementaryItems = boundarySupplementaryItems
 		self.decorationItems = decorationItems
 		self.contentInsets = contentInsets
 		self.visibleItemsInvalidationHandler = visibleItemsInvalidationHandler
@@ -114,46 +115,46 @@ open class CollectionViewSection {
 		items.append(item)
 	}
 
-	// MARK: supplementary items methods
+	// MARK: boundary supplementary items methods
 
-	/// Sets specified supplementary items.
-	/// - Parameter supplementaryItems: Supplementary items, which will be set.
-	/// - Throws: `CollectionViewSection.SetSupplementaryItemsError`.
-	open func set(supplementaryItems: [CollectionViewSupplementaryItem]) throws {
-		for (_, groupedSupplementaryItems) in Dictionary(grouping: supplementaryItems, by: { $0.elementKind }) {
-			if groupedSupplementaryItems.count > 1 {
-				throw SetSupplementaryItemsError.notUniqueSupplementaryItemsByElementKind(
-					supplementaryItemsWithSameElementKind: groupedSupplementaryItems
+	/// Sets specified boundary supplementary items.
+	/// - Parameter boundarySupplementaryItems: Boundary supplementary items, which will be set.
+	/// - Throws: `CollectionViewSection.SetBoundarySupplementaryItemsError`.
+	open func set(boundarySupplementaryItems: [CollectionViewBoundarySupplementaryItem]) throws {
+		for (_, groupedBoundarySupplementaryItems) in Dictionary(grouping: boundarySupplementaryItems, by: { $0.elementKind }) {
+			if groupedBoundarySupplementaryItems.count > 1 {
+				throw SetBoundarySupplementaryItemsError.duplicateBoundarySupplementaryItemsByElementKind(
+					groupedBoundarySupplementaryItems
 				)
 			}
 		}
 
-		self.supplementaryItems = supplementaryItems
+		self.boundarySupplementaryItems = boundarySupplementaryItems
 	}
 
-	/// Removes specified supplementary item.
-	/// - Parameter supplementaryItem: Supplementary item, which will be removed.
-	/// - Throws: `CollectionViewSection.RemoveSupplementaryItemError`.
-	open func remove(supplementaryItem: CollectionViewSupplementaryItem) throws {
-		guard let index = supplementaryItems.firstIndex(of: supplementaryItem) else {
-			throw RemoveSupplementaryItemError.noSupplementaryItem
+	/// Removes specified boundary supplementary item.
+	/// - Parameter boundarySupplementaryItem: Boundary Supplementary item, which will be removed.
+	/// - Throws: `CollectionViewSection.RemoveBoundarySupplementaryItemError`.
+	open func remove(boundarySupplementaryItem: CollectionViewBoundarySupplementaryItem) throws {
+		guard let index = boundarySupplementaryItems.firstIndex(of: boundarySupplementaryItem) else {
+			throw RemoveBoundarySupplementaryItemError.noSuchBoundarySupplementaryItem
 		}
 
-		supplementaryItems.remove(at: index)
+		boundarySupplementaryItems.remove(at: index)
 	}
 
-	/// Appends specified supplementary item.
-	/// - Parameter supplementaryItem: Supplementary item, which will be removed.
+	/// Appends specified boundary supplementary item.
+	/// - Parameter boundarySupplementaryItem: Boundary supplementary item, which will be removed.
 	/// - Throws: `CollectionViewSection.AppendSupplementaryItemError`.
-	open func append(supplementaryItem: CollectionViewSupplementaryItem) throws {
-		if let existingItem = supplementaryItems.first(where: { $0.elementKind == supplementaryItem.elementKind }) {
-			throw AppendSupplementaryItemError.notUniqueElementKind(
-				existingSupplementaryItemWithSameElementKind: existingItem
-			)
+	open func append(boundarySupplementaryItem: CollectionViewBoundarySupplementaryItem) throws {
+		if let existingItem = boundarySupplementaryItems.first(where: { $0.elementKind == boundarySupplementaryItem.elementKind }) {
+			throw AppendBoundarySupplementaryItemError.duplicateBoundarySupplementaryItem(existingItem)
 		}
 
-		supplementaryItems.append(supplementaryItem)
+		boundarySupplementaryItems.append(boundarySupplementaryItem)
 	}
+
+	// MARK: decoration items methods
 
 	/// Sets specified decoration items.
 	/// - Parameter decorationItems: Decoration items, which will be set.
@@ -197,7 +198,7 @@ open class CollectionViewSection {
 	// swiftlint:disable:next missing_docs
 	open func hash(into hasher: inout Hasher) {
 		hasher.combine(items)
-		hasher.combine(supplementaryItems)
+		hasher.combine(boundarySupplementaryItems)
 		hasher.combine(decorationItems)
 		hasher.combine(contentInsets)
 		hasher.combine(id)
@@ -211,8 +212,8 @@ public extension CollectionViewSection {
 			item.invalidateCachedCellHeights()
 		}
 
-		for supplementaryItem in supplementaryItems {
-			supplementaryItem.invalidateCachedSupplementaryViewHeights()
+		for boundarySupplementaryItem in boundarySupplementaryItems {
+			boundarySupplementaryItem.invalidateCachedSupplementaryViewHeights()
 		}
 	}
 
@@ -222,8 +223,8 @@ public extension CollectionViewSection {
 			item.invalidateCachedCellWidths()
 		}
 
-		for supplementaryItem in supplementaryItems {
-			supplementaryItem.invalidateCachedSupplementaryViewWidths()
+		for boundarySupplementaryItem in boundarySupplementaryItems {
+			boundarySupplementaryItem.invalidateCachedSupplementaryViewWidths()
 		}
 	}
 
@@ -254,7 +255,7 @@ extension CollectionViewSection: Equatable {
 		rhs: CollectionViewSection
 	) -> Bool {
 		lhs.items == rhs.items &&
-		lhs.supplementaryItems == rhs.supplementaryItems &&
+		lhs.boundarySupplementaryItems == rhs.boundarySupplementaryItems &&
 		lhs.decorationItems == rhs.decorationItems &&
 		lhs.contentInsets == rhs.contentInsets &&
 		lhs.id == rhs.id
@@ -270,12 +271,12 @@ extension CollectionViewSection: Identifiable {
 public extension CollectionViewSection {
 	/// Set `isShimmering` property to true in items.
 	func shimmerItems() {
-		for supplementaryItem in supplementaryItems {
-			guard var shimmerableSupplementaryItem = supplementaryItem as? Shimmerable else {
+		for boundarySupplementaryItem in boundarySupplementaryItems {
+			guard var shimmerableBoundarySupplementaryItem = boundarySupplementaryItem as? Shimmerable else {
 				continue
 			}
 
-			shimmerableSupplementaryItem.isShimmering = true
+			shimmerableBoundarySupplementaryItem.isShimmering = true
 		}
 
 		for item in items {
@@ -321,7 +322,7 @@ public extension Array where Element: CollectionViewSection {
 
 extension CollectionViewSection {
 	func supplementaryItem(for kind: String) -> CollectionViewSupplementaryItem? {
-		supplementaryItems.first { $0.elementKind == kind } ?? items.supplementaryItem(for: kind)
+		boundarySupplementaryItems.first { $0.elementKind == kind } ?? items.supplementaryItem(for: kind)
 	}
 }
 
@@ -329,49 +330,43 @@ private extension CollectionViewSection {
 	// swiftlint:disable:next cyclomatic_complexity
 	static func checkElementKinds(
 		items: [CollectionViewItem],
-		supplementaryItems: [CollectionViewSupplementaryItem],
+		boundarySupplementaryItems: [CollectionViewBoundarySupplementaryItem],
 		decorationItems: [CollectionViewDecorationItem]
 	) throws {
 		let groupedItemSupplementaryItems = Dictionary(grouping: items.flatMap { $0.supplementaryItems }) { $0.elementKind }
 		for itemSupplementaryItems in groupedItemSupplementaryItems.values {
 			if itemSupplementaryItems.count > 1 {
-				throw InitError.duplicateItemSupplementaryItemsByElementKind(
-					itemSupplementaryItemsWithSameElementKind: itemSupplementaryItems
-				)
+				throw InitError.duplicateItemSupplementaryItemsByElementKind(itemSupplementaryItems)
 			}
 		}
 
-		let groupedSupplementaryItems = Dictionary(grouping: supplementaryItems) { $0.elementKind }
-		for supplementaryItems in groupedSupplementaryItems.values {
-			if supplementaryItems.count > 1 {
-				throw InitError.duplicateSupplementaryItemsByElementKind(
-					supplementaryItemsWithSameElementKind: supplementaryItems
-				)
+		let groupedBoundarySupplementaryItems = Dictionary(grouping: boundarySupplementaryItems) { $0.elementKind }
+		for boundarySupplementaryItems in groupedBoundarySupplementaryItems.values {
+			if boundarySupplementaryItems.count > 1 {
+				throw InitError.duplicateBoundarySupplementaryItemsByElementKind(boundarySupplementaryItems)
 			}
 		}
 
 		let groupedDecorationItems = Dictionary(grouping: decorationItems) { $0.elementKind }
 		for decorationItems in groupedDecorationItems.values {
 			if decorationItems.count > 1 {
-				throw InitError.duplicateDecorationItemsByElementKind(
-					decorationItemsWithSameElementKind: decorationItems
-				)
+				throw InitError.duplicateDecorationItemsByElementKind(decorationItems)
 			}
 		}
 
-		if !groupedSupplementaryItems.isEmpty || !groupedDecorationItems.isEmpty {
-			let supplementaryItemElementKinds = Set(groupedSupplementaryItems.keys)
+		if !groupedBoundarySupplementaryItems.isEmpty || !groupedDecorationItems.isEmpty {
+			let boundarySupplementaryItemElementKinds = Set(groupedBoundarySupplementaryItems.keys)
 			let decorationItemElementKinds = Set(groupedDecorationItems.keys)
 			let itemSupplementaryItemElementKinds = Set(groupedItemSupplementaryItems.keys)
 
-			var sectionElementKinds = supplementaryItemElementKinds
+			var sectionElementKinds = boundarySupplementaryItemElementKinds
 
 			for decorationItemElementKind in decorationItemElementKinds {
 				if !sectionElementKinds.insert(decorationItemElementKind).inserted {
 					throw InitError.duplicateElementKind(
 						decorationItemElementKind,
 						itemSupplementaryItemElementKinds: itemSupplementaryItemElementKinds,
-						supplementaryItemElementKinds: supplementaryItemElementKinds,
+						boundarySupplementaryItemElementKinds: boundarySupplementaryItemElementKinds,
 						decorationItemElementKinds: decorationItemElementKinds
 					)
 				}
@@ -382,7 +377,7 @@ private extension CollectionViewSection {
 					throw InitError.duplicateElementKind(
 						itemSupplementaryItemElementKind,
 						itemSupplementaryItemElementKinds: itemSupplementaryItemElementKinds,
-						supplementaryItemElementKinds: supplementaryItemElementKinds,
+						boundarySupplementaryItemElementKinds: boundarySupplementaryItemElementKinds,
 						decorationItemElementKinds: decorationItemElementKinds
 					)
 				}

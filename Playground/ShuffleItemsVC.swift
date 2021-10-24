@@ -122,11 +122,11 @@ private extension ShuffleItemsVC {
 					AnKitPlayground.makePlainLabelItem(text: "9"),
 					AnKitPlayground.makePlainLabelItem(text: "10")
 				],
-				headerItem: AnKitPlayground.makePlainLabelSupplementaryItem(
+				headerItem: AnKitPlayground.makePlainLabelBoundarySupplementaryItem(
 					text: "Header",
 					elementKind: "Header"
 				),
-				footerItem: AnKitPlayground.makePlainLabelSupplementaryItem(
+				footerItem: AnKitPlayground.makePlainLabelBoundarySupplementaryItem(
 					text: "Footer",
 					elementKind: "Footer"
 				)

@@ -13,17 +13,17 @@ import UIKit
 /// Behaves like in table view (full width section).
 public final class PlainListSection: CollectionViewSection {
 	/// Item for header in section.
-	public private(set) var headerItem: CollectionViewSupplementaryItem?
+	public private(set) var headerItem: CollectionViewBoundarySupplementaryItem?
 
 	/// Item for footer in section.
-	public private(set) var footerItem: CollectionViewSupplementaryItem?
+	public private(set) var footerItem: CollectionViewBoundarySupplementaryItem?
 
 	/// Background decoration item which is anchored to the section.
 	public private(set) var backgroundDecorationItem: PlainListBackgroundDecorationItem?
 
 	@available(*, unavailable)
-	override public var supplementaryItems: [CollectionViewSupplementaryItem] {
-		super.supplementaryItems
+	override public var boundarySupplementaryItems: [CollectionViewBoundarySupplementaryItem] {
+		super.boundarySupplementaryItems
 	}
 
 	@available(*, unavailable)
@@ -43,8 +43,8 @@ public final class PlainListSection: CollectionViewSection {
 	///   - id: The stable identity of the entity associated with this instance.
 	public init(
 		items: [CollectionViewItem],
-		headerItem: CollectionViewSupplementaryItem? = nil,
-		footerItem: CollectionViewSupplementaryItem? = nil,
+		headerItem: CollectionViewBoundarySupplementaryItem? = nil,
+		footerItem: CollectionViewBoundarySupplementaryItem? = nil,
 		backgroundDecorationItem: PlainListBackgroundDecorationItem? = nil,
 		contentInsets: NSDirectionalEdgeInsets = .zero,
 		visibleItemsInvalidationHandler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler? = nil,
@@ -56,7 +56,7 @@ public final class PlainListSection: CollectionViewSection {
 
 		try super.init(
 			items: items,
-			supplementaryItems: [headerItem, footerItem].compactMap { $0 },
+			boundarySupplementaryItems: [headerItem, footerItem].compactMap { $0 },
 			decorationItems: [backgroundDecorationItem].compactMap { $0 },
 			contentInsets: contentInsets,
 			visibleItemsInvalidationHandler: visibleItemsInvalidationHandler,
@@ -78,7 +78,7 @@ public final class PlainListSection: CollectionViewSection {
 
 		let headerViewHeight: CGFloat?
 		if let headerItem = headerItem {
-			let headerLayout = supplementaryLayout(
+			let headerLayout = boundarySupplementaryLayout(
 				item: headerItem,
 				alignment: .top,
 				effectiveContentWidth: effectiveContentWidth,
@@ -93,7 +93,7 @@ public final class PlainListSection: CollectionViewSection {
 
 		let footerViewHeight: CGFloat?
 		if let footerItem = footerItem {
-			let footerLayout = supplementaryLayout(
+			let footerLayout = boundarySupplementaryLayout(
 				item: footerItem,
 				alignment: .bottom,
 				effectiveContentWidth: effectiveContentWidth,
@@ -121,17 +121,17 @@ public final class PlainListSection: CollectionViewSection {
 	}
 
 	@available(*, unavailable)
-	override public func set(supplementaryItems: [CollectionViewSupplementaryItem]) throws {
+	override public func set(boundarySupplementaryItems: [CollectionViewBoundarySupplementaryItem]) throws {
 		fatalError("Do not use this method. Use set(headerItem:) or set(footerItem:) methods instead.")
 	}
 
 	@available(*, unavailable)
-	override public func remove(supplementaryItem: CollectionViewSupplementaryItem) throws {
+	override public func remove(boundarySupplementaryItem: CollectionViewBoundarySupplementaryItem) throws {
 		fatalError("Do not use this method. Use set(headerItem:) or set(footerItem:) methods instead.")
 	}
 
 	@available(*, unavailable)
-	override public func append(supplementaryItem: CollectionViewSupplementaryItem) throws {
+	override public func append(boundarySupplementaryItem: CollectionViewBoundarySupplementaryItem) throws {
 		fatalError("Do not use this method. Use set(headerItem:) or set(footerItem:) methods instead.")
 	}
 
@@ -154,13 +154,13 @@ public final class PlainListSection: CollectionViewSection {
 public extension PlainListSection {
 	/// Sets specified header item.
 	/// - Parameter headerItem: Header item, which will be set.
-	func set(headerItem: CollectionViewSupplementaryItem?) throws {
+	func set(headerItem: CollectionViewBoundarySupplementaryItem?) throws {
 		if let oldHeaderItem = self.headerItem {
-			try super.remove(supplementaryItem: oldHeaderItem)
+			try super.remove(boundarySupplementaryItem: oldHeaderItem)
 		}
 
 		if let newHeaderItem = headerItem {
-			try super.append(supplementaryItem: newHeaderItem)
+			try super.append(boundarySupplementaryItem: newHeaderItem)
 		}
 
 		self.headerItem = headerItem
@@ -168,13 +168,13 @@ public extension PlainListSection {
 
 	/// Sets specified footer item.
 	/// - Parameter footerItem: Footer item, which will be set.
-	func set(footerItem: CollectionViewSupplementaryItem?) throws {
+	func set(footerItem: CollectionViewBoundarySupplementaryItem?) throws {
 		if let oldFooterItem = self.footerItem {
-			try super.remove(supplementaryItem: oldFooterItem)
+			try super.remove(boundarySupplementaryItem: oldFooterItem)
 		}
 
 		if let newFooterItem = footerItem {
-			try super.append(supplementaryItem: newFooterItem)
+			try super.append(boundarySupplementaryItem: newFooterItem)
 		}
 
 		self.footerItem = footerItem
@@ -228,8 +228,8 @@ public extension PlainListSection {
 }
 
 private extension PlainListSection {
-	func supplementaryLayout(
-		item: CollectionViewSupplementaryItem,
+	func boundarySupplementaryLayout(
+		item: CollectionViewBoundarySupplementaryItem,
 		alignment: NSRectAlignment,
 		effectiveContentWidth: CGFloat,
 		layoutEnvironment: NSCollectionLayoutEnvironment

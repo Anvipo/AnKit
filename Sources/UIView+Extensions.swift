@@ -106,6 +106,21 @@ public extension UIView {
 		]
 	}
 
+	/// Add views in array as subview to self to use with constraints.
+	/// - Parameter subviews: Views, which will be subviews for self.
+	func addSubviewsForConstraintsUse(_ subviews: [UIView]) {
+		for subview in subviews {
+			addSubviewForConstraintsUse(subview)
+		}
+	}
+
+	/// Add view as subview to self to use with constraints.
+	/// - Parameter subview: View, which will be subview for self.
+	func addSubviewForConstraintsUse(_ subview: UIView) {
+		addSubview(subview)
+		subview.translatesAutoresizingMaskIntoConstraints = false
+	}
+
 	/// Adds default shadow to layer.
 	/// - Parameters:
 	///   - shadowColor: The color of the layer’s shadow.
@@ -139,17 +154,6 @@ public extension UIView {
 	/// Rounds corners to circle.
 	func addDefaultCircleCorners() {
 		layer.roundCornersToCircle(by: layer.bounds.size)
-	}
-}
-
-public extension Array where Element == UIView {
-	/// Add views in array as subview to specified `parentView` to use in constraints.
-	/// - Parameter parentView: View, which will be parent for views in array.
-	func addAsSubviewForConstraintsUse(to parentView: UIView) {
-		for subview in self {
-			parentView.addSubview(subview)
-			subview.translatesAutoresizingMaskIntoConstraints = false
-		}
 	}
 }
 

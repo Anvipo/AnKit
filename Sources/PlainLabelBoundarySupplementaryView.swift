@@ -71,7 +71,7 @@ private extension PlainLabelBoundarySupplementaryView {
 	func setupUI() {
 		shimmerableViews = [label]
 
-		[blurredView, label].addAsSubviewForConstraintsUse(to: self)
+		addSubviewsForConstraintsUse([blurredView, label])
 		NSLayoutConstraint.activate(blurredView.makeConstraints(to: self))
 	}
 }

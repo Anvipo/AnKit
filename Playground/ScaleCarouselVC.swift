@@ -64,7 +64,7 @@ private extension ScaleCarouselVC {
 	func setupUI() {
 		navigationItem.title = "Scale carousel example"
 
-		[collectionView].addAsSubviewForConstraintsUse(to: view)
+		view.addSubviewForConstraintsUse(collectionView)
 
 		NSLayoutConstraint.activate(collectionView.makeConstraints(to: view.safeAreaLayoutGuide))
 	}

@@ -57,7 +57,7 @@ private extension MainVC {
 	func setupUI() {
 		navigationItem.title = "Examples"
 
-		[collectionView].addAsSubviewForConstraintsUse(to: view)
+		view.addSubviewForConstraintsUse(collectionView)
 		NSLayoutConstraint.activate(collectionView.makeConstraints(to: view.safeAreaLayoutGuide))
 	}
 

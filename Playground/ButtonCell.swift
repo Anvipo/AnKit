@@ -59,7 +59,7 @@ final class ButtonCell: CollectionViewCell {
 
 private extension ButtonCell {
 	func setupUI() {
-		[button].addAsSubviewForConstraintsUse(to: contentView)
+		contentView.addSubviewForConstraintsUse(button)
 		NSLayoutConstraint.activate(button.makeConstraints(to: contentView))
 	}
 }

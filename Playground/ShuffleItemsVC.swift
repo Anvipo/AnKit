@@ -84,7 +84,7 @@ private extension ShuffleItemsVC {
 			self?.didTapButton()
 		}
 
-		[collectionView, button].addAsSubviewForConstraintsUse(to: view)
+		view.addSubviewsForConstraintsUse([collectionView, button])
 
 		NSLayoutConstraint.activate([
 			collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),

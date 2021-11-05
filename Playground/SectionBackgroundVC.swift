@@ -24,7 +24,7 @@ private extension SectionBackgroundVC {
 
 		view.backgroundColor = .systemGroupedBackground
 
-		[collectionView].addAsSubviewForConstraintsUse(to: view)
+		view.addSubviewForConstraintsUse(collectionView)
 
 		NSLayoutConstraint.activate(collectionView.makeConstraints(to: view.safeAreaLayoutGuide))
 	}

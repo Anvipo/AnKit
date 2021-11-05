@@ -66,7 +66,7 @@ private extension VerticalBadgedItemsVC {
 	func setupUI() {
 		navigationItem.title = "Vertical badged items example"
 
-		[collectionView].addAsSubviewForConstraintsUse(to: view)
+		view.addSubviewForConstraintsUse(collectionView)
 
 		NSLayoutConstraint.activate(collectionView.makeConstraints(to: view.safeAreaLayoutGuide))
 	}

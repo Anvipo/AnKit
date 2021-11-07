@@ -19,7 +19,8 @@ final class MainVC: BasePlaygroundVC {
 			ShuffleItemsVC(),
 			SectionBackgroundVC(),
 			ScaleCarouselVC(),
-			VerticalBadgedItemsVC()
+			VerticalBadgedItemsVC(),
+			InsertAndDeleteItemsInSectionVC()
 		]
 
 		return [try makeSection(exampleViewControllers: exampleViewControllers)]

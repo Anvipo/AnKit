@@ -40,16 +40,6 @@ final class ButtonCell: CollectionViewCell {
 
 		button.setup(
 			text: castedItem.text,
-			textColor: .white,
-			textFont: .preferredFont(forTextStyle: .callout),
-			tintColor: .systemIndigo,
-			backgroundColor: .systemIndigo,
-			contentEdgeInsets: UIEdgeInsets(
-				top: .defaultHorizontalOffset,
-				left: .defaultHorizontalOffset / 2,
-				bottom: .defaultHorizontalOffset,
-				right: .defaultHorizontalOffset / 2
-			),
 			onTap: castedItem.onTapButton
 		)
 

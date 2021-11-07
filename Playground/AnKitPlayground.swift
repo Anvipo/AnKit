@@ -29,19 +29,35 @@ extension AnKitPlayground {
 
 	static func makePlainLabelItem(
 		text: String,
+		textColor: UIColor = Color.label.uiColor,
+		textFont: UIFont = Font.body.uiFont,
 		dividerColor: UIColor = DividerModel.defaultColor
 	) throws -> CollectionViewItem {
 		try PlainLabelItem(
 			text: text,
-			textColor: Color.label.uiColor,
-			textFont: Font.body.uiFont,
+			textColor: textColor,
+			textFont: textFont,
 			tintColor: Color.brand.uiColor,
 			textAlignment: .center,
-			textInsets: NSDirectionalEdgeInsets(
-				horizontalInset: .defaultHorizontalOffset,
-				verticalInset: 8
-			),
+			textInsets: .default,
 			dividerModel: .lineDefaultOffsetFromStart(color: dividerColor)
+		)
+	}
+}
+
+extension Button {
+	func setup(
+		text: String,
+		onTap: @escaping () -> Void
+	) {
+		setup(
+			text: text,
+			textColor: Color.labelOnBrand.uiColor,
+			textFont: Font.callout.uiFont,
+			tintColor: Color.brand.uiColor,
+			backgroundColor: Color.brand.uiColor,
+			contentEdgeInsets: .default(verticalInset: 16),
+			onTap: onTap
 		)
 	}
 }

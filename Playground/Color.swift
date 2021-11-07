@@ -18,6 +18,7 @@ enum Color {
 
 	case label
 	case secondaryLabel
+	case labelOnBrand
 }
 
 extension Color {
@@ -46,6 +47,9 @@ extension Color {
 
 		case .secondaryLabel:
 			return .secondaryLabel
+
+		case .labelOnBrand:
+			return .white
 		}
 	}
 

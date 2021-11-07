@@ -8,6 +8,16 @@
 import UIKit
 
 public extension NSDirectionalEdgeInsets {
+	/// Creates instance with default horizontal and vertical offsetes.
+	static var `default`: Self {
+		Self(
+			top: .defaultVerticalOffset,
+			leading: .defaultHorizontalOffset,
+			bottom: .defaultVerticalOffset,
+			trailing: .defaultHorizontalOffset
+		)
+	}
+
 	/// Initializes with specified insets.
 	/// - Parameters:
 	///   - horizontalInset: Amount for horizontal insets.
@@ -47,6 +57,17 @@ public extension NSDirectionalEdgeInsets {
 			top: top,
 			leading: .defaultHorizontalOffset,
 			bottom: bottom,
+			trailing: .defaultHorizontalOffset
+		)
+	}
+
+	/// Creates instance with specified `verticalInset` value and default leading and trailing values.
+	/// - Parameter verticalInset: The inset on the top and bottom of an object.
+	static func `default`(verticalInset: CGFloat = .zero) -> Self {
+		Self(
+			top: verticalInset,
+			leading: .defaultHorizontalOffset,
+			bottom: verticalInset,
 			trailing: .defaultHorizontalOffset
 		)
 	}

@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1D230A922735561700F4A881 /* BasePlaygroundVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D230A912735561700F4A881 /* BasePlaygroundVC.swift */; };
+		1D230A9427355A5C00F4A881 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D230A9327355A5C00F4A881 /* ButtonsView.swift */; };
 		1D34D105272422080018CC3B /* CollectionViewSupplementaryView.FillMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D104272422080018CC3B /* CollectionViewSupplementaryView.FillMode.swift */; };
 		1D34D1072724230C0018CC3B /* CollectionViewSupplementaryView.FillMode.LayoutMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D1062724230C0018CC3B /* CollectionViewSupplementaryView.FillMode.LayoutMode.swift */; };
 		1D34D10A272425650018CC3B /* CollectionViewSupplementaryItem.ViewHeightCalculationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34D109272425650018CC3B /* CollectionViewSupplementaryItem.ViewHeightCalculationContext.swift */; };
@@ -58,6 +60,7 @@
 		1D6566082720C2B000C75D34 /* CollectionViewSection.AppendDecorationItemError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6566072720C2B000C75D34 /* CollectionViewSection.AppendDecorationItemError.swift */; };
 		1D65660B2720C6B500C75D34 /* CollectionViewSection.RemoveItemError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D65660A2720C6B500C75D34 /* CollectionViewSection.RemoveItemError.swift */; };
 		1D65660D2720C6EF00C75D34 /* CollectionViewSection.AppendItemError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D65660C2720C6EF00C75D34 /* CollectionViewSection.AppendItemError.swift */; };
+		1D7F4C542737DA00004C6756 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7F4C532737DA00004C6756 /* UIEdgeInsets+Extensions.swift */; };
 		1DCDB5742725BF3900311AC2 /* CollectionViewBoundarySupplementaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCDB5732725BF3900311AC2 /* CollectionViewBoundarySupplementaryItem.swift */; };
 		1DDF00E82709D19B00D88994 /* UIView.ConstraintsMakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00862709D19900D88994 /* UIView.ConstraintsMakeData.swift */; };
 		1DDF00E92709D19B00D88994 /* CollectionViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00872709D19900D88994 /* CollectionViewSection.swift */; };
@@ -192,6 +195,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1D230A912735561700F4A881 /* BasePlaygroundVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePlaygroundVC.swift; sourceTree = "<group>"; };
+		1D230A9327355A5C00F4A881 /* ButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
 		1D34D104272422080018CC3B /* CollectionViewSupplementaryView.FillMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryView.FillMode.swift; sourceTree = "<group>"; };
 		1D34D1062724230C0018CC3B /* CollectionViewSupplementaryView.FillMode.LayoutMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryView.FillMode.LayoutMode.swift; sourceTree = "<group>"; };
 		1D34D109272425650018CC3B /* CollectionViewSupplementaryItem.ViewHeightCalculationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSupplementaryItem.ViewHeightCalculationContext.swift; sourceTree = "<group>"; };
@@ -229,6 +234,7 @@
 		1D6566072720C2B000C75D34 /* CollectionViewSection.AppendDecorationItemError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSection.AppendDecorationItemError.swift; sourceTree = "<group>"; };
 		1D65660A2720C6B500C75D34 /* CollectionViewSection.RemoveItemError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSection.RemoveItemError.swift; sourceTree = "<group>"; };
 		1D65660C2720C6EF00C75D34 /* CollectionViewSection.AppendItemError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSection.AppendItemError.swift; sourceTree = "<group>"; };
+		1D7F4C532737DA00004C6756 /* UIEdgeInsets+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
 		1DCDB5732725BF3900311AC2 /* CollectionViewBoundarySupplementaryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewBoundarySupplementaryItem.swift; sourceTree = "<group>"; };
 		1DDF00772709CEF300D88994 /* AnKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AnKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DDF00812709D15E00D88994 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -570,6 +576,7 @@
 				1DDF01632709D31D00D88994 /* Resources */,
 				1DDF01622709D30E00D88994 /* App */,
 				1D34D11D272466220018CC3B /* AnKitPlayground.swift */,
+				1D230A912735561700F4A881 /* BasePlaygroundVC.swift */,
 				1D6565E6271C581400C75D34 /* Color.swift */,
 				1D6565E8271C591F00C75D34 /* Font.swift */,
 				1D6565EA271C5A2900C75D34 /* Image.swift */,
@@ -650,6 +657,7 @@
 				1DDF00D72709D19B00D88994 /* BlurredView.SetBlurPercentageError.swift */,
 				1DDF00AF2709D19A00D88994 /* BlurredView.swift */,
 				1DDF009F2709D19900D88994 /* Button.swift */,
+				1D230A9327355A5C00F4A881 /* ButtonsView.swift */,
 				1DDF00C62709D19A00D88994 /* CircleButton.swift */,
 				1DDF00A32709D19900D88994 /* ContainerView.swift */,
 				1DDF00D92709D19B00D88994 /* TappableView.swift */,
@@ -680,6 +688,7 @@
 				1DDF00AA2709D19A00D88994 /* Subscribers.Completion+Extensions.swift */,
 				1DDF00C52709D19A00D88994 /* TimeInterval+Extensions.swift */,
 				1DDF00A92709D19A00D88994 /* UIAlertController+Extensions.swift */,
+				1D7F4C532737DA00004C6756 /* UIEdgeInsets+Extensions.swift */,
 				1DDF00B92709D19A00D88994 /* UIImage+Extensions.swift */,
 				1DDF00992709D19900D88994 /* UIImpactFeedbackGenerator.FeedbackStyle+Extensions.swift */,
 				1DDF009D2709D19900D88994 /* UILabel+Extensions.swift */,
@@ -1060,6 +1069,7 @@
 				1DDF00FC2709D19B00D88994 /* DividerView.swift in Sources */,
 				1D6565F8271CB84100C75D34 /* ComplexUIImageProvider.Modifier.swift in Sources */,
 				1DDF01112709D19B00D88994 /* BlurredView.swift in Sources */,
+				1D230A9427355A5C00F4A881 /* ButtonsView.swift in Sources */,
 				1DDF012C2709D19B00D88994 /* Tappable.swift in Sources */,
 				1DDF010C2709D19B00D88994 /* Subscribers.Completion+Extensions.swift in Sources */,
 				1D6566042720C15200C75D34 /* CollectionViewSection.SetDecorationItemsError.swift in Sources */,
@@ -1089,6 +1099,7 @@
 				1DDF01242709D19B00D88994 /* KeyboardNotification.swift in Sources */,
 				1D6565FE2720A9AC00C75D34 /* CollectionViewSection.RemoveBoundarySupplementaryItemError.swift in Sources */,
 				1DDF00F92709D19B00D88994 /* SecondarySystemGroupedBackgroundDecorationView.swift in Sources */,
+				1D7F4C542737DA00004C6756 /* UIEdgeInsets+Extensions.swift in Sources */,
 				1DDF00FF2709D19B00D88994 /* UILabel+Extensions.swift in Sources */,
 				1DDF011E2709D19B00D88994 /* Double+Extensions.swift in Sources */,
 				1DDF00FE2709D19B00D88994 /* UILabel+Shimmerable.swift in Sources */,
@@ -1193,6 +1204,7 @@
 				1D6565E3271C445A00C75D34 /* InfoCardItem.Content.swift in Sources */,
 				1DDF01722709D3BA00D88994 /* ButtonItem.swift in Sources */,
 				1D34D1342724A8BB0018CC3B /* InfoCardItem.BadgeItem.swift in Sources */,
+				1D230A922735561700F4A881 /* BasePlaygroundVC.swift in Sources */,
 				1DDF01742709D3BF00D88994 /* ShuffleItemsVC.swift in Sources */,
 				1D6565E1271C43F600C75D34 /* InfoCardItem.swift in Sources */,
 				1DDF01732709D3BA00D88994 /* ButtonCell.swift in Sources */,
@@ -1369,7 +1381,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.anvipo.AnKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1402,7 +1414,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.anvipo.AnKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

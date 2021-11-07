@@ -12,6 +12,15 @@ extension PickerFieldItem {
 	}
 }
 
+extension PickerFieldItem.SelectedComponentInfo {
+	static var zero: Self {
+		Self(
+			componentIndex: 0,
+			componentRowIndex: 0
+		)
+	}
+}
+
 extension PickerFieldItem.SelectedComponentInfo: Equatable {}
 
 extension PickerFieldItem.SelectedComponentInfo: Hashable {}

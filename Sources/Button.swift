@@ -14,14 +14,17 @@ open class Button: UIButton {
 	public final var onTap: (() -> Void)?
 
 	/// Extended tap area's size.
-	public final var extendedTapAreaSize: CGSize? = CGSize(width: 44, height: 44)
+	public final var extendedTapAreaSize: CGSize?
 
 	/// Extended tap area's size.
 	public final var extendedTapAreaRect: CGRect?
 
 	/// Initializes button.
 	public init() {
+		extendedTapAreaSize = Self.defaultExtendedTapAreaSize
+
 		super.init(frame: .zero)
+
 		setupUI()
 	}
 
@@ -80,6 +83,24 @@ open class Button: UIButton {
 }
 
 public extension Button {
+	/// Default extended tap area's size.
+	static var defaultExtendedTapAreaSize: CGSize {
+		CGSize(
+			width: defaultExtendedTapAreaWidth,
+			height: defaultExtendedTapAreaHeight
+		)
+	}
+
+	/// Default extended tap area's height.
+	static var defaultExtendedTapAreaHeight: CGFloat {
+		44
+	}
+
+	/// Default extended tap area's width.
+	static var defaultExtendedTapAreaWidth: CGFloat {
+		44
+	}
+
 	/// Sets specified parameters.
 	/// - Parameters:
 	///   - text: The text of the button.

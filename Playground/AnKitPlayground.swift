@@ -13,7 +13,10 @@ enum AnKitPlayground {}
 extension AnKitPlayground {
 	static func makePlainLabelBoundarySupplementaryItem(
 		text: String,
-		elementKind: String
+		elementKind: String,
+		blurEffectStyle: UIBlurEffect.Style? = .systemUltraThinMaterial,
+		pinToVisibleBounds: Bool = true,
+		contentInsets: NSDirectionalEdgeInsets = .zero
 	) throws -> CollectionViewBoundarySupplementaryItem {
 		try PlainLabelBoundarySupplementaryItem(
 			text: text,
@@ -22,8 +25,9 @@ extension AnKitPlayground {
 			tintColor: Color.brand.uiColor,
 			elementKind: elementKind,
 			textInsets: .default(top: 14, bottom: 10),
-			blurEffectStyle: .systemUltraThinMaterial,
-			pinToVisibleBounds: true
+			blurEffectStyle: blurEffectStyle,
+			pinToVisibleBounds: pinToVisibleBounds,
+			contentInsets: contentInsets
 		)
 	}
 
@@ -66,6 +70,28 @@ extension AnKitPlayground {
 			contentInsets: Self.defaultContentInsets
 		)
 	}
+
+	static func makeTransitionTypePickerFieldItem(
+		id: CollectionViewItem.ID,
+		title: String,
+		selectedComponent: PickerFieldItem.SelectedComponentInfo,
+		delegate: PickerFieldItemDelegate
+	) throws -> TransitionTypePickerFieldItem {
+		try TransitionTypePickerFieldItem(
+			id: id,
+			title: title,
+			data: [CATransitionType.allCases],
+			selectedComponent: selectedComponent,
+			titleColor: Self.defaultTitleColor.uiColor,
+			titleFont: Self.defaultTitleFont.uiFont,
+			textColor: Self.defaultTextColor.uiColor,
+			textFont: Self.defaultFieldItemFont.uiFont,
+			tintColor: Self.defaultTintColor.uiColor,
+			delegate: delegate,
+			dividerModel: Self.defaultDividerModel,
+			contentInsets: Self.defaultContentInsets
+		)
+	}
 }
 
 extension Button {
@@ -82,6 +108,21 @@ extension Button {
 			contentEdgeInsets: .default(verticalInset: 16),
 			onTap: onTap
 		)
+	}
+}
+
+extension String {
+	static var mock: Self {
+"""
+Lorem ipsum dolor sit amet, \
+consectetur adipiscing elit, \
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \
+Ut enim ad minim veniam, \
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \
+Excepteur sint occaecat cupidatat non proident, \
+sunt in culpa qui officia deserunt mollit anim id est laborum.
+"""
 	}
 }
 

@@ -22,6 +22,8 @@ final class ButtonCell: CollectionViewCell {
 	override func layoutSubviews() {
 		super.layoutSubviews()
 
+		button.layoutIfNeeded()
+
 		button.addDefaultCircleCorners()
 		if let buttonBackgroundColor = button.backgroundColor {
 			button.addDefaultShadow(shadowColor: buttonBackgroundColor)
@@ -42,8 +44,6 @@ final class ButtonCell: CollectionViewCell {
 			text: castedItem.text,
 			onTap: castedItem.onTapButton
 		)
-
-		layoutIfNeeded()
 	}
 }
 

@@ -69,11 +69,18 @@
 		1D7F4C6A27383492004C6756 /* StringFieldItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7F4C6927383492004C6756 /* StringFieldItem.swift */; };
 		1D7F4C6C273834A2004C6756 /* StringFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7F4C6B273834A2004C6756 /* StringFieldCell.swift */; };
 		1D7F4C6E273834C9004C6756 /* StringFieldItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7F4C6D273834C9004C6756 /* StringFieldItemDelegate.swift */; };
+		1D7F4C8127383AA0004C6756 /* DependenciesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7F4C8027383AA0004C6756 /* DependenciesStorage.swift */; };
+		1D7F4C8327383B58004C6756 /* NumberFormatterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7F4C8227383B58004C6756 /* NumberFormatterProtocol.swift */; };
 		1DB3270A27393DBD007E28B3 /* PickerFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB3270827393D9D007E28B3 /* PickerFieldCell.swift */; };
 		1DB3270C27393E4C007E28B3 /* PickerFieldItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB3270B27393E4C007E28B3 /* PickerFieldItem.swift */; };
 		1DB3270E27393E81007E28B3 /* PickerFieldItem.SelectedComponentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB3270D27393E81007E28B3 /* PickerFieldItem.SelectedComponentInfo.swift */; };
 		1DB3271027393EA4007E28B3 /* PickerFieldItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB3270F27393EA4007E28B3 /* PickerFieldItemDelegate.swift */; };
 		1DB3271327394227007E28B3 /* TransitionTypePickerFieldItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB3271227394227007E28B3 /* TransitionTypePickerFieldItem.swift */; };
+		1DB3272027394493007E28B3 /* ExpandableTextItem.CellHeightCalculationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB3271627394458007E28B3 /* ExpandableTextItem.CellHeightCalculationContext.swift */; };
+		1DB3272127394493007E28B3 /* ExpandableTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB3271727394458007E28B3 /* ExpandableTextItem.swift */; };
+		1DB3272227394493007E28B3 /* ChangeItemHeightVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB3271927394458007E28B3 /* ChangeItemHeightVC.swift */; };
+		1DB3272327394493007E28B3 /* ExpandableTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB3271827394458007E28B3 /* ExpandableTextCell.swift */; };
+		1DB3272527394915007E28B3 /* CATransitionType+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB3272427394915007E28B3 /* CATransitionType+Extensions.swift */; };
 		1DCDB5742725BF3900311AC2 /* CollectionViewBoundarySupplementaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCDB5732725BF3900311AC2 /* CollectionViewBoundarySupplementaryItem.swift */; };
 		1DDF00E82709D19B00D88994 /* UIView.ConstraintsMakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00862709D19900D88994 /* UIView.ConstraintsMakeData.swift */; };
 		1DDF00E92709D19B00D88994 /* CollectionViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00872709D19900D88994 /* CollectionViewSection.swift */; };
@@ -256,11 +263,18 @@
 		1D7F4C6927383492004C6756 /* StringFieldItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFieldItem.swift; sourceTree = "<group>"; };
 		1D7F4C6B273834A2004C6756 /* StringFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFieldCell.swift; sourceTree = "<group>"; };
 		1D7F4C6D273834C9004C6756 /* StringFieldItemDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFieldItemDelegate.swift; sourceTree = "<group>"; };
+		1D7F4C8027383AA0004C6756 /* DependenciesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependenciesStorage.swift; sourceTree = "<group>"; };
+		1D7F4C8227383B58004C6756 /* NumberFormatterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterProtocol.swift; sourceTree = "<group>"; };
 		1DB3270827393D9D007E28B3 /* PickerFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerFieldCell.swift; sourceTree = "<group>"; };
 		1DB3270B27393E4C007E28B3 /* PickerFieldItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerFieldItem.swift; sourceTree = "<group>"; };
 		1DB3270D27393E81007E28B3 /* PickerFieldItem.SelectedComponentInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerFieldItem.SelectedComponentInfo.swift; sourceTree = "<group>"; };
 		1DB3270F27393EA4007E28B3 /* PickerFieldItemDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerFieldItemDelegate.swift; sourceTree = "<group>"; };
 		1DB3271227394227007E28B3 /* TransitionTypePickerFieldItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionTypePickerFieldItem.swift; sourceTree = "<group>"; };
+		1DB3271627394458007E28B3 /* ExpandableTextItem.CellHeightCalculationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTextItem.CellHeightCalculationContext.swift; sourceTree = "<group>"; };
+		1DB3271727394458007E28B3 /* ExpandableTextItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTextItem.swift; sourceTree = "<group>"; };
+		1DB3271827394458007E28B3 /* ExpandableTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTextCell.swift; sourceTree = "<group>"; };
+		1DB3271927394458007E28B3 /* ChangeItemHeightVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeItemHeightVC.swift; sourceTree = "<group>"; };
+		1DB3272427394915007E28B3 /* CATransitionType+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransitionType+Extensions.swift"; sourceTree = "<group>"; };
 		1DCDB5732725BF3900311AC2 /* CollectionViewBoundarySupplementaryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewBoundarySupplementaryItem.swift; sourceTree = "<group>"; };
 		1DDF00772709CEF300D88994 /* AnKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AnKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DDF00812709D15E00D88994 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -596,7 +610,6 @@
 		1DB3270727393D94007E28B3 /* Picker */ = {
 			isa = PBXGroup;
 			children = (
-				1DB3271127394211007E28B3 /* Transition type */,
 				1DB3270827393D9D007E28B3 /* PickerFieldCell.swift */,
 				1DB3270B27393E4C007E28B3 /* PickerFieldItem.swift */,
 				1DB3270D27393E81007E28B3 /* PickerFieldItem.SelectedComponentInfo.swift */,
@@ -605,12 +618,41 @@
 			name = Picker;
 			sourceTree = "<group>";
 		};
-		1DB3271127394211007E28B3 /* Transition type */ = {
+		1DB3271127394211007E28B3 /* Transition type picker */ = {
 			isa = PBXGroup;
 			children = (
 				1DB3271227394227007E28B3 /* TransitionTypePickerFieldItem.swift */,
 			);
-			name = "Transition type";
+			name = "Transition type picker";
+			sourceTree = "<group>";
+		};
+		1DB3271527394436007E28B3 /* Change item height */ = {
+			isa = PBXGroup;
+			children = (
+				1DB3271E2739445F007E28B3 /* Items */,
+				1DB3271927394458007E28B3 /* ChangeItemHeightVC.swift */,
+				1DB3272427394915007E28B3 /* CATransitionType+Extensions.swift */,
+			);
+			name = "Change item height";
+			sourceTree = "<group>";
+		};
+		1DB3271E2739445F007E28B3 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				1DB3271127394211007E28B3 /* Transition type picker */,
+				1DB3271F27394463007E28B3 /* Expandable text */,
+			);
+			name = Items;
+			sourceTree = "<group>";
+		};
+		1DB3271F27394463007E28B3 /* Expandable text */ = {
+			isa = PBXGroup;
+			children = (
+				1DB3271827394458007E28B3 /* ExpandableTextCell.swift */,
+				1DB3271627394458007E28B3 /* ExpandableTextItem.CellHeightCalculationContext.swift */,
+				1DB3271727394458007E28B3 /* ExpandableTextItem.swift */,
+			);
+			name = "Expandable text";
 			sourceTree = "<group>";
 		};
 		1DDF006D2709CEF300D88994 = {
@@ -654,6 +696,8 @@
 				1D34D11D272466220018CC3B /* AnKitPlayground.swift */,
 				1D230A912735561700F4A881 /* BasePlaygroundVC.swift */,
 				1D6565E6271C581400C75D34 /* Color.swift */,
+				1D7F4C8027383AA0004C6756 /* DependenciesStorage.swift */,
+				1D7F4C8227383B58004C6756 /* NumberFormatterProtocol.swift */,
 				1D6565E8271C591F00C75D34 /* Font.swift */,
 				1D6565EA271C5A2900C75D34 /* Image.swift */,
 				1DDF01642709D33C00D88994 /* Examples */,
@@ -704,12 +748,13 @@
 		1DDF01702709D36300D88994 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				1D34D1382724A8C70018CC3B /* Vertical badged items */,
-				1D6565EC271C5C9000C75D34 /* Scale carousel */,
-				1DDF01662709D34D00D88994 /* SectionBackgroundVC.swift */,
-				1DDF01682709D34D00D88994 /* ShuffleItemsVC.swift */,
-				1D230A8F27354D2100F4A881 /* InsertAndDeleteItemsInSectionVC.swift */,
 				1DDF019F2709E45100D88994 /* SimpleVC.swift */,
+				1DDF01682709D34D00D88994 /* ShuffleItemsVC.swift */,
+				1DDF01662709D34D00D88994 /* SectionBackgroundVC.swift */,
+				1D6565EC271C5C9000C75D34 /* Scale carousel */,
+				1D34D1382724A8C70018CC3B /* Vertical badged items */,
+				1D230A8F27354D2100F4A881 /* InsertAndDeleteItemsInSectionVC.swift */,
+				1DB3271527394436007E28B3 /* Change item height */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -1272,6 +1317,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D7F4C6627383460004C6756 /* FieldItemDelegate.swift in Sources */,
+				1DB3272127394493007E28B3 /* ExpandableTextItem.swift in Sources */,
+				1D7F4C8327383B58004C6756 /* NumberFormatterProtocol.swift in Sources */,
 				1D6565EE271C5C9D00C75D34 /* ScaleCarouselSection.swift in Sources */,
 				1DDF01512709D28000D88994 /* AppDelegate.swift in Sources */,
 				1DDF01752709D3BF00D88994 /* SectionBackgroundVC.swift in Sources */,
@@ -1281,6 +1328,7 @@
 				1D6565DD271C435100C75D34 /* ScaleCarouselVC.swift in Sources */,
 				1D6565EB271C5A2900C75D34 /* Image.swift in Sources */,
 				1D6565E5271C448E00C75D34 /* InfoCardCell.swift in Sources */,
+				1DB3272327394493007E28B3 /* ExpandableTextCell.swift in Sources */,
 				1D6565E7271C581400C75D34 /* Color.swift in Sources */,
 				1D34D11E272466220018CC3B /* AnKitPlayground.swift in Sources */,
 				1D230A9027354D2100F4A881 /* InsertAndDeleteItemsInSectionVC.swift in Sources */,
@@ -1290,11 +1338,13 @@
 				1DB3270C27393E4C007E28B3 /* PickerFieldItem.swift in Sources */,
 				1DDF01722709D3BA00D88994 /* ButtonItem.swift in Sources */,
 				1D7F4C6227383428004C6756 /* FieldItem.swift in Sources */,
+				1DB3272027394493007E28B3 /* ExpandableTextItem.CellHeightCalculationContext.swift in Sources */,
 				1D34D1342724A8BB0018CC3B /* InfoCardItem.BadgeItem.swift in Sources */,
 				1DB3271327394227007E28B3 /* TransitionTypePickerFieldItem.swift in Sources */,
 				1D230A922735561700F4A881 /* BasePlaygroundVC.swift in Sources */,
 				1DDF01742709D3BF00D88994 /* ShuffleItemsVC.swift in Sources */,
 				1D7F4C6A27383492004C6756 /* StringFieldItem.swift in Sources */,
+				1DB3272227394493007E28B3 /* ChangeItemHeightVC.swift in Sources */,
 				1DB3271027393EA4007E28B3 /* PickerFieldItemDelegate.swift in Sources */,
 				1D6565E1271C43F600C75D34 /* InfoCardItem.swift in Sources */,
 				1DDF01732709D3BA00D88994 /* ButtonCell.swift in Sources */,
@@ -1304,6 +1354,8 @@
 				1DB3270A27393DBD007E28B3 /* PickerFieldCell.swift in Sources */,
 				1D34D1362724A8C00018CC3B /* VerticalBadgedItemsSection.swift in Sources */,
 				1DDF01A02709E45100D88994 /* SimpleVC.swift in Sources */,
+				1DB3272527394915007E28B3 /* CATransitionType+Extensions.swift in Sources */,
+				1D7F4C8127383AA0004C6756 /* DependenciesStorage.swift in Sources */,
 				1D7F4C6C273834A2004C6756 /* StringFieldCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

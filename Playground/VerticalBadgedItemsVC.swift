@@ -8,15 +8,29 @@
 import AnKit
 import UIKit
 
-final class VerticalBadgedItemsVC: BaseVC {
+final class VerticalBadgedItemsVC: BasePlaygroundVC {
+	override var playgroundTitle: String {
+		"Vertical badged items example"
+	}
+
 	private let remoteImageCardHeight: CGFloat = 156
 	private let remoteImageCardWidth: CGFloat = 102
-	private lazy var collectionView = CollectionView()
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		setupUI()
-		fillCollectionView()
+	override func initialSections() throws -> [CollectionViewSection] {
+		let firstSection = try VerticalBadgedItemsSection(
+			items: stride(from: 1, to: Int.random(in: 15...25), by: 1).map { try makeItem(id: $0) },
+			itemSize: NSCollectionLayoutSize(
+				widthDimension: .absolute(remoteImageCardWidth),
+				heightDimension: .absolute(remoteImageCardHeight)
+			),
+			headerItem: try AnKitPlayground.makePlainLabelBoundarySupplementaryItem(
+				text: "Header",
+				elementKind: "Header"
+			),
+			contentInsets: .default(top: 32)
+		)
+
+		return [firstSection]
 	}
 }
 
@@ -61,37 +75,5 @@ private extension VerticalBadgedItemsVC {
 			imageViewContentMode: .scaleToFill,
 			badgeItem: badgeItem
 		)
-	}
-
-	func setupUI() {
-		navigationItem.title = "Vertical badged items example"
-
-		view.addSubviewForConstraintsUse(collectionView)
-
-		NSLayoutConstraint.activate(collectionView.makeConstraints(to: view.safeAreaLayoutGuide))
-	}
-
-	func fillCollectionView() {
-		do {
-			let firstSection = try VerticalBadgedItemsSection(
-				items: stride(from: 1, to: Int.random(in: 15...25), by: 1).map { try makeItem(id: $0) },
-				itemSize: NSCollectionLayoutSize(
-					widthDimension: .absolute(remoteImageCardWidth),
-					heightDimension: .absolute(remoteImageCardHeight)
-				),
-				headerItem: try AnKitPlayground.makePlainLabelBoundarySupplementaryItem(
-					text: "Header",
-					elementKind: "Header"
-				),
-				contentInsets: .default(top: 30)
-			)
-
-			try collectionView.set(
-				sections: [firstSection],
-				animatingDifferences: shouldAnimateDifferences
-			)
-		} catch {
-			assertionFailure(error.localizedDescription)
-		}
 	}
 }

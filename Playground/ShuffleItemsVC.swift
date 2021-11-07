@@ -8,22 +8,13 @@
 import AnKit
 import UIKit
 
-final class ShuffleItemsVC: BaseVC {
-	private let buttonBottomOffset: CGFloat
-	private lazy var collectionView = CollectionView()
+final class ShuffleItemsVC: BasePlaygroundVC {
+	override var playgroundTitle: String {
+		"Shuffle items example"
+	}
+
 	private lazy var button = Button()
-
-	override init(output: BaseViewOutput?) {
-		buttonBottomOffset = .defaultHorizontalOffset
-
-		super.init(output: output)
-	}
-
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		setupUI()
-		fillCollectionView()
-	}
+	private lazy var buttonsView = ButtonsView(button: button)
 
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
@@ -35,11 +26,43 @@ final class ShuffleItemsVC: BaseVC {
 
 		setupCollectionViewContentInsets()
 	}
+
+	override func initialSections() throws -> [CollectionViewSection] {
+		let section = try PlainListSection(
+			items: [
+				AnKitPlayground.makePlainLabelItem(text: "1"),
+				AnKitPlayground.makePlainLabelItem(text: "2"),
+				AnKitPlayground.makePlainLabelItem(text: "3"),
+				AnKitPlayground.makePlainLabelItem(text: "4"),
+				AnKitPlayground.makePlainLabelItem(text: "5"),
+				AnKitPlayground.makePlainLabelItem(text: "6"),
+				AnKitPlayground.makePlainLabelItem(text: "7"),
+				AnKitPlayground.makePlainLabelItem(text: "8"),
+				AnKitPlayground.makePlainLabelItem(text: "9"),
+				AnKitPlayground.makePlainLabelItem(text: "10")
+			],
+			headerItem: AnKitPlayground.makePlainLabelBoundarySupplementaryItem(
+				text: "Header",
+				elementKind: "Header"
+			),
+			footerItem: AnKitPlayground.makePlainLabelBoundarySupplementaryItem(
+				text: "Footer",
+				elementKind: "Footer"
+			)
+		)
+
+		return [section]
+	}
+
+	override func setupUI() {
+		super.setupUI()
+		setupButton()
+	}
 }
 
 private extension ShuffleItemsVC {
 	var neededCollectionViewBottomInset: CGFloat {
-		button.frame.height + buttonBottomOffset
+		buttonsView.frame.height
 	}
 
 	func setupCollectionViewContentInsets() {
@@ -47,97 +70,41 @@ private extension ShuffleItemsVC {
 		collectionView.verticalScrollIndicatorInsets.bottom = collectionView.contentInset.bottom
 	}
 
-	func didTapButton() {
+	func didTapButton() throws {
 		guard let section = collectionView.sections.last as? PlainListSection else {
 			assertionFailure("?")
 			return
 		}
 
-		do {
-			try section.set(items: section.items.shuffled())
+		try section.set(items: section.items.shuffled())
 
-			try collectionView.set(
-				sections: [section],
-				animatingDifferences: shouldAnimateDifferences
-			)
-		} catch {
-			assertionFailure(error.localizedDescription)
-		}
+		try collectionView.set(
+			sections: [section],
+			animatingDifferences: shouldAnimateDifferences
+		)
 	}
 
-	func setupUI() {
-		navigationItem.title = "Shuffle items example"
-
+	func setupButton() {
 		button.setup(
-			text: "Shuffle items",
-			textColor: .white,
-			textFont: .preferredFont(forTextStyle: .callout),
-			tintColor: .systemIndigo,
-			backgroundColor: .systemIndigo,
-			contentEdgeInsets: UIEdgeInsets(
-				top: 16,
-				left: 8,
-				bottom: 16,
-				right: 8
-			)
+			text: "Shuffle items"
 		) { [weak self] in
-			self?.didTapButton()
+			guard let self = self else {
+				return
+			}
+
+			do {
+				try self.didTapButton()
+			} catch {
+				assertionFailure(error.localizedDescription)
+			}
 		}
 
-		view.addSubviewsForConstraintsUse([collectionView, button])
+		view.addSubviewForConstraintsUse(buttonsView)
 
 		NSLayoutConstraint.activate([
-			collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-			collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-			collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-			collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-
-			button.leadingAnchor.constraint(
-				equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-				constant: .defaultHorizontalOffset
-			),
-			button.trailingAnchor.constraint(
-				equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-				constant: -.defaultHorizontalOffset
-			),
-			button.bottomAnchor.constraint(
-				equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-				constant: -buttonBottomOffset
-			)
+			buttonsView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+			buttonsView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+			buttonsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
 		])
-	}
-
-	func fillCollectionView() {
-		do {
-			let section = try PlainListSection(
-				items: [
-					AnKitPlayground.makePlainLabelItem(text: "1"),
-					AnKitPlayground.makePlainLabelItem(text: "2"),
-					AnKitPlayground.makePlainLabelItem(text: "3"),
-					AnKitPlayground.makePlainLabelItem(text: "4"),
-					AnKitPlayground.makePlainLabelItem(text: "5"),
-					AnKitPlayground.makePlainLabelItem(text: "6"),
-					AnKitPlayground.makePlainLabelItem(text: "7"),
-					AnKitPlayground.makePlainLabelItem(text: "8"),
-					AnKitPlayground.makePlainLabelItem(text: "9"),
-					AnKitPlayground.makePlainLabelItem(text: "10")
-				],
-				headerItem: AnKitPlayground.makePlainLabelBoundarySupplementaryItem(
-					text: "Header",
-					elementKind: "Header"
-				),
-				footerItem: AnKitPlayground.makePlainLabelBoundarySupplementaryItem(
-					text: "Footer",
-					elementKind: "Footer"
-				)
-			)
-
-			try collectionView.set(
-				sections: [section],
-				animatingDifferences: shouldAnimateDifferences
-			)
-		} catch {
-			assertionFailure(error.localizedDescription)
-		}
 	}
 }

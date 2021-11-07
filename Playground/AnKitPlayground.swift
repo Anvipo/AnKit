@@ -43,6 +43,29 @@ extension AnKitPlayground {
 			dividerModel: .lineDefaultOffsetFromStart(color: dividerColor)
 		)
 	}
+
+	static func makeStringFieldItem(
+		id: CollectionViewItem.ID,
+		title: String,
+		text: String,
+		textKeyboardType: UIKeyboardType,
+		delegate: StringFieldItemDelegate
+	) throws -> StringFieldItem {
+		try StringFieldItem(
+			id: id,
+			title: title,
+			text: text,
+			titleColor: Self.defaultTitleColor.uiColor,
+			titleFont: Self.defaultTitleFont.uiFont,
+			textColor: Self.defaultTextColor.uiColor,
+			textFont: Self.defaultFieldItemFont.uiFont,
+			tintColor: Self.defaultTintColor.uiColor,
+			textKeyboardType: textKeyboardType,
+			delegate: delegate,
+			dividerModel: Self.defaultDividerModel,
+			contentInsets: Self.defaultContentInsets
+		)
+	}
 }
 
 extension Button {
@@ -58,6 +81,41 @@ extension Button {
 			backgroundColor: Color.brand.uiColor,
 			contentEdgeInsets: .default(verticalInset: 16),
 			onTap: onTap
+		)
+	}
+}
+
+private extension AnKitPlayground {
+	static var defaultTitleColor: Color {
+		.secondaryLabel
+	}
+
+	static var defaultTitleFont: Font {
+		.footnote
+	}
+
+	static var defaultTextColor: Color {
+		.label
+	}
+
+	static var defaultTintColor: Color {
+		.brand
+	}
+
+	static var defaultFieldItemFont: Font {
+		.body
+	}
+
+	static var defaultDividerModel: DividerModel? {
+		.lineFullWidth()
+	}
+
+	static var defaultContentInsets: NSDirectionalEdgeInsets {
+		.init(
+			top: 14,
+			leading: .zero,
+			bottom: 10,
+			trailing: .zero
 		)
 	}
 }

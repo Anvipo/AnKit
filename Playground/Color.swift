@@ -25,7 +25,7 @@ extension Color {
 	var uiColor: UIColor {
 		switch self {
 		case .shadow:
-			return .systemGray5
+			return .systemGray
 
 		case .brand:
 			return .systemIndigo

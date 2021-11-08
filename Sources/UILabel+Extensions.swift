@@ -7,9 +7,14 @@
 
 import UIKit
 
-extension UILabel {
+public extension UILabel {
+	/// Calculates number of lines, which label's text will lay out.
+	/// - Parameters:
+	///   - availableWidth: Available width for label.
+	///   - maximumNumberOfLines: The maximum number of lines that the text container can store.
+	///   - lineFragmentPadding: The value for the text inset within line fragment rectangles.
 	func actualNumberOfLines(
-		width: CGFloat,
+		availableWidth: CGFloat,
 		maximumNumberOfLines: Int = .zero,
 		lineFragmentPadding: CGFloat = .zero
 	) -> Int {
@@ -19,7 +24,7 @@ extension UILabel {
 		)
 
 		let targetSize = CGSize(
-			width: width,
+			width: availableWidth,
 			height: UIView.layoutFittingCompressedSize.height
 		)
 		let textContainer = NSTextContainer(size: targetSize)

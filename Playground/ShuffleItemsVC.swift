@@ -9,7 +9,7 @@ import AnKit
 import UIKit
 
 final class ShuffleItemsVC: BasePlaygroundVC {
-	override var playgroundTitle: String {
+	override class var playgroundTitle: String {
 		"Shuffle items example"
 	}
 

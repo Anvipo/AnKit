@@ -9,7 +9,7 @@ import AnKit
 import UIKit
 
 final class SectionBackgroundVC: BasePlaygroundVC {
-	override var playgroundTitle: String {
+	override class var playgroundTitle: String {
 		"Section background example"
 	}
 

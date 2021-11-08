@@ -9,14 +9,14 @@ import AnKit
 import UIKit
 
 final class ChangeItemHeightVC: BasePlaygroundVC {
+	override class var playgroundTitle: String {
+		"Change item height example"
+	}
+
 	private let numberFormatter: NumberFormatterProtocol
 	private let animationDurationPickerItemID: CollectionViewItem.ID
 	private let textLabelTransitionTypePickerID: CollectionViewItem.ID
 	private weak var expandByReconfigureItem: ExpandableTextItem?
-
-	override var playgroundTitle: String {
-		"Change item height example"
-	}
 
 	override init(output: BaseViewOutput?) {
 		numberFormatter = DependenciesStorage.shared.numberFormatter

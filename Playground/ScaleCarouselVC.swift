@@ -9,7 +9,7 @@ import AnKit
 import UIKit
 
 final class ScaleCarouselVC: BasePlaygroundVC {
-	override var playgroundTitle: String {
+	override class var playgroundTitle: String {
 		"Scale carousel example"
 	}
 

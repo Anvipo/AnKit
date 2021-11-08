@@ -100,7 +100,7 @@ private extension InsertAndDeleteItemsInSectionVC {
 
 		let sectionItems = try collectionView.items(in: section)
 
-		let newItem = try AnKitPlayground.makePlainLabelItem(text: "\(sectionItems.count)")
+		let newItem = try AnKitPlayground.makePlainLabelItem(text: "\(sectionItems.count + 1)")
 
 		let snapshotTransaction: CollectionView.SnapshotTransaction
 		if sectionItems.isEmpty {

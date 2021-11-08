@@ -50,7 +50,7 @@ final class ScaleCarouselSection: CollectionViewSection {
 	}
 
 	override func layoutConfiguration(
-		layoutEnvironment: NSCollectionLayoutEnvironment
+		context: LayoutCreationContext
 	) -> NSCollectionLayoutSection {
 		let itemSize = NSCollectionLayoutSize(
 			widthDimension: .fractionalWidth(1),

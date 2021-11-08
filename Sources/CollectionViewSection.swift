@@ -73,9 +73,9 @@ open class CollectionViewSection {
 	}
 
 	/// Creates layout configuration of this section.
-	/// - Parameter layoutEnvironment: Information about the current layout environment.
+	/// - Parameter context: Detailed information sufficient to build the layout of the section.
 	open func layoutConfiguration(
-		layoutEnvironment: NSCollectionLayoutEnvironment
+		context: LayoutCreationContext
 	) -> NSCollectionLayoutSection {
 		fatalError("Implement this method in your class")
 	}

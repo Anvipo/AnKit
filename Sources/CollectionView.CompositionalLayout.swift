@@ -17,7 +17,12 @@ extension CollectionView {
 					fatalError("There is no section at index \(sectionIndex)")
 				}
 
-				return section.layoutConfiguration(layoutEnvironment: layoutEnvironment)
+				let context = CollectionViewSection.LayoutCreationContext(
+					sectionIndex: sectionIndex,
+					layoutEnvironment: layoutEnvironment
+				)
+
+				return section.layoutConfiguration(context: context)
 			}
 		}
 

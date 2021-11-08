@@ -9,19 +9,19 @@ import AnKit
 import UIKit
 
 final class MainVC: BasePlaygroundVC {
-	override var playgroundTitle: String {
+	override class var playgroundTitle: String {
 		"Examples"
 	}
 
 	override func initialSections() throws -> [CollectionViewSection] {
-		let exampleViewControllers: [BasePlaygroundVC] = [
-			SimpleVC(),
-			ShuffleItemsVC(),
-			SectionBackgroundVC(),
-			ScaleCarouselVC(),
-			VerticalBadgedItemsVC(),
-			InsertAndDeleteItemsInSectionVC(),
-			ChangeItemHeightVC()
+		let exampleViewControllers: [BasePlaygroundVC.Type] = [
+			SimpleVC.self,
+			ShuffleItemsVC.self,
+			SectionBackgroundVC.self,
+			ScaleCarouselVC.self,
+			VerticalBadgedItemsVC.self,
+			InsertAndDeleteItemsInSectionVC.self,
+			ChangeItemHeightVC.self
 		]
 
 		return [try makeSection(exampleViewControllers: exampleViewControllers)]
@@ -29,17 +29,17 @@ final class MainVC: BasePlaygroundVC {
 }
 
 private extension MainVC {
-	func makeSection(exampleViewControllers: [BasePlaygroundVC]) throws -> PlainListSection {
+	func makeSection(exampleViewControllers: [BasePlaygroundVC.Type]) throws -> PlainListSection {
 		try PlainListSection(
 			items: [PlainSpacerItem(height: .defaultVerticalOffset)] +
-			exampleViewControllers.reduce(into: []) { partialResult, exampleVC in
-				let buttonItem = try ButtonItem(text: exampleVC.playgroundTitle) { [weak self] in
+			exampleViewControllers.reduce(into: []) { partialResult, exampleVCType in
+				let buttonItem = try ButtonItem(text: exampleVCType.playgroundTitle) { [weak self] in
 					guard let self = self else {
 						return
 					}
 
 					self.navigationController?.pushViewController(
-						exampleVC,
+						exampleVCType.init(),
 						animated: self.shouldAnimateDifferences
 					)
 				}

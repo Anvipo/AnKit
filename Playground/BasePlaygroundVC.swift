@@ -9,15 +9,19 @@ import AnKit
 import UIKit
 
 class BasePlaygroundVC: BaseVC {
-	var playgroundTitle: String {
+	class var playgroundTitle: String {
 		fatalError("Implement this method")
 	}
 
 	lazy var collectionView = CollectionView()
 
+	required convenience init() {
+		self.init(output: nil)
+	}
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		navigationItem.title = playgroundTitle
+		navigationItem.title = Self.playgroundTitle
 		setupUI()
 
 		do {

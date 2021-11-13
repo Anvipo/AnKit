@@ -65,12 +65,12 @@ public final class PlainListSection: CollectionViewSection {
 	}
 
 	override public func layoutConfiguration(
-		layoutEnvironment: NSCollectionLayoutEnvironment
+		context: LayoutCreationContext
 	) -> NSCollectionLayoutSection {
-		let effectiveContentWidth = effectiveContentWidth(layoutEnvironment: layoutEnvironment)
+		let effectiveContentWidth = effectiveContentWidth(layoutEnvironment: context.layoutEnvironment)
 
 		let sectionLayout = sectionLayout(
-			layoutEnvironment: layoutEnvironment,
+			layoutEnvironment: context.layoutEnvironment,
 			effectiveContentWidth: effectiveContentWidth
 		)
 		sectionLayout.contentInsets = contentInsets
@@ -82,7 +82,7 @@ public final class PlainListSection: CollectionViewSection {
 				item: headerItem,
 				alignment: .top,
 				effectiveContentWidth: effectiveContentWidth,
-				layoutEnvironment: layoutEnvironment
+				layoutEnvironment: context.layoutEnvironment
 			)
 			sectionLayout.boundarySupplementaryItems.append(headerLayout)
 
@@ -97,7 +97,7 @@ public final class PlainListSection: CollectionViewSection {
 				item: footerItem,
 				alignment: .bottom,
 				effectiveContentWidth: effectiveContentWidth,
-				layoutEnvironment: layoutEnvironment
+				layoutEnvironment: context.layoutEnvironment
 			)
 			sectionLayout.boundarySupplementaryItems.append(footerLayout)
 

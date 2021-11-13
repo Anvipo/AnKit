@@ -32,14 +32,14 @@ final class VerticalBadgedItemsSection: CollectionViewSection {
 	}
 
 	override func layoutConfiguration(
-		layoutEnvironment: NSCollectionLayoutEnvironment
+		context: LayoutCreationContext
 	) -> NSCollectionLayoutSection {
-		let effectiveContentWidth = effectiveContentWidthLayoutDimension(layoutEnvironment: layoutEnvironment)
+		let effectiveContentWidth = effectiveContentWidthLayoutDimension(layoutEnvironment: context.layoutEnvironment)
 
 		// swiftlint:disable:next force_try
 		let verticalGroup = try! verticalGroupLayout(
 			effectiveContentWidth: effectiveContentWidth,
-			layoutEnvironment: layoutEnvironment
+			layoutEnvironment: context.layoutEnvironment
 		)
 
 		let section = NSCollectionLayoutSection(group: verticalGroup)
@@ -47,8 +47,8 @@ final class VerticalBadgedItemsSection: CollectionViewSection {
 
 		if let headerItem = headerItem {
 			let context = CollectionViewSupplementaryItem.ViewHeightCalculationContext(
-				availableWidthForSupplementaryView: layoutEnvironment.container.effectiveContentSize.width,
-				layoutEnvironment: AnyNSCollectionLayoutEnvironment(layoutEnvironment)
+				availableWidthForSupplementaryView: context.layoutEnvironment.container.effectiveContentSize.width,
+				layoutEnvironment: AnyNSCollectionLayoutEnvironment(context.layoutEnvironment)
 			)
 			let headerSize = NSCollectionLayoutSize(
 				widthDimension: .absolute(context.availableWidthForSupplementaryView),

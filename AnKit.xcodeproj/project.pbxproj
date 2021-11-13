@@ -82,6 +82,8 @@
 		1DB3272327394493007E28B3 /* ExpandableTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB3271827394458007E28B3 /* ExpandableTextCell.swift */; };
 		1DB3272527394915007E28B3 /* CATransitionType+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB3272427394915007E28B3 /* CATransitionType+Extensions.swift */; };
 		1DB327272739B822007E28B3 /* CollectionViewSection.LayoutCreationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB327262739B822007E28B3 /* CollectionViewSection.LayoutCreationContext.swift */; };
+		1DCD897A274010D000EBFD3A /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCD8979274010D000EBFD3A /* UIColor+Extensions.swift */; };
+		1DCD897C274013F500EBFD3A /* UIColor.AdjustError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCD897B274013F500EBFD3A /* UIColor.AdjustError.swift */; };
 		1DCDB5742725BF3900311AC2 /* CollectionViewBoundarySupplementaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCDB5732725BF3900311AC2 /* CollectionViewBoundarySupplementaryItem.swift */; };
 		1DDF00E82709D19B00D88994 /* UIView.ConstraintsMakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00862709D19900D88994 /* UIView.ConstraintsMakeData.swift */; };
 		1DDF00E92709D19B00D88994 /* CollectionViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF00872709D19900D88994 /* CollectionViewSection.swift */; };
@@ -277,6 +279,8 @@
 		1DB3271927394458007E28B3 /* ChangeItemHeightVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeItemHeightVC.swift; sourceTree = "<group>"; };
 		1DB3272427394915007E28B3 /* CATransitionType+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransitionType+Extensions.swift"; sourceTree = "<group>"; };
 		1DB327262739B822007E28B3 /* CollectionViewSection.LayoutCreationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSection.LayoutCreationContext.swift; sourceTree = "<group>"; };
+		1DCD8979274010D000EBFD3A /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		1DCD897B274013F500EBFD3A /* UIColor.AdjustError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.AdjustError.swift; sourceTree = "<group>"; };
 		1DCDB5732725BF3900311AC2 /* CollectionViewBoundarySupplementaryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewBoundarySupplementaryItem.swift; sourceTree = "<group>"; };
 		1DDF00772709CEF300D88994 /* AnKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AnKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DDF00812709D15E00D88994 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -814,6 +818,8 @@
 				1DDF00AA2709D19A00D88994 /* Subscribers.Completion+Extensions.swift */,
 				1DDF00C52709D19A00D88994 /* TimeInterval+Extensions.swift */,
 				1DDF00A92709D19A00D88994 /* UIAlertController+Extensions.swift */,
+				1DCD8979274010D000EBFD3A /* UIColor+Extensions.swift */,
+				1DCD897B274013F500EBFD3A /* UIColor.AdjustError.swift */,
 				1D7F4C532737DA00004C6756 /* UIEdgeInsets+Extensions.swift */,
 				1DDF00B92709D19A00D88994 /* UIImage+Extensions.swift */,
 				1DDF00992709D19900D88994 /* UIImpactFeedbackGenerator.FeedbackStyle+Extensions.swift */,
@@ -1205,6 +1211,7 @@
 				1D3CD7B027240B8F0074B6F6 /* CollectionViewItem.CellHeightCalculationContext.swift in Sources */,
 				1DDF012F2709D19B00D88994 /* CollectionViewItem.swift in Sources */,
 				1DDF013B2709D19B00D88994 /* TappableView.swift in Sources */,
+				1DCD897C274013F500EBFD3A /* UIColor.AdjustError.swift in Sources */,
 				1DDF00F12709D19B00D88994 /* PlainSpacerCell.swift in Sources */,
 				1DDF012A2709D19B00D88994 /* NSDirectionalEdgeInsets+Extensions.swift in Sources */,
 				1DDF01482709D19B00D88994 /* ImageContent.swift in Sources */,
@@ -1233,6 +1240,7 @@
 				1DDF00FE2709D19B00D88994 /* UILabel+Shimmerable.swift in Sources */,
 				1D65660B2720C6B500C75D34 /* CollectionViewSection.RemoveItemError.swift in Sources */,
 				1DDF00EA2709D19B00D88994 /* DividerDefaultStrategy.swift in Sources */,
+				1DCD897A274010D000EBFD3A /* UIColor+Extensions.swift in Sources */,
 				1D6566082720C2B000C75D34 /* CollectionViewSection.AppendDecorationItemError.swift in Sources */,
 				1DDF01272709D19B00D88994 /* TimeInterval+Extensions.swift in Sources */,
 				1DDF01462709D19B00D88994 /* CGSize.ProportionallySizingError.swift in Sources */,

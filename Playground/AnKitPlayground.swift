@@ -108,6 +108,15 @@ extension Button {
 			contentEdgeInsets: .default(verticalInset: 16),
 			onTap: onTap
 		)
+		didChangeHighlightState = { [weak self] in
+			guard let self = self else {
+				return
+			}
+
+			self.backgroundColor = self.isHighlighted
+			? Color.brandHighlighted.uiColor
+			: Color.brand.uiColor
+		}
 	}
 }
 

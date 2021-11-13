@@ -5,11 +5,13 @@
 //  Created by Anvipo on 17.10.2021.
 //
 
+import AnKit
 import UIKit
 
 enum Color {
 	case shadow
 	case brand
+	case brandHighlighted
 	case white
 
 	case systemBackground
@@ -29,6 +31,10 @@ extension Color {
 
 		case .brand:
 			return .systemIndigo
+
+		case .brandHighlighted:
+			// swiftlint:disable:next force_try
+			return try! Color.brand.uiColor.lighter(by: 0.1)
 
 		case .white:
 			return .white

@@ -19,6 +19,15 @@ open class Button: UIButton {
 	/// Extended tap area's size.
 	public final var extendedTapAreaRect: CGRect?
 
+	/// Action, which will be triggered when `isHighlighted` property is changed.
+	public var didChangeHighlightState: (() -> Void)?
+
+	override open var isHighlighted: Bool {
+		didSet {
+			didChangeHighlightState?()
+		}
+	}
+
 	/// Initializes button.
 	public init() {
 		extendedTapAreaSize = Self.defaultExtendedTapAreaSize

@@ -45,6 +45,7 @@ final class ChangeItemHeightVC: BasePlaygroundVC {
 		super.setupUI()
 		view.backgroundColor = .systemGroupedBackground
 		collectionView.keyboardDismissMode = .onDrag
+		setupGestureRecognizer()
 	}
 }
 
@@ -193,5 +194,16 @@ private extension ChangeItemHeightVC {
 				animatingDifferences: shouldAnimateDifferences
 			)
 		}
+	}
+
+	@objc
+	func didTapView() {
+		view.endEditing(true)
+	}
+
+	func setupGestureRecognizer() {
+		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapView))
+		tapGestureRecognizer.cancelsTouchesInView = false
+		view.addGestureRecognizer(tapGestureRecognizer)
 	}
 }

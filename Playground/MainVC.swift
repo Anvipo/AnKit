@@ -29,7 +29,7 @@ final class MainVC: BasePlaygroundVC {
 }
 
 private extension MainVC {
-	func makeSection(exampleViewControllers: [BasePlaygroundVC.Type]) throws -> PlainListSection {
+	func makeSection(exampleViewControllers: [PlaygroundVCProtocol.Type]) throws -> PlainListSection {
 		try PlainListSection(
 			items: [PlainSpacerItem(height: .defaultVerticalOffset)] +
 			exampleViewControllers.reduce(into: []) { partialResult, exampleVCType in

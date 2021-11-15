@@ -68,6 +68,7 @@ private extension InsertAndDeleteItemsInSectionVC {
 	}
 
 	var section: CollectionViewSection {
+		// swiftlint:disable:next force_unwrapping
 		collectionView.sections.last!
 	}
 

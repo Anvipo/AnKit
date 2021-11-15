@@ -8,7 +8,7 @@
 import AnKit
 import UIKit
 
-class BasePlaygroundVC: BaseVC {
+class BasePlaygroundVC: BaseVC, PlaygroundVCProtocol {
 	class var playgroundTitle: String {
 		fatalError("Implement this method")
 	}

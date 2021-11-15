@@ -67,59 +67,45 @@ private extension InsertAndDeleteItemsInSectionVC {
 		buttonsView.frame.height
 	}
 
+	var section: CollectionViewSection {
+		collectionView.sections.last!
+	}
+
 	func setupCollectionViewContentInsets() {
 		collectionView.contentInset.bottom = neededCollectionViewBottomInset
 		collectionView.verticalScrollIndicatorInsets.bottom = collectionView.contentInset.bottom
 	}
 
 	func didTapDeleteButton() throws {
-		guard let section = collectionView.sections.last else {
-			assertionFailure("?")
-			return
-		}
+		var sectionItems = section.items
 
-		let sectionItems = try collectionView.items(in: section)
+		sectionItems.remove(at: .random(in: 0..<sectionItems.count))
 
 		if sectionItems.isEmpty {
 			return
 		}
 
-		let randomIndex = Int.random(in: 0..<sectionItems.count)
+		try section.set(items: sectionItems)
 
-		try collectionView.apply(
-			snapshotTransaction: [.deleteItems([sectionItems[randomIndex]])],
+		try collectionView.set(
+			sections: [section],
 			animatingDifferences: shouldAnimateDifferences
 		)
 	}
 
 	func didTapInsertButton() throws {
-		guard let section = collectionView.sections.last else {
-			assertionFailure("?")
-			return
-		}
+		var sectionItems = section.items
 
-		let sectionItems = try collectionView.items(in: section)
+		let newItem = try AnKitPlayground.makePlainLabelItem(
+			text: "\(sectionItems.count + 1)"
+		)
 
-		let newItem = try AnKitPlayground.makePlainLabelItem(text: "\(sectionItems.count + 1)")
+		sectionItems.insert(newItem, at: .random(in: 0..<sectionItems.count))
 
-		let snapshotTransaction: CollectionView.SnapshotTransaction
-		if sectionItems.isEmpty {
-			snapshotTransaction = [
-				.appendItems([newItem], toSection: section)
-			]
-		} else {
-			let randomIndex = Int.random(in: 0..<sectionItems.count)
+		try section.set(items: sectionItems)
 
-			snapshotTransaction = [
-				.insertItemsAfterItem(
-					[newItem],
-					afterItem: sectionItems[randomIndex]
-				)
-			]
-		}
-
-		try collectionView.apply(
-			snapshotTransaction: snapshotTransaction,
+		try collectionView.set(
+			sections: [section],
 			animatingDifferences: shouldAnimateDifferences
 		)
 	}

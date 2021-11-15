@@ -16,6 +16,7 @@ final class ChangeItemHeightVC: BasePlaygroundVC {
 	private let numberFormatter: NumberFormatterProtocol
 	private let animationDurationPickerItemID: CollectionViewItem.ID
 	private let textLabelTransitionTypePickerID: CollectionViewItem.ID
+	private weak var expandByReloadItem: ExpandableTextItem?
 	private weak var expandByReconfigureItem: ExpandableTextItem?
 
 	override init(output: BaseViewOutput?) {
@@ -83,15 +84,14 @@ private extension ChangeItemHeightVC {
 		// swiftlint:disable:next implicit_getter
 		get throws {
 			let expandByReloadItem = try ExpandableTextItem(text: .mock)
-			expandByReloadItem.onTapExpandButton = { [weak self, weak expandByReloadItem] in
-				guard let self = self,
-					  let expandByReloadItem = expandByReloadItem
-				else {
+			self.expandByReloadItem = expandByReloadItem
+			expandByReloadItem.onTapExpandButton = { [weak self] in
+				guard let self = self else {
 					return
 				}
 
 				do {
-					try self.didTap(expandByReloadItem: expandByReloadItem)
+					try self.didTapExpandByReloadItem()
 				} catch {
 					assertionFailure(error.localizedDescription)
 				}
@@ -163,7 +163,12 @@ private extension ChangeItemHeightVC {
 		}
 	}
 
-	func didTap(expandByReloadItem: ExpandableTextItem) throws {
+	func didTapExpandByReloadItem() throws {
+		guard let expandByReloadItem = expandByReloadItem else {
+			assertionFailure("?")
+			return
+		}
+
 		expandByReloadItem.isExpanded.toggle()
 
 		try collectionView.reload(
@@ -172,7 +177,6 @@ private extension ChangeItemHeightVC {
 		)
 	}
 
-	@available(iOS 15, *)
 	func didTapExpandByReconfigureItem() throws {
 		guard let expandByReconfigureItem = expandByReconfigureItem else {
 			assertionFailure("?")

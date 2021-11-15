@@ -80,7 +80,9 @@ public extension CALayer {
 		animationName: String = "AnKit.AnimatedTransition"
 	) {
 		let fadeTransition = CATransition()
-		fadeTransition.timingFunction = CAMediaTimingFunction(name: timingFunctionName)
+		fadeTransition.timingFunction = CAMediaTimingFunction(
+			name: timingFunctionName
+		)
 		fadeTransition.type = type
 		fadeTransition.duration = duration
 

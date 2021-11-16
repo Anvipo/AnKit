@@ -11,11 +11,19 @@ import UIKit
 public final class ButtonsView: UIView {
 	private let buttonsStackView: UIStackView
 	private let blurredView: BlurredView
-	private let buttons: [Button]
+
+	/// Buttons in container.
+	///
+	/// Always not empty.
+	public let buttons: [Button]
 
 	/// Initializes with specified `buttons`.
-	/// - Parameter buttons: Array of buttons, which will be in container.
-	public init(buttons: [Button]) {
+	/// - Parameter buttons: Array of buttons, which will be in container. Should not be empty.
+	public init(buttons: [Button]) throws {
+		if buttons.isEmpty {
+			throw InitError.emptyButtons
+		}
+
 		buttonsStackView = UIStackView(arrangedSubviews: buttons)
 		blurredView = BlurredView(style: .systemUltraThinMaterial)
 		self.buttons = buttons
@@ -23,12 +31,6 @@ public final class ButtonsView: UIView {
 		super.init(frame: .zero)
 
 		setupUI()
-	}
-
-	/// Initializes with specified `button`.
-	/// - Parameter button: Buttons, which will be in container.
-	public convenience init(button: Button) {
-		self.init(buttons: [button])
 	}
 
 	@available(*, unavailable)

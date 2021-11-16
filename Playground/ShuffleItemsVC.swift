@@ -14,7 +14,8 @@ final class ShuffleItemsVC: BasePlaygroundVC {
 	}
 
 	private lazy var button = Button()
-	private lazy var buttonsView = ButtonsView(button: button)
+	// swiftlint:disable:next force_try
+	private lazy var buttonsView = try! ButtonsView(buttons: [button])
 
 	override var initialSections: [CollectionViewSection] {
 		get throws {

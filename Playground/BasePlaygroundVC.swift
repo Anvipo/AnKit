@@ -21,6 +21,11 @@ class BasePlaygroundVC: BaseVC, PlaygroundVCProtocol {
 		}
 	}
 
+	override init(output: BaseViewOutput?) {
+		assert(!Self.playgroundTitle.isEmpty)
+		super.init(output: output)
+	}
+
 	required convenience init() {
 		self.init(output: nil)
 	}
@@ -47,7 +52,7 @@ private extension BasePlaygroundVC {
 	func fillCollectionView() throws {
 		try collectionView.set(
 			sections: initialSections,
-			animatingDifferences: shouldAnimateDifferences
+			animatingDifferences: shouldAnimate
 		)
 	}
 }

@@ -79,7 +79,7 @@ private extension ShuffleItemsVC {
 
 		try collectionView.set(
 			sections: [section],
-			animatingDifferences: shouldAnimateDifferences
+			animatingDifferences: shouldAnimate
 		)
 	}
 

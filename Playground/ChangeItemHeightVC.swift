@@ -173,7 +173,7 @@ private extension ChangeItemHeightVC {
 
 		try collectionView.reload(
 			items: [expandByReloadItem],
-			animatingDifferences: shouldAnimateDifferences
+			animatingDifferences: shouldAnimate
 		)
 	}
 
@@ -190,13 +190,13 @@ private extension ChangeItemHeightVC {
 			UIView.animate(withDuration: animationDuration) { [self] in
 				try? collectionView.reconfigure(
 					items: [expandByReconfigureItem],
-					animatingDifferences: shouldAnimateDifferences
+					animatingDifferences: shouldAnimate
 				)
 			}
 		} else {
 			try collectionView.reconfigure(
 				items: [expandByReconfigureItem],
-				animatingDifferences: shouldAnimateDifferences
+				animatingDifferences: shouldAnimate
 			)
 		}
 	}

@@ -88,7 +88,7 @@ private extension InsertAndDeleteItemsInSectionVC {
 
 		try collectionView.set(
 			sections: [section],
-			animatingDifferences: shouldAnimateDifferences
+			animatingDifferences: shouldAnimate
 		)
 	}
 
@@ -105,7 +105,7 @@ private extension InsertAndDeleteItemsInSectionVC {
 
 		try collectionView.set(
 			sections: [section],
-			animatingDifferences: shouldAnimateDifferences
+			animatingDifferences: shouldAnimate
 		)
 	}
 

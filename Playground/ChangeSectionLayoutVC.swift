@@ -145,7 +145,7 @@ private extension ChangeSectionLayoutVC {
 
 		try collectionView.set(
 			sections: [section],
-			animatingDifferences: shouldAnimateDifferences
+			animatingDifferences: shouldAnimate
 		)
 	}
 
@@ -155,7 +155,7 @@ private extension ChangeSectionLayoutVC {
 
 		try collectionView.set(
 			sections: [section],
-			animatingDifferences: shouldAnimateDifferences
+			animatingDifferences: shouldAnimate
 		)
 	}
 
@@ -165,7 +165,7 @@ private extension ChangeSectionLayoutVC {
 
 		try collectionView.set(
 			sections: [section],
-			animatingDifferences: shouldAnimateDifferences
+			animatingDifferences: shouldAnimate
 		)
 	}
 
@@ -175,7 +175,7 @@ private extension ChangeSectionLayoutVC {
 
 		try collectionView.set(
 			sections: [section],
-			animatingDifferences: shouldAnimateDifferences
+			animatingDifferences: shouldAnimate
 		)
 	}
 
@@ -198,6 +198,6 @@ private extension ChangeSectionLayoutVC {
 			}
 		].forEach(alertController.addAction(_:))
 
-		present(alertController, animated: shouldAnimateDifferences)
+		present(alertController, animated: shouldAnimate)
 	}
 }

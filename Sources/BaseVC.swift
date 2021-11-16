@@ -89,8 +89,8 @@ open class BaseVC: UIViewController {
 }
 
 public extension BaseVC {
-	/// Should animate the updates to the views.
-	var shouldAnimateDifferences: Bool {
+	/// Should animate the updates in the views.
+	var shouldAnimate: Bool {
 		if !UIView.areAnimationsEnabled {
 			return false
 		}

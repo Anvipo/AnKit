@@ -15,7 +15,7 @@ final class MainVC: BasePlaygroundVC {
 
 	override var initialSections: [CollectionViewSection] {
 		get throws {
-			let exampleViewControllers: [BasePlaygroundVC.Type] = [
+			let exampleViewControllers: [PlaygroundVCProtocol.Type] = [
 				SimpleVC.self,
 				ShuffleItemsVC.self,
 				SectionBackgroundVC.self,
@@ -43,7 +43,7 @@ private extension MainVC {
 
 					self.navigationController?.pushViewController(
 						exampleVCType.init(),
-						animated: self.shouldAnimateDifferences
+						animated: self.shouldAnimate
 					)
 				}
 				partialResult.append(buttonItem)

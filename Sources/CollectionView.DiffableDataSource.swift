@@ -137,8 +137,7 @@ extension CollectionView.DiffableDataSource {
 		completion: (() -> Void)? = nil
 	) throws {
 		if items.isEmpty {
-			completion?()
-			return
+			throw CollectionView.DataSourceError.emptyItems
 		}
 
 		var currentSnapshot = snapshot()
@@ -164,7 +163,7 @@ extension CollectionView.DiffableDataSource {
 		animatingDifferences: Bool
 	) async throws {
 		if items.isEmpty {
-			return
+			throw CollectionView.DataSourceError.emptyItems
 		}
 
 		var currentSnapshot = snapshot()

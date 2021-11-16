@@ -15,7 +15,8 @@ final class InsertAndDeleteItemsInSectionVC: BasePlaygroundVC {
 
 	private lazy var insertButton = Button()
 	private lazy var deleteButton = Button()
-	private lazy var buttonsView = ButtonsView(
+	// swiftlint:disable:next force_try
+	private lazy var buttonsView = try! ButtonsView(
 		buttons: [insertButton, deleteButton]
 	)
 

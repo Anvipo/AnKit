@@ -5,9 +5,13 @@
 //  Created by Anvipo on 26.09.2021.
 //
 
+/// Background decoration item for plain list sections.
 open class PlainListBackgroundDecorationItem: CollectionViewDecorationItem {
-	let ignoresHeader: Bool
-	let ignoresFooter: Bool
+	/// If header exists, it will be ignored.
+	public let ignoresHeader: Bool
+
+	/// If footer exists, it will be ignored.
+	public let ignoresFooter: Bool
 
 	/// Initializes item with specified parameters.
 	/// - Parameters:

@@ -44,18 +44,7 @@ final class InsertAndDeleteItemsInSectionVC: BasePlaygroundVC {
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 
-		insertButton.addDefaultCircleCorners()
-		insertButton.addDefaultShadow(
-			// swiftlint:disable:next force_unwrapping
-			shadowColor: insertButton.backgroundColor!
-		)
-
-		deleteButton.addDefaultCircleCorners()
-		deleteButton.addDefaultShadow(
-			// swiftlint:disable:next force_unwrapping
-			shadowColor: deleteButton.backgroundColor!
-		)
-
+		setupButtonsLayers()
 		setupCollectionViewContentInsets()
 	}
 
@@ -73,6 +62,12 @@ private extension InsertAndDeleteItemsInSectionVC {
 	var section: CollectionViewSection {
 		// swiftlint:disable:next force_unwrapping
 		collectionView.sections.last!
+	}
+
+	func setupButtonsLayers() {
+		for button in buttonsView.buttons {
+			button.addDefaultCircleCorners()
+		}
 	}
 
 	func setupCollectionViewContentInsets() {

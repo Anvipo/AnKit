@@ -83,10 +83,7 @@ private extension VerticalBadgedItemsSection {
 			let itemLayouts = try itemsInRow.map { try itemInRowLayout(itemInRow: $0, context: context) }
 
 			let horizontalGroup = NSCollectionLayoutGroup.horizontal(
-				layoutSize: NSCollectionLayoutSize(
-					widthDimension: .fractionalWidth(1),
-					heightDimension: itemSize.heightDimension
-				),
+				layoutSize: .fullWidth(heightDimension: itemSize.heightDimension),
 				subitems: itemLayouts
 			)
 			horizontalGroup.interItemSpacing = .flexible(interItemSpacing)
@@ -97,10 +94,7 @@ private extension VerticalBadgedItemsSection {
 		CGFloat(horizontalGroupLayouts.count - 1) * 24
 
 		let verticalGroup = NSCollectionLayoutGroup.vertical(
-			layoutSize: NSCollectionLayoutSize(
-				widthDimension: .fractionalWidth(1),
-				heightDimension: .absolute(contentHeight)
-			),
+			layoutSize: .fullWidth(heightDimension: .absolute(contentHeight)),
 			subitems: horizontalGroupLayouts
 		)
 		verticalGroup.interItemSpacing = .fixed(24)

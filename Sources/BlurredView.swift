@@ -13,7 +13,7 @@ public final class BlurredView: UIView {
 	private var blurAnimator: UIViewPropertyAnimator?
 
 	/// Initializes with specified `style`.
-	/// - Parameter style: The intensity of the blur effect.
+	/// - Parameter style: Blur style.
 	public init(style: UIBlurEffect.Style) {
 		blurredView = UIVisualEffectView(
 			effect: UIAccessibility.isReduceTransparencyEnabled ? nil : UIBlurEffect(style: style)

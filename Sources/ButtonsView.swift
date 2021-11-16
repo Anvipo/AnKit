@@ -19,13 +19,22 @@ public final class ButtonsView: UIView {
 
 	/// Initializes with specified `buttons`.
 	/// - Parameter buttons: Array of buttons, which will be in container. Should not be empty.
-	public init(buttons: [Button]) throws {
+	///
+
+	/// Initializes with specified `buttons`.
+	/// - Parameters:
+	///   - buttons: Array of buttons, which will be in container. Should not be empty.
+	///   - blurStyle: Blur style.
+	public init(
+		buttons: [Button],
+		blurStyle: UIBlurEffect.Style = .systemUltraThinMaterial
+	) throws {
 		if buttons.isEmpty {
 			throw InitError.emptyButtons
 		}
 
 		buttonsStackView = UIStackView(arrangedSubviews: buttons)
-		blurredView = BlurredView(style: .systemUltraThinMaterial)
+		blurredView = BlurredView(style: blurStyle)
 		self.buttons = buttons
 
 		super.init(frame: .zero)

@@ -1,4 +1,4 @@
-# v. 27.09.2021 (swiftlint v. 0.44.0)
+# v. 15.11.2021 (swiftlint v. 0.45.0)
 
 disabled_rules:
   - explicit_acl
@@ -160,6 +160,7 @@ opt_in_rules:
   - redundant_void_return
   - required_enum_case
   - return_arrow_whitespace
+  - self_in_property_initialization
   - shorthand_operator
   - single_test_class
   - sorted_first_last

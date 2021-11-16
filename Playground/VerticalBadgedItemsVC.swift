@@ -16,21 +16,23 @@ final class VerticalBadgedItemsVC: BasePlaygroundVC {
 	private let remoteImageCardHeight: CGFloat = 156
 	private let remoteImageCardWidth: CGFloat = 102
 
-	override func initialSections() throws -> [CollectionViewSection] {
-		let firstSection = try VerticalBadgedItemsSection(
-			items: stride(from: 1, to: Int.random(in: 15...25), by: 1).map { try makeItem(id: $0) },
-			itemSize: NSCollectionLayoutSize(
-				widthDimension: .absolute(remoteImageCardWidth),
-				heightDimension: .absolute(remoteImageCardHeight)
-			),
-			headerItem: try AnKitPlayground.makePlainLabelBoundarySupplementaryItem(
-				text: "Header",
-				elementKind: "Header"
-			),
-			contentInsets: .default(top: 32)
-		)
+	override var initialSections: [CollectionViewSection] {
+		get throws {
+			let firstSection = try VerticalBadgedItemsSection(
+				items: stride(from: 1, to: Int.random(in: 15...25), by: 1).map { try makeItem(id: $0) },
+				itemSize: NSCollectionLayoutSize(
+					widthDimension: .absolute(remoteImageCardWidth),
+					heightDimension: .absolute(remoteImageCardHeight)
+				),
+				headerItem: try AnKitPlayground.makePlainLabelBoundarySupplementaryItem(
+					text: "Header",
+					elementKind: "Header"
+				),
+				contentInsets: .default(top: 32)
+			)
 
-		return [firstSection]
+			return [firstSection]
+		}
 	}
 }
 

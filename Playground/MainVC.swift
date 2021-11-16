@@ -22,7 +22,8 @@ final class MainVC: BasePlaygroundVC {
 				ScaleCarouselVC.self,
 				VerticalBadgedItemsVC.self,
 				InsertAndDeleteItemsInSectionVC.self,
-				ChangeItemHeightVC.self
+				ChangeItemHeightVC.self,
+				ChangeSectionLayoutVC.self
 			]
 
 			return [try makeSection(exampleViewControllers: exampleViewControllers)]

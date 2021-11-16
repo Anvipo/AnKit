@@ -48,12 +48,8 @@ final class ShuffleItemsVC: BasePlaygroundVC {
 
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
-		button.addDefaultCircleCorners()
-		button.addDefaultShadow(
-			// swiftlint:disable:next force_unwrapping
-			shadowColor: button.backgroundColor!
-		)
 
+		button.addDefaultCircleCorners()
 		setupCollectionViewContentInsets()
 	}
 

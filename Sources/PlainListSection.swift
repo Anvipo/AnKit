@@ -241,8 +241,7 @@ private extension PlainListSection {
 			)
 		)
 
-		let supplementarySize = NSCollectionLayoutSize(
-			widthDimension: .fractionalWidth(1),
+		let supplementarySize = NSCollectionLayoutSize.fullWidth(
 			heightDimension: .absolute(supplementaryViewHeight)
 		)
 		let supplementaryLayout = NSCollectionLayoutBoundarySupplementaryItem(
@@ -286,18 +285,16 @@ private extension PlainListSection {
 			)
 
 			return NSCollectionLayoutItem(
-				layoutSize: NSCollectionLayoutSize(
-					widthDimension: .fractionalWidth(1),
+				layoutSize: .fullWidth(
 					heightDimension: .absolute(cellHeight)
 				)
 			)
 		}
 
-		let contentHeight = try! contentHeight(context: cellHeightCalculationContext)
+		let contentHeight = layoutItems.map { $0.layoutSize.heightDimension.dimension }.sum
 
 		let verticalGroupLayout = NSCollectionLayoutGroup.vertical(
-			layoutSize: NSCollectionLayoutSize(
-				widthDimension: .fractionalWidth(1),
+			layoutSize: .fullWidth(
 				heightDimension: .absolute(contentHeight)
 			),
 			subitems: layoutItems

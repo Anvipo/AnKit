@@ -16,6 +16,35 @@ final class ShuffleItemsVC: BasePlaygroundVC {
 	private lazy var button = Button()
 	private lazy var buttonsView = ButtonsView(button: button)
 
+	override var initialSections: [CollectionViewSection] {
+		get throws {
+			let section = try PlainListSection(
+				items: [
+					AnKitPlayground.makePlainLabelItem(text: "1"),
+					AnKitPlayground.makePlainLabelItem(text: "2"),
+					AnKitPlayground.makePlainLabelItem(text: "3"),
+					AnKitPlayground.makePlainLabelItem(text: "4"),
+					AnKitPlayground.makePlainLabelItem(text: "5"),
+					AnKitPlayground.makePlainLabelItem(text: "6"),
+					AnKitPlayground.makePlainLabelItem(text: "7"),
+					AnKitPlayground.makePlainLabelItem(text: "8"),
+					AnKitPlayground.makePlainLabelItem(text: "9"),
+					AnKitPlayground.makePlainLabelItem(text: "10")
+				],
+				headerItem: AnKitPlayground.makePlainLabelBoundarySupplementaryItem(
+					text: "Header",
+					elementKind: "Header"
+				),
+				footerItem: AnKitPlayground.makePlainLabelBoundarySupplementaryItem(
+					text: "Footer",
+					elementKind: "Footer"
+				)
+			)
+
+			return [section]
+		}
+	}
+
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		button.addDefaultCircleCorners()
@@ -25,33 +54,6 @@ final class ShuffleItemsVC: BasePlaygroundVC {
 		)
 
 		setupCollectionViewContentInsets()
-	}
-
-	override func initialSections() throws -> [CollectionViewSection] {
-		let section = try PlainListSection(
-			items: [
-				AnKitPlayground.makePlainLabelItem(text: "1"),
-				AnKitPlayground.makePlainLabelItem(text: "2"),
-				AnKitPlayground.makePlainLabelItem(text: "3"),
-				AnKitPlayground.makePlainLabelItem(text: "4"),
-				AnKitPlayground.makePlainLabelItem(text: "5"),
-				AnKitPlayground.makePlainLabelItem(text: "6"),
-				AnKitPlayground.makePlainLabelItem(text: "7"),
-				AnKitPlayground.makePlainLabelItem(text: "8"),
-				AnKitPlayground.makePlainLabelItem(text: "9"),
-				AnKitPlayground.makePlainLabelItem(text: "10")
-			],
-			headerItem: AnKitPlayground.makePlainLabelBoundarySupplementaryItem(
-				text: "Header",
-				elementKind: "Header"
-			),
-			footerItem: AnKitPlayground.makePlainLabelBoundarySupplementaryItem(
-				text: "Footer",
-				elementKind: "Footer"
-			)
-		)
-
-		return [section]
 	}
 
 	override func setupUI() {

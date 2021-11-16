@@ -15,6 +15,12 @@ class BasePlaygroundVC: BaseVC, PlaygroundVCProtocol {
 
 	lazy var collectionView = CollectionView()
 
+	var initialSections: [CollectionViewSection] {
+		get throws {
+			fatalError("Implement this method")
+		}
+	}
+
 	required convenience init() {
 		self.init(output: nil)
 	}
@@ -31,11 +37,6 @@ class BasePlaygroundVC: BaseVC, PlaygroundVCProtocol {
 		}
 	}
 
-	// swiftlint:disable:next unavailable_function
-	func initialSections() throws -> [CollectionViewSection] {
-		fatalError("Implement this method")
-	}
-
 	func setupUI() {
 		view.addSubviewForConstraintsUse(collectionView)
 		NSLayoutConstraint.activate(collectionView.makeConstraints(to: view.safeAreaLayoutGuide))
@@ -45,7 +46,7 @@ class BasePlaygroundVC: BaseVC, PlaygroundVCProtocol {
 private extension BasePlaygroundVC {
 	func fillCollectionView() throws {
 		try collectionView.set(
-			sections: initialSections(),
+			sections: initialSections,
 			animatingDifferences: shouldAnimateDifferences
 		)
 	}

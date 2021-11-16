@@ -13,17 +13,19 @@ final class SimpleVC: BasePlaygroundVC {
 		"Simple screen example"
 	}
 
-	override func initialSections() throws -> [CollectionViewSection] {
-		let section = try PlainListSection(
-			items: [
-				AnKitPlayground.makePlainLabelItem(text: "Text 1", dividerColor: .systemRed),
-				AnKitPlayground.makePlainLabelItem(text: "Text 2", dividerColor: .systemRed),
-				AnKitPlayground.makePlainLabelItem(text: "Text 3", dividerColor: .systemRed),
-				AnKitPlayground.makePlainLabelItem(text: "Text 4", dividerColor: .systemRed),
-				AnKitPlayground.makePlainLabelItem(text: "Text 5", dividerColor: .systemRed)
-			]
-		)
+	override var initialSections: [CollectionViewSection] {
+		get throws {
+			let section = try PlainListSection(
+				items: [
+					AnKitPlayground.makePlainLabelItem(text: "Text 1", dividerColor: .systemRed),
+					AnKitPlayground.makePlainLabelItem(text: "Text 2", dividerColor: .systemRed),
+					AnKitPlayground.makePlainLabelItem(text: "Text 3", dividerColor: .systemRed),
+					AnKitPlayground.makePlainLabelItem(text: "Text 4", dividerColor: .systemRed),
+					AnKitPlayground.makePlainLabelItem(text: "Text 5", dividerColor: .systemRed)
+				]
+			)
 
-		return [section]
+			return [section]
+		}
 	}
 }

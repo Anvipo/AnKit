@@ -19,27 +19,29 @@ final class ChangeItemHeightVC: BasePlaygroundVC {
 	private weak var expandByReloadItem: ExpandableTextItem?
 	private weak var expandByReconfigureItem: ExpandableTextItem?
 
+	override var initialSections: [CollectionViewSection] {
+		get throws {
+			var sections = [CollectionViewSection]()
+
+			let expandByReloadItemSection = try expandByReloadItemSection
+			sections.append(expandByReloadItemSection)
+
+			if #available(iOS 15, *) {
+				sections.append(try expandByReconfigureSection)
+
+				expandByReloadItemSection.contentInsets.bottom = 32
+			}
+
+			return sections
+		}
+	}
+
 	override init(output: BaseViewOutput?) {
 		numberFormatter = DependenciesStorage.shared.numberFormatter
 		animationDurationPickerItemID = CollectionViewItem.ID()
 		textLabelTransitionTypePickerID = CollectionViewItem.ID()
 
 		super.init(output: output)
-	}
-
-	override func initialSections() throws -> [CollectionViewSection] {
-		var sections = [CollectionViewSection]()
-
-		let expandByReloadItemSection = try expandByReloadItemSection
-		sections.append(expandByReloadItemSection)
-
-		if #available(iOS 15, *) {
-			sections.append(try expandByReconfigureSection)
-
-			expandByReloadItemSection.contentInsets.bottom = 32
-		}
-
-		return sections
 	}
 
 	override func setupUI() {
@@ -81,7 +83,6 @@ extension ChangeItemHeightVC: PickerFieldItemDelegate {
 
 private extension ChangeItemHeightVC {
 	var expandByReloadItemSection: CollectionViewSection {
-		// swiftlint:disable:next implicit_getter
 		get throws {
 			let expandByReloadItem = try ExpandableTextItem(text: .mock)
 			self.expandByReloadItem = expandByReloadItem
@@ -112,7 +113,6 @@ private extension ChangeItemHeightVC {
 
 	@available(iOS 15, *)
 	var expandByReconfigureSection: CollectionViewSection {
-		// swiftlint:disable:next implicit_getter
 		get throws {
 			let expandByReconfigureItem = try ExpandableTextItem(text: .mock) { [weak self] in
 				do {

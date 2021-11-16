@@ -17,44 +17,46 @@ final class ScaleCarouselVC: BasePlaygroundVC {
 	private let remoteImageCardWidth: CGFloat = 102
 	private let localImageCardSide: CGFloat = 80
 
-	override func initialSections() throws -> [CollectionViewSection] {
-		let firstSection = try ScaleCarouselSection(
-			items: [
-				makeRemoteImageItem(id: 1),
-				makeRemoteImageItem(id: 2),
-				makeRemoteImageItem(id: 3),
-				makeRemoteImageItem(id: 4),
-				makeRemoteImageItem(id: 5),
-				makeRemoteImageItem(id: 6),
-				makeRemoteImageItem(id: 7),
-				makeRemoteImageItem(id: 8),
-				makeRemoteImageItem(id: 9),
-				makeRemoteImageItem(id: 10)
-			],
-			itemWidthDimension: .absolute(remoteImageCardWidth),
-			itemHeightDimension: .absolute(remoteImageCardHeight),
-			contentInsets: .default()
-		)
+	override var initialSections: [CollectionViewSection] {
+		get throws {
+			let firstSection = try ScaleCarouselSection(
+				items: [
+					makeRemoteImageItem(id: 1),
+					makeRemoteImageItem(id: 2),
+					makeRemoteImageItem(id: 3),
+					makeRemoteImageItem(id: 4),
+					makeRemoteImageItem(id: 5),
+					makeRemoteImageItem(id: 6),
+					makeRemoteImageItem(id: 7),
+					makeRemoteImageItem(id: 8),
+					makeRemoteImageItem(id: 9),
+					makeRemoteImageItem(id: 10)
+				],
+				itemWidthDimension: .absolute(remoteImageCardWidth),
+				itemHeightDimension: .absolute(remoteImageCardHeight),
+				contentInsets: .default()
+			)
 
-		let secondSection = try ScaleCarouselSection(
-			items: [
-				makeLocalImageItem(text: "1"),
-				makeLocalImageItem(text: "2"),
-				makeLocalImageItem(text: "3"),
-				makeLocalImageItem(text: "4"),
-				makeLocalImageItem(text: "5"),
-				makeLocalImageItem(text: "6"),
-				makeLocalImageItem(text: "7"),
-				makeLocalImageItem(text: "8"),
-				makeLocalImageItem(text: "9"),
-				makeLocalImageItem(text: "10")
-			],
-			itemWidthDimension: .absolute(localImageCardSide),
-			itemHeightDimension: .absolute(localImageCardSide),
-			contentInsets: .default(top: 32)
-		)
+			let secondSection = try ScaleCarouselSection(
+				items: [
+					makeLocalImageItem(text: "1"),
+					makeLocalImageItem(text: "2"),
+					makeLocalImageItem(text: "3"),
+					makeLocalImageItem(text: "4"),
+					makeLocalImageItem(text: "5"),
+					makeLocalImageItem(text: "6"),
+					makeLocalImageItem(text: "7"),
+					makeLocalImageItem(text: "8"),
+					makeLocalImageItem(text: "9"),
+					makeLocalImageItem(text: "10")
+				],
+				itemWidthDimension: .absolute(localImageCardSide),
+				itemHeightDimension: .absolute(localImageCardSide),
+				contentInsets: .default(top: 32)
+			)
 
-		return [firstSection, secondSection]
+			return [firstSection, secondSection]
+		}
 	}
 }
 

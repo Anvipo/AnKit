@@ -13,18 +13,20 @@ final class MainVC: BasePlaygroundVC {
 		"Examples"
 	}
 
-	override func initialSections() throws -> [CollectionViewSection] {
-		let exampleViewControllers: [BasePlaygroundVC.Type] = [
-			SimpleVC.self,
-			ShuffleItemsVC.self,
-			SectionBackgroundVC.self,
-			ScaleCarouselVC.self,
-			VerticalBadgedItemsVC.self,
-			InsertAndDeleteItemsInSectionVC.self,
-			ChangeItemHeightVC.self
-		]
+	override var initialSections: [CollectionViewSection] {
+		get throws {
+			let exampleViewControllers: [BasePlaygroundVC.Type] = [
+				SimpleVC.self,
+				ShuffleItemsVC.self,
+				SectionBackgroundVC.self,
+				ScaleCarouselVC.self,
+				VerticalBadgedItemsVC.self,
+				InsertAndDeleteItemsInSectionVC.self,
+				ChangeItemHeightVC.self
+			]
 
-		return [try makeSection(exampleViewControllers: exampleViewControllers)]
+			return [try makeSection(exampleViewControllers: exampleViewControllers)]
+		}
 	}
 }
 

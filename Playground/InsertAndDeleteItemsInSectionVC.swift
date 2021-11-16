@@ -19,6 +19,27 @@ final class InsertAndDeleteItemsInSectionVC: BasePlaygroundVC {
 		buttons: [insertButton, deleteButton]
 	)
 
+	override var initialSections: [CollectionViewSection] {
+		get throws {
+			let section = try PlainListSection(
+				items: [
+					AnKitPlayground.makePlainLabelItem(text: "1"),
+					AnKitPlayground.makePlainLabelItem(text: "2"),
+					AnKitPlayground.makePlainLabelItem(text: "3"),
+					AnKitPlayground.makePlainLabelItem(text: "4"),
+					AnKitPlayground.makePlainLabelItem(text: "5"),
+					AnKitPlayground.makePlainLabelItem(text: "6"),
+					AnKitPlayground.makePlainLabelItem(text: "7"),
+					AnKitPlayground.makePlainLabelItem(text: "8"),
+					AnKitPlayground.makePlainLabelItem(text: "9"),
+					AnKitPlayground.makePlainLabelItem(text: "10")
+				]
+			)
+
+			return [section]
+		}
+	}
+
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 
@@ -35,25 +56,6 @@ final class InsertAndDeleteItemsInSectionVC: BasePlaygroundVC {
 		)
 
 		setupCollectionViewContentInsets()
-	}
-
-	override func initialSections() throws -> [CollectionViewSection] {
-		let section = try PlainListSection(
-			items: [
-				AnKitPlayground.makePlainLabelItem(text: "1"),
-				AnKitPlayground.makePlainLabelItem(text: "2"),
-				AnKitPlayground.makePlainLabelItem(text: "3"),
-				AnKitPlayground.makePlainLabelItem(text: "4"),
-				AnKitPlayground.makePlainLabelItem(text: "5"),
-				AnKitPlayground.makePlainLabelItem(text: "6"),
-				AnKitPlayground.makePlainLabelItem(text: "7"),
-				AnKitPlayground.makePlainLabelItem(text: "8"),
-				AnKitPlayground.makePlainLabelItem(text: "9"),
-				AnKitPlayground.makePlainLabelItem(text: "10")
-			]
-		)
-
-		return [section]
 	}
 
 	override func setupUI() {

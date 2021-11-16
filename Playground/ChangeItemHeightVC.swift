@@ -177,6 +177,7 @@ private extension ChangeItemHeightVC {
 		)
 	}
 
+	@available(iOS 15, *)
 	func didTapExpandByReconfigureItem() throws {
 		guard let expandByReconfigureItem = expandByReconfigureItem else {
 			assertionFailure("?")
@@ -187,13 +188,13 @@ private extension ChangeItemHeightVC {
 
 		if let animationDuration = expandByReconfigureItem.animationDuration {
 			UIView.animate(withDuration: animationDuration) { [self] in
-				try? collectionView.reconfigureOrReload(
+				try? collectionView.reconfigure(
 					items: [expandByReconfigureItem],
 					animatingDifferences: shouldAnimateDifferences
 				)
 			}
 		} else {
-			try collectionView.reconfigureOrReload(
+			try collectionView.reconfigure(
 				items: [expandByReconfigureItem],
 				animatingDifferences: shouldAnimateDifferences
 			)

@@ -291,6 +291,24 @@ public extension CollectionView {
 		)
 	}
 
+	/// Reconfigures specified `items` in collection view.
+	/// - Parameters:
+	///   - items: Items, which will be reloaded.
+	///   - animatingDifferences: Should reconfigure be animated.
+	/// - Throws: `CollectionView.DataSourceError`.
+	@available(iOS 15, *)
+	func reconfigure(
+		items: [CollectionViewItem],
+		animatingDifferences: Bool,
+		completion: (() -> Void)? = nil
+	) throws {
+		try diffableDataSource.reconfigure(
+			items: items,
+			animatingDifferences: animatingDifferences,
+			completion: completion
+		)
+	}
+
 	/// Reconfigures specified `items` in collection view, if device iOS version is greater or equal to 15.
 	/// In other way, reloads specified `items`.
 	/// - Parameters:

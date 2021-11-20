@@ -71,8 +71,7 @@ private extension ChangeLayoutSection {
 			)
 		)
 		smallItemLayout.contentInsets = NSDirectionalEdgeInsets(
-			horizontalInset: 2,
-			verticalInset: 2
+			horizontalInset: 2
 		)
 
 		let smallItemsGroupLayoutFractionalHeight: CGFloat = 1 / 3
@@ -84,6 +83,10 @@ private extension ChangeLayoutSection {
 			),
 			subitem: smallItemLayout,
 			count: smallItemCount
+		)
+		smallItemsGroupLayout.contentInsets = NSDirectionalEdgeInsets(
+			horizontalInset: 0,
+			verticalInset: 2
 		)
 
 		let bigItemLayout = NSCollectionLayoutItem(
@@ -102,9 +105,7 @@ private extension ChangeLayoutSection {
 			subitems: [bigItemLayout, smallItemsGroupLayout]
 		)
 
-		let sectionLayout = NSCollectionLayoutSection(group: groupLayout)
-
-		return sectionLayout
+		return NSCollectionLayoutSection(group: groupLayout)
 	}
 
 	func gridLayout(
@@ -127,9 +128,7 @@ private extension ChangeLayoutSection {
 			count: smallItemCount
 		)
 
-		let sectionLayout = NSCollectionLayoutSection(group: groupLayout)
-
-		return sectionLayout
+		return NSCollectionLayoutSection(group: groupLayout)
 	}
 
 	func listLayout(context: LayoutCreationContext) throws -> NSCollectionLayoutSection {

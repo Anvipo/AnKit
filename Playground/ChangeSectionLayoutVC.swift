@@ -13,7 +13,7 @@ final class ChangeSectionLayoutVC: BasePlaygroundVC {
 		"Change layout section example"
 	}
 
-	private var listItems: [ColoredItem] = []
+	private var plainListItems: [ColoredItem] = []
 	private lazy var layoutMenu = UIMenu(
 		title: "Select layout",
 		options: [.displayInline],
@@ -35,7 +35,7 @@ final class ChangeSectionLayoutVC: BasePlaygroundVC {
 
 	override var initialSections: [CollectionViewSection] {
 		get throws {
-			listItems = [
+			plainListItems = [
 				try ColoredItem(color: .systemRed),
 				try ColoredItem(color: .systemOrange),
 				try ColoredItem(color: .systemYellow),
@@ -48,7 +48,7 @@ final class ChangeSectionLayoutVC: BasePlaygroundVC {
 			return [
 				try ChangeLayoutSection(
 					mode: .plainListLayout,
-					items: listItems
+					items: plainListItems
 				)
 			]
 		}
@@ -85,7 +85,7 @@ private extension ChangeSectionLayoutVC {
 
 	var gridItems: [ColoredItem] {
 		get throws {
-			listItems +
+			plainListItems +
 			[
 				try ColoredItem(color: .systemPink),
 				try ColoredItem(color: .systemBrown),
@@ -97,7 +97,7 @@ private extension ChangeSectionLayoutVC {
 
 	var threeSmallUnderOneBigItems: [ColoredItem] {
 		get throws {
-			listItems +
+			plainListItems +
 			[
 				try ColoredItem(color: .systemIndigo)
 			]
@@ -106,7 +106,7 @@ private extension ChangeSectionLayoutVC {
 
 	var cardsListItems: [ColoredItem] {
 		get throws {
-			var result = listItems + [
+			var result = plainListItems + [
 				try ColoredItem(color: .systemPink),
 				try ColoredItem(color: .systemBrown),
 				try ColoredItem(color: .systemIndigo),
@@ -171,7 +171,7 @@ private extension ChangeSectionLayoutVC {
 
 	func didTapToPlainListLayoutButton() throws {
 		section.mode = .plainListLayout
-		try section.set(items: listItems)
+		try section.set(items: plainListItems)
 
 		try collectionView.set(
 			sections: [section],

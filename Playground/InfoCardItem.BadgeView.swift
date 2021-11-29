@@ -55,7 +55,7 @@ extension InfoCardItem {
 
 private extension InfoCardItem.BadgeView {
 	func setupUI() {
-		[label].addAsSubviewForConstraintsUse(to: self)
+		addSubviewForConstraintsUse(label)
 
 		let labelLeadingConstraint = label.leadingAnchor.constraint(equalTo: leadingAnchor)
 		self.labelLeadingConstraint = labelLeadingConstraint

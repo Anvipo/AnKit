@@ -40,6 +40,9 @@ public extension CollectionView {
 
 		/// Array of sections has not unique sections.
 		case notUniqueSections([CollectionViewSection])
+
+		/// Specified items are empty.
+		case emptyItems
 	}
 }
 
@@ -80,6 +83,9 @@ extension CollectionView.DataSourceError: LocalizedError {
 			return """
 			Sections \(sections) are not unique
 			"""
+
+		case .emptyItems:
+			return "Specified items are empty"
 		}
 	}
 }

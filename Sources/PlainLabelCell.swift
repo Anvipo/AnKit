@@ -64,7 +64,7 @@ private extension PlainLabelCell {
 		dividerView.setContentHuggingPriority(.required, for: .vertical)
 		dividerView.setContentHuggingPriority(.required, for: .horizontal)
 
-		[label, dividerView].addAsSubviewForConstraintsUse(to: contentView)
+		contentView.addSubviewsForConstraintsUse([label, dividerView])
 
 		let labelLeadingConstraint = label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor)
 		self.labelLeadingConstraint = labelLeadingConstraint

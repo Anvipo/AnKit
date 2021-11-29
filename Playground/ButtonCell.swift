@@ -22,6 +22,8 @@ final class ButtonCell: CollectionViewCell {
 	override func layoutSubviews() {
 		super.layoutSubviews()
 
+		button.layoutIfNeeded()
+
 		button.addDefaultCircleCorners()
 		if let buttonBackgroundColor = button.backgroundColor {
 			button.addDefaultShadow(shadowColor: buttonBackgroundColor)
@@ -40,26 +42,14 @@ final class ButtonCell: CollectionViewCell {
 
 		button.setup(
 			text: castedItem.text,
-			textColor: .white,
-			textFont: .preferredFont(forTextStyle: .callout),
-			tintColor: .systemIndigo,
-			backgroundColor: .systemIndigo,
-			contentEdgeInsets: UIEdgeInsets(
-				top: .defaultHorizontalOffset,
-				left: .defaultHorizontalOffset / 2,
-				bottom: .defaultHorizontalOffset,
-				right: .defaultHorizontalOffset / 2
-			),
 			onTap: castedItem.onTapButton
 		)
-
-		layoutIfNeeded()
 	}
 }
 
 private extension ButtonCell {
 	func setupUI() {
-		[button].addAsSubviewForConstraintsUse(to: contentView)
+		contentView.addSubviewForConstraintsUse(button)
 		NSLayoutConstraint.activate(button.makeConstraints(to: contentView))
 	}
 }

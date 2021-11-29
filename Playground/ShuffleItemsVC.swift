@@ -8,107 +8,17 @@
 import AnKit
 import UIKit
 
-final class ShuffleItemsVC: BaseVC {
-	private let buttonBottomOffset: CGFloat
-	private lazy var collectionView = CollectionView()
+final class ShuffleItemsVC: BasePlaygroundVC {
+	override class var playgroundTitle: String {
+		"Shuffle items example"
+	}
+
 	private lazy var button = Button()
+	// swiftlint:disable:next force_try
+	private lazy var buttonsView = try! ButtonsView(buttons: [button])
 
-	override init(output: BaseViewOutput?) {
-		buttonBottomOffset = .defaultHorizontalOffset
-
-		super.init(output: output)
-	}
-
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		setupUI()
-		fillCollectionView()
-	}
-
-	override func viewDidLayoutSubviews() {
-		super.viewDidLayoutSubviews()
-		button.addDefaultCircleCorners()
-		button.addDefaultShadow(
-			// swiftlint:disable:next force_unwrapping
-			shadowColor: button.backgroundColor!
-		)
-
-		setupCollectionViewContentInsets()
-	}
-}
-
-private extension ShuffleItemsVC {
-	var neededCollectionViewBottomInset: CGFloat {
-		button.frame.height + buttonBottomOffset
-	}
-
-	func setupCollectionViewContentInsets() {
-		collectionView.contentInset.bottom = neededCollectionViewBottomInset
-		collectionView.verticalScrollIndicatorInsets.bottom = collectionView.contentInset.bottom
-	}
-
-	func didTapButton() {
-		guard let section = collectionView.sections.last as? PlainListSection else {
-			assertionFailure("?")
-			return
-		}
-
-		do {
-			try section.set(items: section.items.shuffled())
-
-			try collectionView.set(
-				sections: [section],
-				animatingDifferences: shouldAnimateDifferences
-			)
-		} catch {
-			assertionFailure(error.localizedDescription)
-		}
-	}
-
-	func setupUI() {
-		navigationItem.title = "Shuffle items example"
-
-		button.setup(
-			text: "Shuffle items",
-			textColor: .white,
-			textFont: .preferredFont(forTextStyle: .callout),
-			tintColor: .systemIndigo,
-			backgroundColor: .systemIndigo,
-			contentEdgeInsets: UIEdgeInsets(
-				top: 16,
-				left: 8,
-				bottom: 16,
-				right: 8
-			)
-		) { [weak self] in
-			self?.didTapButton()
-		}
-
-		[collectionView, button].addAsSubviewForConstraintsUse(to: view)
-
-		NSLayoutConstraint.activate([
-			collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-			collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-			collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-			collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-
-			button.leadingAnchor.constraint(
-				equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-				constant: .defaultHorizontalOffset
-			),
-			button.trailingAnchor.constraint(
-				equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-				constant: -.defaultHorizontalOffset
-			),
-			button.bottomAnchor.constraint(
-				equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-				constant: -buttonBottomOffset
-			)
-		])
-	}
-
-	func fillCollectionView() {
-		do {
+	override var initialSections: [CollectionViewSection] {
+		get throws {
 			let section = try PlainListSection(
 				items: [
 					AnKitPlayground.makePlainLabelItem(text: "1"),
@@ -132,12 +42,68 @@ private extension ShuffleItemsVC {
 				)
 			)
 
-			try collectionView.set(
-				sections: [section],
-				animatingDifferences: shouldAnimateDifferences
-			)
-		} catch {
-			assertionFailure(error.localizedDescription)
+			return [section]
 		}
+	}
+
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+
+		button.addDefaultCircleCorners()
+		setupCollectionViewContentInsets()
+	}
+
+	override func setupUI() {
+		super.setupUI()
+		setupButton()
+	}
+}
+
+private extension ShuffleItemsVC {
+	var neededCollectionViewBottomInset: CGFloat {
+		buttonsView.frame.height
+	}
+
+	func setupCollectionViewContentInsets() {
+		collectionView.contentInset.bottom = neededCollectionViewBottomInset
+		collectionView.verticalScrollIndicatorInsets.bottom = collectionView.contentInset.bottom
+	}
+
+	func didTapButton() throws {
+		guard let section = collectionView.sections.last as? PlainListSection else {
+			assertionFailure("?")
+			return
+		}
+
+		try section.set(items: section.items.shuffled())
+
+		try collectionView.set(
+			sections: [section],
+			animatingDifferences: shouldAnimate
+		)
+	}
+
+	func setupButton() {
+		button.setup(
+			text: "Shuffle items"
+		) { [weak self] in
+			guard let self = self else {
+				return
+			}
+
+			do {
+				try self.didTapButton()
+			} catch {
+				assertionFailure(error.localizedDescription)
+			}
+		}
+
+		view.addSubviewForConstraintsUse(buttonsView)
+
+		NSLayoutConstraint.activate([
+			buttonsView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+			buttonsView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+			buttonsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+		])
 	}
 }

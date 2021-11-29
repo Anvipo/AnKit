@@ -32,14 +32,14 @@ final class VerticalBadgedItemsSection: CollectionViewSection {
 	}
 
 	override func layoutConfiguration(
-		layoutEnvironment: NSCollectionLayoutEnvironment
+		context: LayoutCreationContext
 	) -> NSCollectionLayoutSection {
-		let effectiveContentWidth = effectiveContentWidthLayoutDimension(layoutEnvironment: layoutEnvironment)
+		let effectiveContentWidth = effectiveContentWidthLayoutDimension(layoutEnvironment: context.layoutEnvironment)
 
 		// swiftlint:disable:next force_try
 		let verticalGroup = try! verticalGroupLayout(
 			effectiveContentWidth: effectiveContentWidth,
-			layoutEnvironment: layoutEnvironment
+			layoutEnvironment: context.layoutEnvironment
 		)
 
 		let section = NSCollectionLayoutSection(group: verticalGroup)
@@ -47,8 +47,8 @@ final class VerticalBadgedItemsSection: CollectionViewSection {
 
 		if let headerItem = headerItem {
 			let context = CollectionViewSupplementaryItem.ViewHeightCalculationContext(
-				availableWidthForSupplementaryView: layoutEnvironment.container.effectiveContentSize.width,
-				layoutEnvironment: AnyNSCollectionLayoutEnvironment(layoutEnvironment)
+				availableWidthForSupplementaryView: context.layoutEnvironment.container.effectiveContentSize.width,
+				layoutEnvironment: AnyNSCollectionLayoutEnvironment(context.layoutEnvironment)
 			)
 			let headerSize = NSCollectionLayoutSize(
 				widthDimension: .absolute(context.availableWidthForSupplementaryView),
@@ -83,10 +83,7 @@ private extension VerticalBadgedItemsSection {
 			let itemLayouts = try itemsInRow.map { try itemInRowLayout(itemInRow: $0, context: context) }
 
 			let horizontalGroup = NSCollectionLayoutGroup.horizontal(
-				layoutSize: NSCollectionLayoutSize(
-					widthDimension: .fractionalWidth(1),
-					heightDimension: itemSize.heightDimension
-				),
+				layoutSize: .fullWidth(heightDimension: itemSize.heightDimension),
 				subitems: itemLayouts
 			)
 			horizontalGroup.interItemSpacing = .flexible(interItemSpacing)
@@ -97,10 +94,7 @@ private extension VerticalBadgedItemsSection {
 		CGFloat(horizontalGroupLayouts.count - 1) * 24
 
 		let verticalGroup = NSCollectionLayoutGroup.vertical(
-			layoutSize: NSCollectionLayoutSize(
-				widthDimension: .fractionalWidth(1),
-				heightDimension: .absolute(contentHeight)
-			),
+			layoutSize: .fullWidth(heightDimension: .absolute(contentHeight)),
 			subitems: horizontalGroupLayouts
 		)
 		verticalGroup.interItemSpacing = .fixed(24)

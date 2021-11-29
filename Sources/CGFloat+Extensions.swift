@@ -8,6 +8,9 @@
 import CoreGraphics
 
 public extension CGFloat {
+	/// Default vertical offset.
+	static let defaultVerticalOffset: Self = 8
+
 	/// Default horizontal offset.
 	static let defaultHorizontalOffset: Self = 16
 

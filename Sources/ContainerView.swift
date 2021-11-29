@@ -19,8 +19,8 @@ public final class ContainerView: UIView {
 	) {
 		super.init(frame: .zero)
 
-		[subview].addAsSubviewForConstraintsUse(to: self)
-		NSLayoutConstraint.activate(makeConstraints(to: self, insets: subviewInsets))
+		addSubviewForConstraintsUse(subview)
+		NSLayoutConstraint.activate(subview.makeConstraints(to: self, insets: subviewInsets))
 	}
 
 	@available(*, unavailable)

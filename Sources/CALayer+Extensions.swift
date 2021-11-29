@@ -63,7 +63,29 @@ public extension CALayer {
 		animation.duration = duration
 		add(animation, forKey: animation.keyPath)
 
-		var thelayer = self
-		thelayer[keyPath: keyPath] = value
+		var theLayer = self
+		theLayer[keyPath: keyPath] = value
+	}
+
+	/// Adds animated transition with specified parameters.
+	/// - Parameters:
+	///   - type: The predefined transition type.
+	///   - duration: Fade transition duration.
+	///   - timingFunctionName: Timing function name.
+	///   - animationName: Animation name.
+	func addAnimatedTransition(
+		type: CATransitionType,
+		duration: TimeInterval = .defaultAnimationDuration,
+		timingFunctionName: CAMediaTimingFunctionName = .easeInEaseOut,
+		animationName: String = "AnKit.AnimatedTransition"
+	) {
+		let fadeTransition = CATransition()
+		fadeTransition.timingFunction = CAMediaTimingFunction(
+			name: timingFunctionName
+		)
+		fadeTransition.type = type
+		fadeTransition.duration = duration
+
+		add(fadeTransition, forKey: animationName)
 	}
 }

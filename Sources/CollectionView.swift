@@ -180,6 +180,19 @@ public extension CollectionView {
 	func indexPath(for item: CollectionViewItem) -> IndexPath? {
 		diffableDataSource.indexPath(for: item)
 	}
+
+	/// Returns items in specified `section`.
+	/// - Parameter section: Section, which items will be returned.
+	/// - Throws: `CollectionView.ItemsInSectionError`.
+	func items(in section: CollectionViewSection) throws -> [CollectionViewItem] {
+		let currentSnapshot = diffableDataSource.snapshot()
+
+		if currentSnapshot.indexOfSection(section) == nil {
+			throw ItemsInSectionError.sectionWasNotFound
+		}
+
+		return currentSnapshot.itemIdentifiers(inSection: section)
+	}
 }
 
 // MARK: - set(sections:animatingDifferences:)
@@ -275,6 +288,24 @@ public extension CollectionView {
 		try await diffableDataSource.reconfigure(
 			items: items,
 			animatingDifferences: animatingDifferences
+		)
+	}
+
+	/// Reconfigures specified `items` in collection view.
+	/// - Parameters:
+	///   - items: Items, which will be reloaded.
+	///   - animatingDifferences: Should reconfigure be animated.
+	/// - Throws: `CollectionView.DataSourceError`.
+	@available(iOS 15, *)
+	func reconfigure(
+		items: [CollectionViewItem],
+		animatingDifferences: Bool,
+		completion: (() -> Void)? = nil
+	) throws {
+		try diffableDataSource.reconfigure(
+			items: items,
+			animatingDifferences: animatingDifferences,
+			completion: completion
 		)
 	}
 

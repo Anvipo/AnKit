@@ -8,29 +8,13 @@
 import AnKit
 import UIKit
 
-final class SectionBackgroundVC: BaseVC {
-	private lazy var collectionView = CollectionView()
-
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		setupUI()
-		fillCollectionView()
-	}
-}
-
-private extension SectionBackgroundVC {
-	func setupUI() {
-		navigationItem.title = "Section background example"
-
-		view.backgroundColor = .systemGroupedBackground
-
-		[collectionView].addAsSubviewForConstraintsUse(to: view)
-
-		NSLayoutConstraint.activate(collectionView.makeConstraints(to: view.safeAreaLayoutGuide))
+final class SectionBackgroundVC: BasePlaygroundVC {
+	override class var playgroundTitle: String {
+		"Section background example"
 	}
 
-	func fillCollectionView() {
-		do {
+	override var initialSections: [CollectionViewSection] {
+		get throws {
 			let section1 = try PlainListSection(
 				items: [
 					AnKitPlayground.makePlainLabelItem(text: "1"),
@@ -68,12 +52,12 @@ private extension SectionBackgroundVC {
 			let dividerStrategy = DividerDefaultStrategy()
 			dividerStrategy.separateItems(in: sections)
 
-			try collectionView.set(
-				sections: sections,
-				animatingDifferences: shouldAnimateDifferences
-			)
-		} catch {
-			assertionFailure(error.localizedDescription)
+			return sections
 		}
+	}
+
+	override func setupUI() {
+		super.setupUI()
+		view.backgroundColor = .systemGroupedBackground
 	}
 }

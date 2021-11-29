@@ -65,12 +65,12 @@ public final class PlainListSection: CollectionViewSection {
 	}
 
 	override public func layoutConfiguration(
-		layoutEnvironment: NSCollectionLayoutEnvironment
+		context: LayoutCreationContext
 	) -> NSCollectionLayoutSection {
-		let effectiveContentWidth = effectiveContentWidth(layoutEnvironment: layoutEnvironment)
+		let effectiveContentWidth = effectiveContentWidth(layoutEnvironment: context.layoutEnvironment)
 
 		let sectionLayout = sectionLayout(
-			layoutEnvironment: layoutEnvironment,
+			layoutEnvironment: context.layoutEnvironment,
 			effectiveContentWidth: effectiveContentWidth
 		)
 		sectionLayout.contentInsets = contentInsets
@@ -82,7 +82,7 @@ public final class PlainListSection: CollectionViewSection {
 				item: headerItem,
 				alignment: .top,
 				effectiveContentWidth: effectiveContentWidth,
-				layoutEnvironment: layoutEnvironment
+				layoutEnvironment: context.layoutEnvironment
 			)
 			sectionLayout.boundarySupplementaryItems.append(headerLayout)
 
@@ -97,7 +97,7 @@ public final class PlainListSection: CollectionViewSection {
 				item: footerItem,
 				alignment: .bottom,
 				effectiveContentWidth: effectiveContentWidth,
-				layoutEnvironment: layoutEnvironment
+				layoutEnvironment: context.layoutEnvironment
 			)
 			sectionLayout.boundarySupplementaryItems.append(footerLayout)
 
@@ -241,8 +241,7 @@ private extension PlainListSection {
 			)
 		)
 
-		let supplementarySize = NSCollectionLayoutSize(
-			widthDimension: .fractionalWidth(1),
+		let supplementarySize = NSCollectionLayoutSize.fullWidth(
 			heightDimension: .absolute(supplementaryViewHeight)
 		)
 		let supplementaryLayout = NSCollectionLayoutBoundarySupplementaryItem(
@@ -286,18 +285,16 @@ private extension PlainListSection {
 			)
 
 			return NSCollectionLayoutItem(
-				layoutSize: NSCollectionLayoutSize(
-					widthDimension: .fractionalWidth(1),
+				layoutSize: .fullWidth(
 					heightDimension: .absolute(cellHeight)
 				)
 			)
 		}
 
-		let contentHeight = try! contentHeight(context: cellHeightCalculationContext)
+		let contentHeight = layoutItems.map { $0.layoutSize.heightDimension.dimension }.sum
 
 		let verticalGroupLayout = NSCollectionLayoutGroup.vertical(
-			layoutSize: NSCollectionLayoutSize(
-				widthDimension: .fractionalWidth(1),
+			layoutSize: .fullWidth(
 				heightDimension: .absolute(contentHeight)
 			),
 			subitems: layoutItems

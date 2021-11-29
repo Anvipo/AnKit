@@ -8,7 +8,7 @@
 import AnKit
 import UIKit
 
-final class InsertAndDeleteItemsInSectionVC: BasePlaygroundVC {
+final class InsertAndDeleteItemsInSectionVC: BasePlaygroundCollectionViewVC {
 	override class var playgroundTitle: String {
 		"Insert & delete items example"
 	}

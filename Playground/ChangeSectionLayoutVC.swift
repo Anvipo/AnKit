@@ -8,7 +8,7 @@
 import AnKit
 import UIKit
 
-final class ChangeSectionLayoutVC: BasePlaygroundVC {
+final class ChangeSectionLayoutVC: BasePlaygroundCollectionViewVC {
 	override class var playgroundTitle: String {
 		"Change layout section example"
 	}

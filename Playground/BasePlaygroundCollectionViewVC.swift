@@ -8,7 +8,7 @@
 import AnKit
 import UIKit
 
-class BasePlaygroundVC: BaseVC, PlaygroundVCProtocol {
+class BasePlaygroundCollectionViewVC: BaseVC, PlaygroundVCProtocol {
 	class var playgroundTitle: String {
 		fatalError("Implement this method")
 	}
@@ -48,7 +48,7 @@ class BasePlaygroundVC: BaseVC, PlaygroundVCProtocol {
 	}
 }
 
-private extension BasePlaygroundVC {
+private extension BasePlaygroundCollectionViewVC {
 	func fillCollectionView() throws {
 		try collectionView.set(
 			sections: initialSections,

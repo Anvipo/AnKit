@@ -8,15 +8,15 @@
 import AnKit
 import UIKit
 
-final class MainVC: BasePlaygroundVC {
+final class CollectionViewsVC: BasePlaygroundCollectionViewVC {
 	override class var playgroundTitle: String {
-		"Examples"
+		"Collection views examples"
 	}
 
 	override var initialSections: [CollectionViewSection] {
 		get throws {
 			let exampleViewControllers: [PlaygroundVCProtocol.Type] = [
-				SimpleVC.self,
+				SimpleCollectionViewVC.self,
 				ShuffleItemsVC.self,
 				SectionBackgroundVC.self,
 				ScaleCarouselVC.self,
@@ -31,7 +31,7 @@ final class MainVC: BasePlaygroundVC {
 	}
 }
 
-private extension MainVC {
+private extension CollectionViewsVC {
 	func makeSection(exampleViewControllers: [PlaygroundVCProtocol.Type]) throws -> PlainListSection {
 		try PlainListSection(
 			items: [PlainSpacerItem(height: .defaultVerticalOffset)] +

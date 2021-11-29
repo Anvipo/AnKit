@@ -1,5 +1,5 @@
 //
-//  SimpleVC.swift
+//  SimpleCollectionViewVC.swift
 //  AnKitPlayground
 //
 //  Created by Anvipo on 03.10.2021.
@@ -8,9 +8,9 @@
 import AnKit
 import UIKit
 
-final class SimpleVC: BasePlaygroundVC {
+final class SimpleCollectionViewVC: BasePlaygroundCollectionViewVC {
 	override class var playgroundTitle: String {
-		"Simple screen example"
+		"Simple collection view screen example"
 	}
 
 	override var initialSections: [CollectionViewSection] {

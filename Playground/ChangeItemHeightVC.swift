@@ -8,7 +8,7 @@
 import AnKit
 import UIKit
 
-final class ChangeItemHeightVC: BasePlaygroundVC {
+final class ChangeItemHeightVC: BasePlaygroundCollectionViewVC {
 	override class var playgroundTitle: String {
 		"Change item height example"
 	}

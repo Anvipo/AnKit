@@ -8,7 +8,7 @@
 import AnKit
 import UIKit
 
-final class SectionBackgroundVC: BasePlaygroundVC {
+final class SectionBackgroundVC: BasePlaygroundCollectionViewVC {
 	override class var playgroundTitle: String {
 		"Section background example"
 	}

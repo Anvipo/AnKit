@@ -26,7 +26,7 @@ extension SceneDelegate: UISceneDelegate {
 		let window = UIWindow(windowScene: windowScene)
 		self.window = window
 		Self.sharedWindow = window
-		let navigationController = UINavigationController(rootViewController: MainVC())
+		let navigationController = UINavigationController(rootViewController: CollectionViewsVC())
 		navigationController.navigationBar.tintColor = Color.brand.uiColor
 		window.rootViewController = navigationController
 		window.makeKeyAndVisible()

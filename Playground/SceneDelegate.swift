@@ -26,9 +26,22 @@ extension SceneDelegate: UISceneDelegate {
 		let window = UIWindow(windowScene: windowScene)
 		self.window = window
 		Self.sharedWindow = window
-		let navigationController = UINavigationController(rootViewController: CollectionViewsVC())
-		navigationController.navigationBar.tintColor = Color.brand.uiColor
-		window.rootViewController = navigationController
+
+		let tableViewsNC = UINavigationController(rootViewController: TableViewsVC())
+		tableViewsNC.navigationBar.tintColor = Color.brand.uiColor
+		tableViewsNC.tabBarItem = UITabBarItem(title: "Table views", image: UIImage(systemName: "rectangle.split.1x2"), tag: 0)
+
+		let collectionViewsNC = UINavigationController(rootViewController: CollectionViewsVC())
+		collectionViewsNC.navigationBar.tintColor = Color.brand.uiColor
+		collectionViewsNC.tabBarItem = UITabBarItem(title: "Collection views", image: UIImage(systemName: "square.grid.3x3"), tag: 0)
+
+		let mainTabBarController = MainTabBarController()
+		mainTabBarController.viewControllers = [
+			tableViewsNC,
+			collectionViewsNC
+		]
+
+		window.rootViewController = mainTabBarController
 		window.makeKeyAndVisible()
 	}
 }

@@ -47,6 +47,21 @@
 		1D4FB85A2742BEB3003082EA /* ColoredCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4FB8592742BEB3003082EA /* ColoredCell.swift */; };
 		1D4FB85E2743CEF9003082EA /* ButtonsView.InitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4FB85D2743CEF9003082EA /* ButtonsView.InitError.swift */; };
 		1D4FB8602743DF3E003082EA /* NSCollectionLayoutSize+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4FB85F2743DF3E003082EA /* NSCollectionLayoutSize+Extensions.swift */; };
+		1D53B769275534EB007D7A35 /* BasePlaygroundTableViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D53B75A275534E9007D7A35 /* BasePlaygroundTableViewVC.swift */; };
+		1D53B76E27553510007D7A35 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D53B75F275534E9007D7A35 /* MainTabBarController.swift */; };
+		1D53B77427553525007D7A35 /* TableView.DiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D53B76F27553524007D7A35 /* TableView.DiffableDataSource.swift */; };
+		1D53B77527553525007D7A35 /* TableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D53B77027553524007D7A35 /* TableViewSection.swift */; };
+		1D53B77627553525007D7A35 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D53B77127553525007D7A35 /* TableView.swift */; };
+		1D53B77727553525007D7A35 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D53B77227553525007D7A35 /* TableViewCell.swift */; };
+		1D53B77827553525007D7A35 /* TableViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D53B77327553525007D7A35 /* TableViewItem.swift */; };
+		1D53B77B2755355C007D7A35 /* TableViewItem.FillMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D53B77A2755355C007D7A35 /* TableViewItem.FillMode.swift */; };
+		1D53B77C27553842007D7A35 /* TableViewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D53B759275534E9007D7A35 /* TableViewsVC.swift */; };
+		1D53B77D27553845007D7A35 /* SimpleTableViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D53B75E275534E9007D7A35 /* SimpleTableViewVC.swift */; };
+		1D53B77E2755384A007D7A35 /* ColoredTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D53B75B275534E9007D7A35 /* ColoredTVC.swift */; };
+		1D53B77F2755384D007D7A35 /* ColoredTVI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D53B75D275534E9007D7A35 /* ColoredTVI.swift */; };
+		1D53B78027553851007D7A35 /* ButtonTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D53B75C275534E9007D7A35 /* ButtonTVC.swift */; };
+		1D53B78127553853007D7A35 /* ButtonTVI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D53B760275534E9007D7A35 /* ButtonTVI.swift */; };
+		1D53B78327553A3E007D7A35 /* TableViewCell.FillMode.FromDataSourceContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D53B78227553A3E007D7A35 /* TableViewCell.FillMode.FromDataSourceContext.swift */; };
 		1D6565DD271C435100C75D34 /* ScaleCarouselVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6565DC271C435100C75D34 /* ScaleCarouselVC.swift */; };
 		1D6565E1271C43F600C75D34 /* InfoCardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6565E0271C43F600C75D34 /* InfoCardItem.swift */; };
 		1D6565E3271C445A00C75D34 /* InfoCardItem.Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6565E2271C445A00C75D34 /* InfoCardItem.Content.swift */; };
@@ -252,6 +267,21 @@
 		1D4FB8592742BEB3003082EA /* ColoredCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredCell.swift; sourceTree = "<group>"; };
 		1D4FB85D2743CEF9003082EA /* ButtonsView.InitError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsView.InitError.swift; sourceTree = "<group>"; };
 		1D4FB85F2743DF3E003082EA /* NSCollectionLayoutSize+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCollectionLayoutSize+Extensions.swift"; sourceTree = "<group>"; };
+		1D53B759275534E9007D7A35 /* TableViewsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewsVC.swift; sourceTree = "<group>"; };
+		1D53B75A275534E9007D7A35 /* BasePlaygroundTableViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePlaygroundTableViewVC.swift; sourceTree = "<group>"; };
+		1D53B75B275534E9007D7A35 /* ColoredTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredTVC.swift; sourceTree = "<group>"; };
+		1D53B75C275534E9007D7A35 /* ButtonTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTVC.swift; sourceTree = "<group>"; };
+		1D53B75D275534E9007D7A35 /* ColoredTVI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredTVI.swift; sourceTree = "<group>"; };
+		1D53B75E275534E9007D7A35 /* SimpleTableViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTableViewVC.swift; sourceTree = "<group>"; };
+		1D53B75F275534E9007D7A35 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		1D53B760275534E9007D7A35 /* ButtonTVI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTVI.swift; sourceTree = "<group>"; };
+		1D53B76F27553524007D7A35 /* TableView.DiffableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.DiffableDataSource.swift; sourceTree = "<group>"; };
+		1D53B77027553524007D7A35 /* TableViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewSection.swift; sourceTree = "<group>"; };
+		1D53B77127553525007D7A35 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		1D53B77227553525007D7A35 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		1D53B77327553525007D7A35 /* TableViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewItem.swift; sourceTree = "<group>"; };
+		1D53B77A2755355C007D7A35 /* TableViewItem.FillMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewItem.FillMode.swift; sourceTree = "<group>"; };
+		1D53B78227553A3E007D7A35 /* TableViewCell.FillMode.FromDataSourceContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.FillMode.FromDataSourceContext.swift; sourceTree = "<group>"; };
 		1D6565DC271C435100C75D34 /* ScaleCarouselVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleCarouselVC.swift; sourceTree = "<group>"; };
 		1D6565E0271C43F600C75D34 /* InfoCardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCardItem.swift; sourceTree = "<group>"; };
 		1D6565E2271C445A00C75D34 /* InfoCardItem.Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCardItem.Content.swift; sourceTree = "<group>"; };
@@ -530,6 +560,73 @@
 			name = "Collection view";
 			sourceTree = "<group>";
 		};
+		1D53B756275534B6007D7A35 /* Table view */ = {
+			isa = PBXGroup;
+			children = (
+				1D53B7792755354E007D7A35 /* Item */,
+				1D53B76F27553524007D7A35 /* TableView.DiffableDataSource.swift */,
+				1D53B77127553525007D7A35 /* TableView.swift */,
+				1D53B77227553525007D7A35 /* TableViewCell.swift */,
+				1D53B77027553524007D7A35 /* TableViewSection.swift */,
+			);
+			name = "Table view";
+			sourceTree = "<group>";
+		};
+		1D53B758275534CF007D7A35 /* Table view */ = {
+			isa = PBXGroup;
+			children = (
+				1D53B759275534E9007D7A35 /* TableViewsVC.swift */,
+				1D53B76D27553508007D7A35 /* Screens */,
+				1D53B76A275534EF007D7A35 /* Items */,
+			);
+			name = "Table view";
+			sourceTree = "<group>";
+		};
+		1D53B76A275534EF007D7A35 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				1D53B76C275534FB007D7A35 /* Colored */,
+				1D53B76B275534F3007D7A35 /* Button */,
+			);
+			name = Items;
+			sourceTree = "<group>";
+		};
+		1D53B76B275534F3007D7A35 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				1D53B75C275534E9007D7A35 /* ButtonTVC.swift */,
+				1D53B760275534E9007D7A35 /* ButtonTVI.swift */,
+			);
+			name = Button;
+			sourceTree = "<group>";
+		};
+		1D53B76C275534FB007D7A35 /* Colored */ = {
+			isa = PBXGroup;
+			children = (
+				1D53B75B275534E9007D7A35 /* ColoredTVC.swift */,
+				1D53B75D275534E9007D7A35 /* ColoredTVI.swift */,
+			);
+			name = Colored;
+			sourceTree = "<group>";
+		};
+		1D53B76D27553508007D7A35 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				1D53B75E275534E9007D7A35 /* SimpleTableViewVC.swift */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
+		1D53B7792755354E007D7A35 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				1D53B77327553525007D7A35 /* TableViewItem.swift */,
+				1D53B77A2755355C007D7A35 /* TableViewItem.FillMode.swift */,
+				1D53B78227553A3E007D7A35 /* TableViewCell.FillMode.FromDataSourceContext.swift */,
+			);
+			name = Item;
+			sourceTree = "<group>";
+		};
 		1D6565DF271C43EA00C75D34 /* Info card */ = {
 			isa = PBXGroup;
 			children = (
@@ -737,6 +834,8 @@
 				1DDF01622709D30E00D88994 /* App */,
 				1D34D11D272466220018CC3B /* AnKitPlayground.swift */,
 				1D230A912735561700F4A881 /* BasePlaygroundCollectionViewVC.swift */,
+				1D53B75A275534E9007D7A35 /* BasePlaygroundTableViewVC.swift */,
+				1D53B75F275534E9007D7A35 /* MainTabBarController.swift */,
 				1D4FB85427428DCF003082EA /* PlaygroundVCProtocol.swift */,
 				1D6565E6271C581400C75D34 /* Color.swift */,
 				1D7F4C8027383AA0004C6756 /* DependenciesStorage.swift */,
@@ -770,6 +869,7 @@
 		1DDF01642709D33C00D88994 /* Examples */ = {
 			isa = PBXGroup;
 			children = (
+				1D53B758275534CF007D7A35 /* Table view */,
 				1D53B740275525D5007D7A35 /* Collection view */,
 			);
 			name = Examples;
@@ -885,6 +985,7 @@
 				1DDF018A2709D84600D88994 /* Responders */,
 				1DDF018F2709D8E800D88994 /* Shadow */,
 				1DDF01902709D8FB00D88994 /* Shimmerable */,
+				1D53B756275534B6007D7A35 /* Table view */,
 				1DDF00CA2709D19A00D88994 /* Tappable.swift */,
 			);
 			name = Core;
@@ -1254,6 +1355,7 @@
 			files = (
 				1DDF01052709D19B00D88994 /* ContainerView.swift in Sources */,
 				1DDF013C2709D19B00D88994 /* HasImageProviders.swift in Sources */,
+				1D53B77B2755355C007D7A35 /* TableViewItem.FillMode.swift in Sources */,
 				1DDF01182709D19B00D88994 /* ImageProvider.ProcessingError.swift in Sources */,
 				1DDF00FC2709D19B00D88994 /* DividerView.swift in Sources */,
 				1D6565F8271CB84100C75D34 /* ComplexUIImageProvider.Modifier.swift in Sources */,
@@ -1280,6 +1382,8 @@
 				1D6566062720C23C00C75D34 /* CollectionViewSection.RemoveDecorationItemError.swift in Sources */,
 				1DDF012E2709D19B00D88994 /* BaseViewOutput.swift in Sources */,
 				1DDF00FB2709D19B00D88994 /* UIImpactFeedbackGenerator.FeedbackStyle+Extensions.swift in Sources */,
+				1D53B77627553525007D7A35 /* TableView.swift in Sources */,
+				1D53B78327553A3E007D7A35 /* TableViewCell.FillMode.FromDataSourceContext.swift in Sources */,
 				1DDF01422709D19B00D88994 /* CollectionViewItem.CellHeightCalculationError.swift in Sources */,
 				1DDF01022709D19B00D88994 /* UIView.ConstraintMakeData.MakeConstraintError.swift in Sources */,
 				1DB327272739B822007E28B3 /* CollectionViewSection.LayoutCreationContext.swift in Sources */,
@@ -1292,11 +1396,14 @@
 				1DDF00F92709D19B00D88994 /* SecondarySystemGroupedBackgroundDecorationView.swift in Sources */,
 				1D7F4C542737DA00004C6756 /* UIEdgeInsets+Extensions.swift in Sources */,
 				1DDF00FF2709D19B00D88994 /* UILabel+Extensions.swift in Sources */,
+				1D53B77727553525007D7A35 /* TableViewCell.swift in Sources */,
+				1D53B77427553525007D7A35 /* TableView.DiffableDataSource.swift in Sources */,
 				1DDF011E2709D19B00D88994 /* Double+Extensions.swift in Sources */,
 				1DDF00FE2709D19B00D88994 /* UILabel+Shimmerable.swift in Sources */,
 				1D65660B2720C6B500C75D34 /* CollectionViewSection.RemoveItemError.swift in Sources */,
 				1DDF00EA2709D19B00D88994 /* DividerDefaultStrategy.swift in Sources */,
 				1DCD897A274010D000EBFD3A /* UIColor+Extensions.swift in Sources */,
+				1D53B77527553525007D7A35 /* TableViewSection.swift in Sources */,
 				1D6566082720C2B000C75D34 /* CollectionViewSection.AppendDecorationItemError.swift in Sources */,
 				1DDF01272709D19B00D88994 /* TimeInterval+Extensions.swift in Sources */,
 				1DDF01462709D19B00D88994 /* CGSize.ProportionallySizingError.swift in Sources */,
@@ -1328,6 +1435,7 @@
 				1D34D1172724402D0018CC3B /* Array.ChunkedError.swift in Sources */,
 				1DDF01352709D19B00D88994 /* CALayer+Extensions.swift in Sources */,
 				1DDF01142709D19B00D88994 /* PlainListSection.swift in Sources */,
+				1D53B77827553525007D7A35 /* TableViewItem.swift in Sources */,
 				1DDF00F22709D19B00D88994 /* CollectionView.swift in Sources */,
 				1DDF01282709D19B00D88994 /* CircleButton.swift in Sources */,
 				1DDF013E2709D19B00D88994 /* DividerStrategyProtocol.swift in Sources */,
@@ -1391,11 +1499,16 @@
 				1D7F4C8327383B58004C6756 /* NumberFormatterProtocol.swift in Sources */,
 				1D6565EE271C5C9D00C75D34 /* ScaleCarouselSection.swift in Sources */,
 				1DDF01512709D28000D88994 /* AppDelegate.swift in Sources */,
+				1D53B78027553851007D7A35 /* ButtonTVC.swift in Sources */,
+				1D53B78127553853007D7A35 /* ButtonTVI.swift in Sources */,
 				1DDF01752709D3BF00D88994 /* SectionBackgroundVC.swift in Sources */,
+				1D53B769275534EB007D7A35 /* BasePlaygroundTableViewVC.swift in Sources */,
 				1D7F4C6427383450004C6756 /* FieldCell.swift in Sources */,
 				1D6565E9271C591F00C75D34 /* Font.swift in Sources */,
 				1D7F4C6E273834C9004C6756 /* StringFieldItemDelegate.swift in Sources */,
+				1D53B76E27553510007D7A35 /* MainTabBarController.swift in Sources */,
 				1D6565DD271C435100C75D34 /* ScaleCarouselVC.swift in Sources */,
+				1D53B77F2755384D007D7A35 /* ColoredTVI.swift in Sources */,
 				1D6565EB271C5A2900C75D34 /* Image.swift in Sources */,
 				1D6565E5271C448E00C75D34 /* InfoCardCell.swift in Sources */,
 				1DB3272327394493007E28B3 /* ExpandableTextCell.swift in Sources */,
@@ -1412,6 +1525,7 @@
 				1D7F4C6227383428004C6756 /* FieldItem.swift in Sources */,
 				1D4FB85A2742BEB3003082EA /* ColoredCell.swift in Sources */,
 				1DB3272027394493007E28B3 /* ExpandableTextItem.CellHeightCalculationContext.swift in Sources */,
+				1D53B77E2755384A007D7A35 /* ColoredTVC.swift in Sources */,
 				1D34D1342724A8BB0018CC3B /* InfoCardItem.BadgeItem.swift in Sources */,
 				1DB3271327394227007E28B3 /* TransitionTypePickerFieldItem.swift in Sources */,
 				1D230A922735561700F4A881 /* BasePlaygroundCollectionViewVC.swift in Sources */,
@@ -1420,6 +1534,7 @@
 				1DB3272227394493007E28B3 /* ChangeItemHeightVC.swift in Sources */,
 				1DE7C8E5273BDC9800842EEC /* ChangeLayoutSection.Mode.swift in Sources */,
 				1DB3271027393EA4007E28B3 /* PickerFieldItemDelegate.swift in Sources */,
+				1D53B77C27553842007D7A35 /* TableViewsVC.swift in Sources */,
 				1D6565E1271C43F600C75D34 /* InfoCardItem.swift in Sources */,
 				1DDF01732709D3BA00D88994 /* ButtonCell.swift in Sources */,
 				1D34D1372724A8C30018CC3B /* VerticalBadgedItemsVC.swift in Sources */,
@@ -1428,6 +1543,7 @@
 				1D4FB85527428DCF003082EA /* PlaygroundVCProtocol.swift in Sources */,
 				1DB3270A27393DBD007E28B3 /* PickerFieldCell.swift in Sources */,
 				1D34D1362724A8C00018CC3B /* VerticalBadgedItemsSection.swift in Sources */,
+				1D53B77D27553845007D7A35 /* SimpleTableViewVC.swift in Sources */,
 				1DDF01A02709E45100D88994 /* SimpleCollectionViewVC.swift in Sources */,
 				1DB3272527394915007E28B3 /* CATransitionType+Extensions.swift in Sources */,
 				1D7F4C8127383AA0004C6756 /* DependenciesStorage.swift in Sources */,

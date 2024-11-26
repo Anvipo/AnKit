@@ -19,7 +19,7 @@ public extension CACornerMask {
 	}
 }
 
-extension CACornerMask: CaseIterable {
+extension CACornerMask: @retroactive CaseIterable {
 	public typealias AllCases = [Self]
 
 	public static var allCases: AllCases {
@@ -32,7 +32,7 @@ extension CACornerMask: CaseIterable {
 	}
 }
 
-extension CACornerMask: Hashable {
+extension CACornerMask: @retroactive Hashable {
 	public func hash(into hasher: inout Hasher) {
 		hasher.combine(rawValue)
 	}

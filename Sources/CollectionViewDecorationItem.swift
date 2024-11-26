@@ -5,6 +5,8 @@
 //  Created by Anvipo on 26.09.2021.
 //
 
+import Foundation
+
 /// Item, which is anchored to the section.
 open class CollectionViewDecorationItem: Item {
 	/// A string that identifies the type of decoration view.

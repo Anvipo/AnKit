@@ -7,7 +7,7 @@
 
 import QuartzCore
 
-extension CATransitionType: CaseIterable {
+extension CATransitionType: @retroactive CaseIterable {
 	public typealias AllCases = [CATransitionType]
 
 	public static var allCases: AllCases {

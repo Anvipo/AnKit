@@ -24,7 +24,7 @@ final class StringFieldCell: FieldCell {
 	}
 
 	override func textFieldDidChange(text: String) {
-		guard let item = item else {
+		guard let item else {
 			return
 		}
 
@@ -47,7 +47,7 @@ extension StringFieldCell {
 		shouldChangeCharactersIn range: NSRange,
 		replacementString string: String
 	) -> Bool {
-		guard let item = item,
+		guard let item,
 			  let delegate = item.delegate
 		else {
 			assertionFailure("?")

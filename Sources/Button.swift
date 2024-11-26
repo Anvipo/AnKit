@@ -50,11 +50,11 @@ open class Button: UIButton {
 	override public final func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
 		let pointInParent = convert(point, to: superview)
 
-		if let extendedTapAreaRect = extendedTapAreaRect {
+		if let extendedTapAreaRect {
 			return extendedTapAreaRect.contains(pointInParent)
 		}
 
-		guard let extendedTapAreaSize = extendedTapAreaSize else {
+		guard let extendedTapAreaSize else {
 			return super.point(inside: point, with: event)
 		}
 
@@ -160,7 +160,7 @@ extension Button: ShimmerableViewProtocol {
 	}
 
 	public func layoutShimmer(by rect: CGRect) {
-		guard let shimmerLayer = shimmerLayer else {
+		guard let shimmerLayer else {
 			return
 		}
 

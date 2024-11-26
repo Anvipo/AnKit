@@ -29,7 +29,7 @@ public extension UIView {
 
 	/// Removes shimmer from view.
 	func removeShimmer() {
-		guard let shimmerLayer = shimmerLayer else {
+		guard let shimmerLayer else {
 			return
 		}
 

@@ -58,14 +58,14 @@ public final class MultilineShimmerableLabel: UIView {
 extension MultilineShimmerableLabel: ShimmerableViewProtocol {
 	public func showShimmer() {
 		label.isHidden = true
-		if let labelConstraints = labelConstraints {
+		if let labelConstraints {
 			NSLayoutConstraint.deactivate(labelConstraints)
 		}
 
 		shimmeredView.isHidden = false
 		shimmeredViewHeightConstraint?.isActive = true
 
-		if let shimmeredViewConstraints = shimmeredViewConstraints {
+		if let shimmeredViewConstraints {
 			NSLayoutConstraint.activate(shimmeredViewConstraints)
 		}
 
@@ -76,12 +76,12 @@ extension MultilineShimmerableLabel: ShimmerableViewProtocol {
 	public func hideShimmer() {
 		shimmeredView.isHidden = true
 		shimmeredViewHeightConstraint?.isActive = false
-		if let shimmeredViewConstraints = shimmeredViewConstraints {
+		if let shimmeredViewConstraints {
 			NSLayoutConstraint.deactivate(shimmeredViewConstraints)
 		}
 
 		label.isHidden = false
-		if let labelConstraints = labelConstraints {
+		if let labelConstraints {
 			NSLayoutConstraint.activate(labelConstraints)
 		}
 	}
@@ -105,7 +105,7 @@ extension MultilineShimmerableLabel: ShimmerableViewProtocol {
 		let width: CGFloat
 		if rect.width != .zero {
 			width = bounds.width
-		} else if let superview = superview,
+		} else if let superview,
 				  superview.bounds.width != .zero {
 			width = superview.bounds.width
 		} else {

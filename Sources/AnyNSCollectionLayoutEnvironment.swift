@@ -25,7 +25,7 @@ public final class AnyNSCollectionLayoutEnvironment: NSObject {
 	}
 
 	override public func isEqual(_ object: Any?) -> Bool {
-		guard let other = object as? AnyNSCollectionLayoutEnvironment else {
+		guard let other = object as? Self else {
 			return false
 		}
 

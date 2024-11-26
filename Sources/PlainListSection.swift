@@ -77,7 +77,7 @@ public final class PlainListSection: CollectionViewSection {
 		sectionLayout.visibleItemsInvalidationHandler = visibleItemsInvalidationHandler
 
 		let headerViewHeight: CGFloat?
-		if let headerItem = headerItem {
+		if let headerItem {
 			let headerLayout = boundarySupplementaryLayout(
 				item: headerItem,
 				alignment: .top,
@@ -92,7 +92,7 @@ public final class PlainListSection: CollectionViewSection {
 		}
 
 		let footerViewHeight: CGFloat?
-		if let footerItem = footerItem {
+		if let footerItem {
 			let footerLayout = boundarySupplementaryLayout(
 				item: footerItem,
 				alignment: .bottom,
@@ -106,7 +106,7 @@ public final class PlainListSection: CollectionViewSection {
 			footerViewHeight = nil
 		}
 
-		if let backgroundDecorationItem = backgroundDecorationItem {
+		if let backgroundDecorationItem {
 			let backgroundItemLayout = backgroundItemLayout(
 				backgroundDecorationItem: backgroundDecorationItem,
 				headerViewHeight: headerViewHeight,
@@ -291,7 +291,7 @@ private extension PlainListSection {
 			)
 		}
 
-		let contentHeight = layoutItems.map { $0.layoutSize.heightDimension.dimension }.sum
+		let contentHeight = layoutItems.map(\.layoutSize.heightDimension.dimension).sum
 
 		let verticalGroupLayout = NSCollectionLayoutGroup.vertical(
 			layoutSize: .fullWidth(

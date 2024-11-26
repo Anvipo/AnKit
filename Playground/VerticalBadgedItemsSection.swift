@@ -45,7 +45,7 @@ final class VerticalBadgedItemsSection: CollectionViewSection {
 		let section = NSCollectionLayoutSection(group: verticalGroup)
 		section.contentInsets = contentInsets
 
-		if let headerItem = headerItem {
+		if let headerItem {
 			let context = CollectionViewSupplementaryItem.ViewHeightCalculationContext(
 				availableWidthForSupplementaryView: context.layoutEnvironment.container.effectiveContentSize.width,
 				layoutEnvironment: AnyNSCollectionLayoutEnvironment(context.layoutEnvironment)
@@ -90,7 +90,7 @@ private extension VerticalBadgedItemsSection {
 			return horizontalGroup
 		}
 
-		let contentHeight = horizontalGroupLayouts.map { $0.layoutSize.heightDimension.dimension }.sum +
+		let contentHeight = horizontalGroupLayouts.map(\.layoutSize.heightDimension.dimension).sum +
 		CGFloat(horizontalGroupLayouts.count - 1) * 24
 
 		let verticalGroup = NSCollectionLayoutGroup.vertical(

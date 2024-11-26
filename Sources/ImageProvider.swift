@@ -59,8 +59,8 @@ public extension ImageProvider {
 			}
 
 			requestImage { [weak imageView, weak self] result in
-				guard let self = self,
-					  let imageView = imageView,
+				guard let self,
+					  let imageView,
 					  shouldSetImageToImageView()
 				else {
 					return
@@ -156,7 +156,7 @@ private extension ImageProvider {
 	func process(request: AnyPublisher<Data, Error>) {
 		request
 			.sink { [weak self] completion in
-				guard let self = self else {
+				guard let self else {
 					return
 				}
 

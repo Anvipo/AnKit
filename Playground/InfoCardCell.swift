@@ -31,7 +31,7 @@ final class InfoCardCell: CollectionViewCell {
 	override func layoutSubviews() {
 		super.layoutSubviews()
 
-		guard let item = item,
+		guard let item,
 			  !item.isShimmering
 		else {
 			contentView.resetShadowParameters()
@@ -152,7 +152,7 @@ private extension InfoCardCell {
 	}
 
 	func setupImage() throws {
-		guard let item = item else {
+		guard let item else {
 			return
 		}
 

@@ -9,7 +9,7 @@ import AnKit
 import UIKit
 
 final class ChangeItemHeightVC: BasePlaygroundVC {
-	override class var playgroundTitle: String {
+	override static var playgroundTitle: String {
 		"Change item height example"
 	}
 
@@ -54,7 +54,7 @@ final class ChangeItemHeightVC: BasePlaygroundVC {
 
 extension ChangeItemHeightVC: StringFieldItemDelegate {
 	func stringFieldItemDidChangeString(_ item: StringFieldItem) {
-		guard let expandByReconfigureItem = expandByReconfigureItem,
+		guard let expandByReconfigureItem,
 			  item.id == animationDurationPickerItemID
 		else {
 			assertionFailure("?")
@@ -70,7 +70,7 @@ extension ChangeItemHeightVC: PickerFieldItemDelegate {
 		_ item: PickerFieldItem,
 		component: PickerFieldItem.SelectedComponentInfo
 	) {
-		guard let expandByReconfigureItem = expandByReconfigureItem,
+		guard let expandByReconfigureItem,
 			  item.id == textLabelTransitionTypePickerID
 		else {
 			assertionFailure("?")
@@ -87,7 +87,7 @@ private extension ChangeItemHeightVC {
 			let expandByReloadItem = try ExpandableTextItem(text: .mock)
 			self.expandByReloadItem = expandByReloadItem
 			expandByReloadItem.onTapExpandButton = { [weak self] in
-				guard let self = self else {
+				guard let self else {
 					return
 				}
 
@@ -164,7 +164,7 @@ private extension ChangeItemHeightVC {
 	}
 
 	func didTapExpandByReloadItem() throws {
-		guard let expandByReloadItem = expandByReloadItem else {
+		guard let expandByReloadItem else {
 			assertionFailure("?")
 			return
 		}
@@ -179,7 +179,7 @@ private extension ChangeItemHeightVC {
 
 	@available(iOS 15, *)
 	func didTapExpandByReconfigureItem() throws {
-		guard let expandByReconfigureItem = expandByReconfigureItem else {
+		guard let expandByReconfigureItem else {
 			assertionFailure("?")
 			return
 		}

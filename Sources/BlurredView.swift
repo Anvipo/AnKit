@@ -43,7 +43,7 @@ public extension BlurredView {
 	/// Sets specified `style`.
 	/// - Parameter style: The intensity of the blur effect.
 	func set(style: UIBlurEffect.Style?) {
-		if let style = style {
+		if let style {
 			blurredView.effect = UIAccessibility.isReduceTransparencyEnabled ? nil : UIBlurEffect(style: style)
 		} else {
 			blurredView.effect = nil
@@ -61,7 +61,7 @@ public extension BlurredView {
 			return
 		}
 
-		guard let blurAnimator = blurAnimator else {
+		guard let blurAnimator else {
 			fatalError("Blur animator should not be nil")
 		}
 

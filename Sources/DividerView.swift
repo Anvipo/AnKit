@@ -19,7 +19,7 @@ public final class DividerView: UIView {
 	}
 
 	override public var intrinsicContentSize: CGSize {
-		guard let model = model else {
+		guard let model else {
 			return .zero
 		}
 
@@ -61,7 +61,7 @@ private extension DividerView {
 	}
 
 	func updateAppearance() {
-		guard let model = model else {
+		guard let model else {
 			return
 		}
 
@@ -71,7 +71,7 @@ private extension DividerView {
 	}
 
 	func updateShapeLayer() {
-		guard let model = model else {
+		guard let model else {
 			shapeLayer.path = nil
 			return
 		}

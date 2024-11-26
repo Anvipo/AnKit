@@ -23,7 +23,7 @@ extension UILabel: ShimmerableViewProtocol {
 	}
 
 	public func layoutShimmer(by rect: CGRect) {
-		guard let shimmerLayer = shimmerLayer else {
+		guard let shimmerLayer else {
 			return
 		}
 

@@ -82,7 +82,7 @@ final class ExpandableTextCell: CollectionViewCell {
 
 private extension ExpandableTextCell {
 	func didTapExpandButton() {
-		guard let item = item else {
+		guard let item else {
 			assertionFailure("?")
 			return
 		}

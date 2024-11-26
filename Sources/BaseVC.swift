@@ -49,7 +49,7 @@ open class BaseVC: UIViewController {
 	}
 
 	@available(*, unavailable)
-	override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+	override init(nibName: String?, bundle: Bundle?) {
 		fatalError("init(nibName:bundle:) has not been implemented")
 	}
 

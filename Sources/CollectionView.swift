@@ -464,7 +464,7 @@ private extension CollectionView {
 		}
 
 		for section in sections {
-			for itemSupplementaryItems in section.items.map({ $0.supplementaryItems }) {
+			for itemSupplementaryItems in section.items.map(\.supplementaryItems) {
 				for itemSupplementaryItem in itemSupplementaryItems {
 					let supplementaryViewType = itemSupplementaryItem.supplementaryViewType
 

@@ -9,7 +9,7 @@ import AnKit
 import UIKit
 
 final class ShuffleItemsVC: BasePlaygroundVC {
-	override class var playgroundTitle: String {
+	override static var playgroundTitle: String {
 		"Shuffle items example"
 	}
 
@@ -87,7 +87,7 @@ private extension ShuffleItemsVC {
 		button.setup(
 			text: "Shuffle items"
 		) { [weak self] in
-			guard let self = self else {
+			guard let self else {
 				return
 			}
 

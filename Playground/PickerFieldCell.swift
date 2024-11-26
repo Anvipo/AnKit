@@ -42,7 +42,7 @@ extension PickerFieldCell: UIPickerViewDelegate {
 		titleForRow row: Int,
 		forComponent component: Int
 	) -> String? {
-		guard let item = item else {
+		guard let item else {
 			assertionFailure("?")
 			return nil
 		}
@@ -60,7 +60,7 @@ extension PickerFieldCell: UIPickerViewDelegate {
 		didSelectRow row: Int,
 		inComponent component: Int
 	) {
-		guard let item = item else {
+		guard let item else {
 			assertionFailure("?")
 			return
 		}
@@ -82,7 +82,7 @@ extension PickerFieldCell: UIPickerViewDelegate {
 			set(text: item.text(for: item.selectedComponent))
 
 			item.delegate?.pickerFieldItemDidChangeComponent(item, component: newComponent)
-		} else if let lastChosenComponent = lastChosenComponent {
+		} else if let lastChosenComponent {
 			pickerView.selectRow(
 				lastChosenComponent.componentRowIndex,
 				inComponent: lastChosenComponent.componentIndex,
@@ -98,7 +98,7 @@ extension PickerFieldCell: UIPickerViewDataSource {
 	func numberOfComponents(
 		in pickerView: UIPickerView
 	) -> Int {
-		guard let item = item else {
+		guard let item else {
 			assertionFailure("?")
 			return 0
 		}
@@ -110,7 +110,7 @@ extension PickerFieldCell: UIPickerViewDataSource {
 		_ pickerView: UIPickerView,
 		numberOfRowsInComponent component: Int
 	) -> Int {
-		guard let item = item else {
+		guard let item else {
 			assertionFailure("?")
 			return 0
 		}

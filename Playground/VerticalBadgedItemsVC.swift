@@ -9,7 +9,7 @@ import AnKit
 import UIKit
 
 final class VerticalBadgedItemsVC: BasePlaygroundVC {
-	override class var playgroundTitle: String {
+	override static var playgroundTitle: String {
 		"Vertical badged items example"
 	}
 

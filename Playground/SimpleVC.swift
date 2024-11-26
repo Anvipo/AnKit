@@ -9,7 +9,7 @@ import AnKit
 import UIKit
 
 final class SimpleVC: BasePlaygroundVC {
-	override class var playgroundTitle: String {
+	override static var playgroundTitle: String {
 		"Simple screen example"
 	}
 

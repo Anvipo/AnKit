@@ -333,7 +333,7 @@ private extension CollectionViewSection {
 		boundarySupplementaryItems: [CollectionViewBoundarySupplementaryItem],
 		decorationItems: [CollectionViewDecorationItem]
 	) throws {
-		let groupedItemSupplementaryItems = Dictionary(grouping: items.flatMap { $0.supplementaryItems }) { $0.elementKind }
+		let groupedItemSupplementaryItems = Dictionary(grouping: items.flatMap(\.supplementaryItems)) { $0.elementKind }
 		for itemSupplementaryItems in groupedItemSupplementaryItems.values {
 			if itemSupplementaryItems.count > 1 {
 				throw InitError.duplicateItemSupplementaryItemsByElementKind(itemSupplementaryItems)

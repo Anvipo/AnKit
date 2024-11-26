@@ -9,7 +9,7 @@ import AnKit
 import UIKit
 
 final class MainVC: BasePlaygroundVC {
-	override class var playgroundTitle: String {
+	override static var playgroundTitle: String {
 		"Examples"
 	}
 
@@ -37,7 +37,7 @@ private extension MainVC {
 			items: [PlainSpacerItem(height: .defaultVerticalOffset)] +
 			exampleViewControllers.reduce(into: []) { partialResult, exampleVCType in
 				let buttonItem = try ButtonItem(text: exampleVCType.playgroundTitle) { [weak self] in
-					guard let self = self else {
+					guard let self else {
 						return
 					}
 

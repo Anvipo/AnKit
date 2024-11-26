@@ -26,7 +26,7 @@ extension CollectionView {
 			collectionView.prefetchDataSource = self
 
 			supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
-				guard let self = self else {
+				guard let self else {
 					return nil
 				}
 
@@ -623,7 +623,7 @@ extension CollectionView.DiffableDataSource: UICollectionViewDataSourcePrefetchi
 		_ collectionView: UICollectionView,
 		prefetchItemsAt indexPaths: [IndexPath]
 	) {
-		if let prefetchingDelegate = prefetchingDelegate,
+		if let prefetchingDelegate,
 		   let collectionView = collectionView as? CollectionView {
 			prefetchingDelegate.collectionView(
 				collectionView,
@@ -822,24 +822,24 @@ private extension CollectionView.DiffableDataSource {
 	func imageProviders(for indexPaths: [IndexPath]) -> [ImageProvider] {
 		let currentSnapshot = snapshot()
 		let boundarySupplementaryItemsImageProviders: [ImageProvider] = indexPaths
-			.map { $0.section }
+			.map(\.section)
 			.unique { $0 }
 			.sorted()
 			.compactMap { currentSnapshot.sectionIdentifiers[safe: $0]?.boundarySupplementaryItems }
 			.flatMap { $0 }
 			.compactMap { $0 as? HasImageProviders }
-			.flatMap { $0.imageProviders }
+			.flatMap(\.imageProviders)
 
 		let itemsImageProviders = indexPaths
 			.compactMap { itemIdentifier(for: $0) }
 			.compactMap { $0 as? HasImageProviders }
-			.flatMap { $0.imageProviders }
+			.flatMap(\.imageProviders)
 
 		let itemSupplementaryItemsImageProviders = indexPaths
 			.compactMap { itemIdentifier(for: $0)?.supplementaryItems }
 			.flatMap { $0 }
 			.compactMap { $0 as? HasImageProviders }
-			.flatMap { $0.imageProviders }
+			.flatMap(\.imageProviders)
 
 		return boundarySupplementaryItemsImageProviders + itemsImageProviders + itemSupplementaryItemsImageProviders
 	}

@@ -42,9 +42,9 @@ class FieldCell: CollectionViewCell {
 	override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
 		if self.point(inside: point, with: event) {
 			return textField
-		} else {
-			return super.hitTest(point, with: event)
 		}
+
+		return super.hitTest(point, with: event)
 	}
 
 	override func fill(from item: CollectionViewItem, mode: FillMode) {
@@ -121,7 +121,7 @@ extension FieldCell {
 	}
 
 	func setupStyle() {
-		guard let item = item else {
+		guard let item else {
 			assertionFailure("?")
 			return
 		}

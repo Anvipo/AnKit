@@ -18,11 +18,11 @@ open class TappableView: UIView {
 	override public final func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
 		let point = convert(point, to: self)
 
-		if let extendedTapAreaRect = extendedTapAreaRect {
+		if let extendedTapAreaRect {
 			return extendedTapAreaRect.contains(point)
 		}
 
-		guard let extendedTapAreaSize = extendedTapAreaSize else {
+		guard let extendedTapAreaSize else {
 			return super.point(inside: point, with: event)
 		}
 

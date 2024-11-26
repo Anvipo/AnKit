@@ -180,7 +180,7 @@ private extension ChangeLayoutSection {
 			}
 		}
 
-		let contentHeight = layoutItems.map { $0.layoutSize.heightDimension.dimension }.sum
+		let contentHeight = layoutItems.map(\.layoutSize.heightDimension.dimension).sum
 
 		let verticalGroupLayout = NSCollectionLayoutGroup.vertical(
 			layoutSize: .fullWidth(heightDimension: .absolute(contentHeight)),

@@ -4,7 +4,6 @@
 //
 //  Created by Anvipo on 07.11.2021.
 //
-// swiftlint:disable discouraged_optional_collection
 
 import AnKit
 import UIKit
@@ -21,6 +20,7 @@ class FieldItem: CollectionViewItem {
 	let contentInsets: NSDirectionalEdgeInsets
 	let backgroundColor: UIColor
 
+	// swiftlint:disable:next discouraged_optional_collection
 	var toolbarItems: [UIBarButtonItem]?
 	var currentResponderProvider: CurrentResponderProviderProtocol?
 	weak var fieldItemDelegate: FieldItemDelegate?
@@ -39,6 +39,7 @@ class FieldItem: CollectionViewItem {
 		textFont: UIFont,
 		tintColor: UIColor,
 		delegate: FieldItemDelegate,
+		// swiftlint:disable:next discouraged_optional_collection
 		toolbarItems: [UIBarButtonItem]? = nil,
 		titleNumberOfLines: Int = 1,
 		textFieldBorderStyle: UITextField.BorderStyle = .none,

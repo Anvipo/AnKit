@@ -4,7 +4,6 @@
 //
 //  Created by Anvipo on 30.08.2021.
 //
-// swiftlint:disable function_parameter_count
 
 import UIKit
 

@@ -4,7 +4,6 @@
 //
 //  Created by Anvipo on 08.11.2021.
 //
-// swiftlint:disable discouraged_optional_collection
 
 import AnKit
 import UIKit
@@ -32,6 +31,7 @@ final class TransitionTypePickerFieldItem: PickerFieldItem {
 		textFont: UIFont,
 		tintColor: UIColor,
 		delegate: PickerFieldItemDelegate,
+		// swiftlint:disable:next discouraged_optional_collection
 		toolbarItems: [UIBarButtonItem]? = nil,
 		titleNumberOfLines: Int = 1,
 		textFieldBorderStyle: UITextField.BorderStyle = .none,

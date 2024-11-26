@@ -4,7 +4,6 @@
 //
 //  Created by Anvipo on 29.08.2021.
 //
-// swiftlint:disable force_try
 
 import UIKit
 

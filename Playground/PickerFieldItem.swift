@@ -4,7 +4,6 @@
 //
 //  Created by Anvipo on 08.11.2021.
 //
-// swiftlint:disable unavailable_function discouraged_optional_collection
 
 import AnKit
 import UIKit
@@ -35,6 +34,7 @@ class PickerFieldItem: FieldItem {
 		textFont: UIFont,
 		tintColor: UIColor,
 		delegate: PickerFieldItemDelegate,
+		// swiftlint:disable:next discouraged_optional_collection
 		toolbarItems: [UIBarButtonItem]? = nil,
 		titleNumberOfLines: Int = 1,
 		textFieldBorderStyle: UITextField.BorderStyle = .none,
@@ -62,6 +62,7 @@ class PickerFieldItem: FieldItem {
 		)
 	}
 
+	// swiftlint:disable unavailable_function
 	func numberOfRows(in component: Int) -> Int {
 		fatalError("Implement this method")
 	}
@@ -69,6 +70,7 @@ class PickerFieldItem: FieldItem {
 	func text(for selectedComponent: SelectedComponentInfo) -> String {
 		fatalError("Implement this method")
 	}
+	// swiftlint:enable unavailable_function
 
 	override func hash(into hasher: inout Hasher) {
 		super.hash(into: &hasher)

@@ -4,7 +4,6 @@
 //
 //  Created by Anvipo on 29.08.2021.
 //
-// swiftlint:disable unavailable_function
 
 import UIKit
 
@@ -72,6 +71,7 @@ open class CollectionViewSection {
 		self.id = id
 	}
 
+	// swiftlint:disable unavailable_function
 	/// Creates layout configuration of this section.
 	/// - Parameter context: Detailed information sufficient to build the layout of the section.
 	open func layoutConfiguration(
@@ -79,6 +79,7 @@ open class CollectionViewSection {
 	) -> NSCollectionLayoutSection {
 		fatalError("Implement this method in your class")
 	}
+	// swiftlint:enable unavailable_function
 
 	// MARK: items methods
 

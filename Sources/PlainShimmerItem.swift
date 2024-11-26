@@ -5,7 +5,7 @@
 //  Created by Anvipo on 30.08.2021.
 //
 
-import CoreGraphics
+import Foundation
 
 /// DTO for plain shimmer in sections.
 public final class PlainShimmerItem: CollectionViewItem {

@@ -5,6 +5,8 @@
 //  Created by Anvipo on 26.09.2021.
 //
 
+import Foundation
+
 /// Background decoration item for plain list sections.
 open class PlainListBackgroundDecorationItem: CollectionViewDecorationItem {
 	/// If header exists, it will be ignored.

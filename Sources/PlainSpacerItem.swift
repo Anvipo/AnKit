@@ -5,7 +5,7 @@
 //  Created by Anvipo on 29.08.2021.
 //
 
-import CoreGraphics
+import Foundation
 
 /// DTO for plain spacer between items in sections.
 public final class PlainSpacerItem: CollectionViewItem {

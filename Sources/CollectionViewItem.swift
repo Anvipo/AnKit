@@ -5,7 +5,7 @@
 //  Created by Anvipo on 29.08.2021.
 //
 
-import CoreGraphics
+import Foundation
 
 /// Abstract DTO for cell.
 open class CollectionViewItem: Item {

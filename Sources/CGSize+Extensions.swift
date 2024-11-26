@@ -34,10 +34,3 @@ public extension CGSize {
 		return CGSize(width: width * neededRatio, height: height * neededRatio)
 	}
 }
-
-extension CGSize: Hashable {
-	public func hash(into hasher: inout Hasher) {
-		hasher.combine(width)
-		hasher.combine(height)
-	}
-}
